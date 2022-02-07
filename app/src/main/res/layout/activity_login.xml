@@ -49,21 +49,29 @@
         app:layout_constraintTop_toBottomOf="@+id/password"
         app:layout_constraintVertical_bias="0.469">
 
-    <Button
-        android:id="@+id/login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="64dp"
-        android:layout_weight="1"
-        android:enabled="false"
+        <Button
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="64dp"
+            android:layout_weight="1"
+            android:enabled="false"
 
-        android:paddingRight="20dp"
-        android:text="Sign in" />
+            android:paddingRight="20dp"
+            android:text="Sign in" />
 
-    <Button
+        <Button
+            android:id="@+id/button13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="signIn"
+            android:text="Sign In (c)" />
+
+        <Button
         android:id="@+id/register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -76,6 +84,7 @@
         android:paddingHorizontal="20dp"
         android:paddingStart="4dp"
         android:text="Register" />
+
     </LinearLayout>
 
     <ProgressBar

@@ -26,13 +26,13 @@
             android:layout_height="48dp"
             android:ems="10"
             android:inputType="time"
-            android:text="Pending Orders"/>
+            android:text="Pending Orders" />
     </LinearLayout>
 
     <ListView
+        android:id="@+id/listOrders"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:id = "@+id/listOrders"/>
+        android:layout_height="400dp" />
 
     <Button
         android:id="@+id/button4"
@@ -57,7 +57,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Button4" />
-
 
 
 </LinearLayout>

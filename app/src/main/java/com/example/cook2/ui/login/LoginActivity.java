@@ -23,7 +23,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.cook2.CustomerProfileActivity;
+import com.example.cook2.CustomerViewCooksActivity;
 import com.example.cook2.MainActivity;
+import com.example.cook2.MainActivity3;
 import com.example.cook2.R;
 import com.example.cook2.registerActivity;
 import com.example.cook2.ui.login.LoginViewModel;
@@ -120,6 +123,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,6 +133,7 @@ public class LoginActivity extends AppCompatActivity {
                 System.out.println("her");
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 System.out.println("Here");
+
             }
         });
         registerButton.setOnClickListener(new View.OnClickListener() {
@@ -141,6 +146,12 @@ public class LoginActivity extends AppCompatActivity {
                 System.out.println("Here");
             }
         });
+    }
+
+    // Temporary solution for current stage in coding -- **FIX_ME**
+    public void signIn(View v) {
+        Intent i = new Intent(this, MainActivity3.class);
+        startActivity(i);
     }
 
     private void updateUiWithUser(LoggedInUserView model) {

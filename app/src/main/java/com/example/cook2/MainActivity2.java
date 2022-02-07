@@ -47,8 +47,9 @@ public class MainActivity2 extends AppCompatActivity {
 
     public void customerButtonEvent(View v) {
         Log.d("success", "customerButtonEvent");
-        v.setEnabled(false);
-       // Intent customerScreen = new Intent(this, customerActivity.class);
-        //startActivity(customerScreen);
+        Intent customerScreen = new Intent(this, LoginActivity.class);
+        //v.setEnabled(false);
+        //Intent customerScreen = new Intent(this, customerActivity.class);
+        startActivity(customerScreen);
     }
 }
