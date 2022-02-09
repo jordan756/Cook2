@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cook2">
         <activity
+            android:name=".driverMainActivity3"
+            android:exported="false" />
+        <activity
+            android:name=".driverMainActivity2"
+            android:exported="false" />
+        <activity
+            android:name=".driverMainActivity"
+            android:exported="false" />
+        <activity
             android:name=".CustomerViewCooksActivity"
             android:exported="false" />
         <activity
