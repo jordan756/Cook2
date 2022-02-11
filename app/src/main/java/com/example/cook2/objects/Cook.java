@@ -8,7 +8,7 @@ public class Cook extends Person{
     public ArrayList<Food> menu;
     public ArrayList<Order> currentOrders;
 
-    Cook(String firstName, String lastName, double currentRating, String phone, String address) {
+    public Cook(String firstName, String lastName, double currentRating, String phone, String address) {
         super.firstName = firstName;
         super.lastName = lastName;
         super.currentRating = currentRating;
@@ -18,7 +18,7 @@ public class Cook extends Person{
         currentOrders = new ArrayList<>();
     }
     //test cook constructor
-    Cook() {
+    public Cook() {
         super.firstName = "Jordan";
         super.lastName = "the Third";
         super.currentRating = 5;

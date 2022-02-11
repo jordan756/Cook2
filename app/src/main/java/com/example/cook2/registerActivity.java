@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.cook2.objects.Cook;
 import com.example.cook2.ui.login.LoginActivity;
 
 public class registerActivity extends AppCompatActivity {
@@ -16,11 +17,14 @@ public class registerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         Button registerToMain = findViewById(R.id.registerToMain);
-
+        Cook testCook = new Cook();
+        System.out.println(testCook.getFirstName() + " " + testCook.getLastName());
         registerToMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(registerActivity.this, MainActivity.class));
+                Intent i = new Intent(registerActivity.this, MainActivity.class);
+                //i.putExtra("testCook",testCook);
+                startActivity(i);
             }
 
         });
