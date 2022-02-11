@@ -1,17 +1,31 @@
 package com.example.cook2.objects;
 
-public class Cook implements Person{
-    private String firstName;
-    private String lastName;
-    private double currentRating;
-    private int numberOfRatings;
+import java.util.ArrayList;
 
-    //Needs ArrayList with food Objects
-    String address; //maybe break into multiple pieces
+public class Cook extends Person{
 
-    public double getCurrentRating() {
-        System.out.println("current rating:" + currentRating);
-        return currentRating;
+
+    public ArrayList<Food> menu;
+    public ArrayList<Order> currentOrders;
+
+    Cook(String firstName, String lastName, double currentRating, String phone, String address) {
+        super.firstName = firstName;
+        super.lastName = lastName;
+        super.currentRating = currentRating;
+        super.phoneNumber = phone;
+        super.address = address;
+        menu = new ArrayList<>();
+        currentOrders = new ArrayList<>();
+    }
+    //test cook constructor
+    Cook() {
+        super.firstName = "Jordan";
+        super.lastName = "the Third";
+        super.currentRating = 5;
+        super.phoneNumber = "1-696-6969";
+        super.address = "at your mom's house";
+        menu = new ArrayList<>();
+        currentOrders = new ArrayList<>();
     }
 
 }
