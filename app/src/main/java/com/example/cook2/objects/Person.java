@@ -1,12 +1,17 @@
 package com.example.cook2.objects;
 
-public class Person {
+import android.os.Parcel;
+
+
+public class Person  {
     protected String firstName;
     protected String lastName;
     protected double currentRating;
     protected int numberOfRatings;
     protected String phoneNumber;
     protected String address; //maybe break into multiple pieces
+
+
 
     public String getFirstName() {
         return firstName;
