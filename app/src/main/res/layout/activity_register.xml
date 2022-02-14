@@ -8,11 +8,11 @@
 
     <EditText
         android:id="@+id/address"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="342dp"
+        android:layout_height="54dp"
         android:layout_marginStart="33dp"
         android:layout_marginEnd="33dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="25dp"
         android:hint="Address"
         android:inputType="none|textPostalAddress"
         android:selectAllOnFocus="true"
@@ -23,23 +23,24 @@
 
     <EditText
         android:id="@+id/cureentRating"
-        android:layout_width="71dp"
+        android:layout_width="72dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="47dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginBottom="31dp"
         android:hint="Rating"
         android:inputType="none|number"
         android:selectAllOnFocus="true"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/address"
+        app:layout_constraintBottom_toTopOf="@+id/registerToMain"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/address" />
 
     <EditText
         android:id="@+id/lastName"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="348dp"
+        android:layout_height="48dp"
         android:layout_marginStart="33dp"
         android:layout_marginEnd="33dp"
-        android:layout_marginBottom="23dp"
+        android:layout_marginBottom="31dp"
         android:hint="Last name"
         android:inputType="none|textPersonName"
         android:selectAllOnFocus="true"
@@ -50,11 +51,11 @@
 
     <EditText
         android:id="@+id/phoneNumber"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="346dp"
+        android:layout_height="51dp"
         android:layout_marginStart="33dp"
         android:layout_marginEnd="33dp"
-        android:layout_marginBottom="13dp"
+        android:layout_marginBottom="34dp"
         android:hint="Cell number"
         android:inputType="none|phone"
         android:selectAllOnFocus="true"
@@ -65,53 +66,39 @@
 
     <EditText
         android:id="@+id/firstName"
-        android:layout_width="344dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="177dp"
-        android:layout_marginEnd="27dp"
-        android:layout_marginBottom="504dp"
+        android:layout_width="343dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginEnd="33dp"
+        android:layout_marginBottom="23dp"
         android:hint="First name"
         android:inputType="none|textPersonName"
         android:selectAllOnFocus="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/lastName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.368" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="49dp"
-        android:layout_marginBottom="46dp"
-        android:text="Add profile information to create account here"
-        app:layout_constraintBottom_toTopOf="@+id/registerToMain"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cureentRating" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
         android:id="@+id/registerToMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="79dp"
+        android:layout_marginBottom="16dp"
         android:text="confirm acc, go to cook main"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/cureentRating" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="33dp"
+        android:layout_marginTop="104dp"
+        android:layout_marginBottom="63dp"
         app:layout_constraintBottom_toTopOf="@+id/firstName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
