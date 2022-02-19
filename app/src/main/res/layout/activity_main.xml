@@ -12,14 +12,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:contentDescription="@string/app_name"
-            app:srcCompat="?attr/homeAsUpIndicator" />
-
         <EditText
             android:id="@+id/editTextTime2"
             android:layout_width="match_parent"
@@ -38,25 +30,25 @@
         android:id="@+id/button4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button1" />
+        android:text="Start Order" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button2" />
+        android:text="Update Menu" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button3" />
+        android:text="Message" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button4" />
+        android:text="Profile" />
 
 
 </LinearLayout>
