@@ -45,6 +45,7 @@ public class Cook extends Person implements Parcelable {
         Order order2 = new Order(food2,null,null);
         currentOrders.add(order1);
         currentOrders.add(order2);
+
     }
 
     protected Cook(Parcel in) {
