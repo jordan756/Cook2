@@ -6,44 +6,74 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/cureentRating2"
+        android:id="@+id/customerPassword"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="113dp"
+        android:hint="Password"
+        android:inputType="none|textPostalAddress"
+        android:selectAllOnFocus="true"
+        app:layout_constraintBottom_toTopOf="@+id/button9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailAddress2" />
+
+    <EditText
+        android:id="@+id/emailAddress2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="13dp"
+        android:hint="Email"
+        android:inputType="none|textPostalAddress"
+        android:selectAllOnFocus="true"
+        app:layout_constraintBottom_toTopOf="@+id/customerPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/address2" />
+
+    <EditText
+        android:id="@+id/currentRating2"
         android:layout_width="72dp"
         android:layout_height="0dp"
-        android:layout_marginStart="33dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="142dp"
         android:hint="Rating"
         android:inputType="none|number"
         android:selectAllOnFocus="true"
-        app:layout_constraintBottom_toTopOf="@+id/button9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/address2" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/customerPassword"
+        app:layout_constraintTop_toBottomOf="@+id/firstName2" />
 
     <EditText
         android:id="@+id/firstName2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="33dp"
-        android:layout_marginEnd="33dp"
-        android:layout_marginBottom="21dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="173dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="314dp"
         android:hint="First name"
         android:inputType="none|textPersonName"
         android:selectAllOnFocus="true"
-        app:layout_constraintBottom_toTopOf="@+id/lastName2"
+        app:layout_constraintBottom_toTopOf="@+id/currentRating2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/address2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="29dp"
-        android:layout_marginEnd="29dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="15dp"
         android:hint="Address"
         android:inputType="none|textPostalAddress"
         android:selectAllOnFocus="true"
-        app:layout_constraintBottom_toTopOf="@+id/cureentRating2"
+        app:layout_constraintBottom_toTopOf="@+id/emailAddress2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phoneNumber2" />
@@ -52,9 +82,9 @@
         android:id="@+id/phoneNumber2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="27dp"
-        android:layout_marginEnd="27dp"
-        android:layout_marginBottom="21dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="8dp"
         android:hint="Cell number"
         android:inputType="none|phone"
         android:selectAllOnFocus="true"
@@ -67,9 +97,9 @@
         android:id="@+id/lastName2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="31dp"
-        android:layout_marginEnd="31dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="12dp"
         android:hint="Last name"
         android:inputType="none|textPersonName"
         android:selectAllOnFocus="true"
@@ -80,32 +110,34 @@
 
     <Button
         android:id="@+id/button5"
-        android:layout_width="202dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="9dp"
         android:text="change user"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/button9"
+        app:layout_constraintEnd_toStartOf="@+id/button9"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button9" />
+        app:layout_constraintTop_toTopOf="@+id/button9" />
 
     <Button
         android:id="@+id/button9"
-        android:layout_width="202dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="30dp"
         android:text="change password"
-        app:layout_constraintBottom_toTopOf="@+id/button5"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cureentRating2" />
+        app:layout_constraintStart_toEndOf="@+id/button5"
+        app:layout_constraintTop_toBottomOf="@+id/customerPassword" />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="39dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="29dp"
         app:layout_constraintBottom_toTopOf="@+id/firstName2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

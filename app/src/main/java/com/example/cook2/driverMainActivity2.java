@@ -35,7 +35,6 @@ public class driverMainActivity2 extends AppCompatActivity implements View.OnCli
                 Intent intent1 = new Intent(getApplicationContext(), driverMainActivity.class);
                 startActivity(intent1);
                 break;
-
         }
     }
 }
