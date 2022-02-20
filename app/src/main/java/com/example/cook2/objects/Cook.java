@@ -1,9 +1,14 @@
 package com.example.cook2.objects;
 
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.RequiresApi;
+
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Cook extends Person implements Parcelable {
 
@@ -21,6 +26,7 @@ public class Cook extends Person implements Parcelable {
         currentOrders = new ArrayList<>();
     }
     //test cook constructor
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public Cook() {
         super.firstName = "Jordan";
         super.lastName = "the Third";
@@ -29,6 +35,16 @@ public class Cook extends Person implements Parcelable {
         super.address = "at your mom's house";
         menu = new ArrayList<>();
         currentOrders = new ArrayList<>();
+        ArrayList<String> tags = new ArrayList(); tags.add("nut-free"); tags.add("vegan");
+        Food food1 = new Food("Pizza", 9.95, LocalTime.of(0,35), tags);
+        Food food2 = new Food("hotdog", 2.00, LocalTime.of(0,7), tags);
+        Food food3 = new Food("burger", 4.49, LocalTime.of(0,10), tags);
+        menu.add(food1); menu.add(food2); menu.add(food3);
+
+        Order order1 = new Order(food1,null,null);
+        Order order2 = new Order(food2,null,null);
+        currentOrders.add(order1);
+        currentOrders.add(order2);
     }
 
     protected Cook(Parcel in) {

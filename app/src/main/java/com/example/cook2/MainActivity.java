@@ -1,8 +1,10 @@
 package com.example.cook2;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
@@ -21,14 +23,20 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        //FloatingActionButton backButton = findViewById(R.id.floatingActionButton);
 
+        super.onCreate(savedInstanceState);
+
+
+        setContentView(R.layout.activity_main);
+        Button start_button = findViewById(R.id.start_button);
+        Button end_button = findViewById(R.id.end_button);
+
+        //FloatingActionButton backButton = findViewById(R.id.floatingActionButton);
+        Cook cook = new Cook();
         ArrayList<String> arrayList;
         ArrayAdapter<String> adapter;
 
@@ -37,8 +45,13 @@ public class MainActivity extends AppCompatActivity {
         //listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         listView.setItemsCanFocus(false);
 
+
+
         String[] items = {"Example Order 1 (When we get database, we can remove these)", "Example Order 2", "Example Order 3"};
-        arrayList = new ArrayList<>(Arrays.asList(items));
+        //arrayList = new ArrayList<>(Arrays.asList(items));
+        arrayList = new ArrayList<>();
+        arrayList.add(cook.currentOrders.get(0).food.name + " : " + cook.currentOrders.get(0).food.estimatedCookTime);
+        arrayList.add(cook.currentOrders.get(1).food.name + " : " + cook.currentOrders.get(1).food.estimatedCookTime);
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
         listView.setAdapter(adapter);
 
@@ -52,6 +65,16 @@ public class MainActivity extends AppCompatActivity {
                 //System.out.println("bruh");
             }
         });
+
+        start_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("bruh");
+            }
+        });
+
+
+
         Cook testCook = (Cook) getIntent().getParcelableExtra("testCook");
 
         System.out.println(testCook.getFirstName() + " " + testCook.getLastName());

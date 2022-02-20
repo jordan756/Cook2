@@ -10,9 +10,9 @@ import java.util.ArrayList;
 
 public class Food implements Parcelable {
     //CHOSEN BY COOK
-    private String name;
-    private double cost; //2 decimals max
-    private LocalTime estimatedCookTime; //input by cook, no data collected yet
+    public String name;
+    public double cost; //2 decimals max
+    public LocalTime estimatedCookTime; //input by cook, no data collected yet
     ArrayList<String> tags;//Vegan, Peanut-Free// chosen by cook
 
     //UPDATED BY DATABASE
