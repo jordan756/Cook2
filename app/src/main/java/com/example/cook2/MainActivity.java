@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 view.setSelected(true);
-               view.setBackgroundResource(R.drawable.select);
+                view.setBackgroundResource(R.drawable.select);
 
                 System.out.println(position);
                 //System.out.println("bruh");

@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cook2">
         <activity
+            android:name=".CookUpdateMenu"
+            android:exported="false" />
+        <activity
             android:name=".driverMainActivity3"
             android:exported="false" />
         <activity
