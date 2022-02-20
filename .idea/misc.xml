@@ -30,7 +30,7 @@
         <entry key="app/src/main/res/drawable/select.xml" value="0.1275" />
         <entry key="app/src/main/res/layout-w1240dp/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout-w936dp/activity_login.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_cook_update_menu.xml" value="0.159375" />
+        <entry key="app/src/main/res/layout/activity_cook_update_menu.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_customer_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_customer_progress.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_customer_view_cooks.xml" value="0.25" />
@@ -38,10 +38,10 @@
         <entry key="app/src/main/res/layout/activity_driver_2.xml" value="0.175" />
         <entry key="app/src/main/res/layout/activity_driver_3.xml" value="0.175" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main3.xml" value="0.165" />
-        <entry key="app/src/main/res/layout/activity_register.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.165" />
       </map>
     </option>
   </component>

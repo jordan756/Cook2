@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 //System.out.println("bruh");
             }
         });
+
         Cook testCook = (Cook) getIntent().getParcelableExtra("testCook");
 
         System.out.println(testCook.getFirstName() + " " + testCook.getLastName());
@@ -62,5 +63,10 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("floating button");
             }
         });*/
+    }
+
+    public void updateMenu(View v) {
+        Intent i = new Intent(this, CookUpdateMenu.class);
+        startActivity(i);
     }
 }
