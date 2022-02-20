@@ -33,14 +33,23 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter;
 
         ListView listView = (ListView) findViewById(R.id.listOrders);
+
+        //listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        listView.setItemsCanFocus(false);
+
         String[] items = {"Example Order 1 (When we get database, we can remove these)", "Example Order 2", "Example Order 3"};
         arrayList = new ArrayList<>(Arrays.asList(items));
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
         listView.setAdapter(adapter);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 view.setSelected(true);
+               view.setBackgroundResource(R.drawable.select);
+
+                System.out.println(position);
+                //System.out.println("bruh");
             }
         });
         Cook testCook = (Cook) getIntent().getParcelableExtra("testCook");

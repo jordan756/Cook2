@@ -21,10 +21,12 @@ public class registerActivity extends AppCompatActivity {
 
         Cook testCook = new Cook();
         testCook.menu.add(new Food());
+
         System.out.println(testCook.getFirstName() + " " + testCook.getLastName());
         registerToMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent i = new Intent(registerActivity.this, MainActivity.class);
                 i.putExtra("testCook",testCook);
                 startActivity(i);

@@ -4,6 +4,8 @@ import android.os.Parcel;
 
 
 public class Person  {
+    protected String email;
+    protected String password;
     protected String firstName;
     protected String lastName;
     protected double currentRating;
