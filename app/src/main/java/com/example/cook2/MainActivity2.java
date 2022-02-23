@@ -40,7 +40,7 @@ public class MainActivity2 extends AppCompatActivity {
 
     public void driverButtonEvent(View v) {
         Log.d("success", "driverButtonEvent");
-        v.setEnabled(false);
+       //v.setEnabled(false);
         Intent driverScreen = new Intent(this, driverMainActivity.class);
         startActivity(driverScreen);
     }
