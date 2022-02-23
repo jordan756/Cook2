@@ -10,10 +10,11 @@
     <TextView
         android:id="@+id/customerProfile"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="162dp"
         android:fontFamily="sans-serif-black"
         android:text="Customer Profile"
         android:textAlignment="center"
+        android:gravity="center"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -66,9 +67,6 @@
         android:layout_height="wrap_content"
         android:hint="Rating"
         android:inputType="none|number" />
-
-
-
 
     <Button
         android:id="@+id/button5"

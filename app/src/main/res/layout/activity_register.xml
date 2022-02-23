@@ -11,10 +11,11 @@
     <TextView
         android:id="@+id/cookProfile"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="162dp"
         android:fontFamily="sans-serif-black"
         android:text="Cook Profile"
         android:textAlignment="center"
+        android:gravity="center"
         android:textSize="20sp"
         android:textStyle="bold" />
 
