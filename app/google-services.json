@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "367030298670",
+    "project_id": "homefooddeliveryapp-ca793",
+    "storage_bucket": "homefooddeliveryapp-ca793.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:367030298670:android:7e559c1aa2883f5250d7bf",
+        "android_client_info": {
+          "package_name": "com.example.cook2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "367030298670-c1471mlluh93onv0p50rt02ltg3ato3d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBA0wuKUorioB97E19eZl49Ua2JpupdNjA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "367030298670-c1471mlluh93onv0p50rt02ltg3ato3d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
