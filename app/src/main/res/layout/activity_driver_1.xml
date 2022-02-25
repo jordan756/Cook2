@@ -18,94 +18,12 @@
     <TextView
         android:id="@+id/driverProfile"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="49dp"
         android:fontFamily="sans-serif-black"
         android:text="Driver Profile"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/firstName3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="First name"
-        android:inputType="none|textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/lastName3" />
-
-    <EditText
-        android:id="@+id/lastName3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Last name"
-        android:inputType="none|textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/phoneNumber3" />
-
-    <EditText
-        android:id="@+id/phoneNumber3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Phone number"
-        android:inputType="none|phone" />
-
-
-    <EditText
-        android:id="@+id/emailAddress3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email"
-        android:inputType="none|textPostalAddress"
-        app:layout_constraintBottom_toTopOf="@+id/customerPassword2" />
-
-    <EditText
-        android:id="@+id/customerPassword2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        android:inputType="none|textPostalAddress"
-        app:layout_constraintBottom_toTopOf="@+id/vehicleInfo"
-        app:layout_constraintTop_toBottomOf="@+id/emailAddress3" />
-
-    <TextView
-        android:id="@+id/carInformation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:text="Vehicle Information"
-        android:textAlignment="center"
-        android:textSize="16sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/vehicleM"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Vehicle make/model"
-        android:inputType="none|textPostalAddress" />
-
-    <EditText
-        android:id="@+id/vehicleColor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Color"
-        android:inputType="none|textPostalAddress" />
-
-    <EditText
-        android:id="@+id/vehiclePlate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="License plate number"
-        android:inputType="none|textPostalAddress" />
-
-    <Switch
-        android:id="@+id/status3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Share my location"
-        android:textColor="@color/black"
-        android:textOff="inactive"
-        android:textOn="active"
-        android:textSize="14sp" />
 
     <Switch
         android:id="@+id/status"
@@ -117,21 +35,129 @@
         android:textOn="active"
         android:textSize="14sp" />
 
-    <Button
-        android:id="@+id/saveButton"
-        android:layout_width="wrap_content"
+    <Switch
+        android:id="@+id/status3"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity= "center"
-        android:backgroundTint="#283593"
-        android:text="Save" />
+        android:text="Share my location"
+        android:textColor="@color/black"
+        android:textOff="inactive"
+        android:textOn="active"
+        android:textSize="14sp" />
 
-    <Button
-        android:id="@+id/cdeliveryButton"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/firstName3"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:backgroundTint="#283593"
-        android:text="Current Deliveries" />
+        android:hint="First name"
+        android:inputType="none|textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/lastName3"
+        android:textSize="16sp"/>
+
+    <EditText
+        android:id="@+id/lastName3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Last name"
+        android:inputType="none|textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/phoneNumber3"
+        android:textSize="16sp"/>
+
+    <EditText
+        android:id="@+id/phoneNumber3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Phone number"
+        android:inputType="none|phone"
+        android:textSize="16sp"/>
+
+    <EditText
+        android:id="@+id/emailAddress3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:inputType="none|textPostalAddress"
+        app:layout_constraintBottom_toTopOf="@+id/customerPassword2"
+        android:textSize="16sp"/>
+
+    <EditText
+        android:id="@+id/customerPassword2"
+        android:layout_width="match_parent"
+        android:layout_height="14dp"
+        android:hint="Password"
+        android:inputType="none|textPostalAddress"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/vehicleInfo"
+        app:layout_constraintTop_toBottomOf="@+id/emailAddress3" />
+
+    <TextView
+        android:id="@+id/carInformation"
+        android:layout_width="match_parent"
+        android:layout_height="37dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Vehicle Information"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/vehicleM"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Vehicle make/model"
+        android:inputType="none|textPostalAddress"
+        android:textSize="16sp"/>
+
+    <EditText
+        android:id="@+id/vehicleColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Color"
+        android:inputType="none|textPostalAddress"
+        android:textSize="16sp"/>
+
+    <EditText
+        android:id="@+id/vehiclePlate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="License plate number"
+        android:inputType="none|textPostalAddress"
+        android:textSize="16sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:backgroundTint="#283593"
+            android:text="Save"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"/>
+
+        <Button
+            android:id="@+id/cdeliveryButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:backgroundTint="#283593"
+            android:text="Current Deliveries" />
+
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/infoText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:textSize="12sp" />
 
 
 </LinearLayout>
