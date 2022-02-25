@@ -51,6 +51,8 @@ public class Cook extends Person implements Parcelable {
         Orders.put(amount_sold, order1);
         Order order2 = new Order(food2,null,++amount_sold);
         Orders.put(amount_sold, order2);
+        Order order3 = new Order(food2,null,++amount_sold);
+        Orders.put(amount_sold, order3);
 
         //currentOrders.add(order1);
         //currentOrders.add(order2);
