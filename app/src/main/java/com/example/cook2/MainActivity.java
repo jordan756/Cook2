@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.cook2.objects.Cook;
+import com.example.cook2.objects.Order;
 import com.example.cook2.ui.login.LoginActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Button start_button = findViewById(R.id.start_button);
         Button end_button = findViewById(R.id.end_button);
+
         //FloatingActionButton backButton = findViewById(R.id.floatingActionButton);
         Cook cook = getIntent().getParcelableExtra("testCook");
         ArrayList<String> arrayList;
@@ -40,11 +42,11 @@ public class MainActivity extends AppCompatActivity {
         listView.setItemsCanFocus(false);
 
         String[] items = {"Example Order 1 (When we get database, we can remove these)", "Example Order 2", "Example Order 3"};
-        arrayList = new ArrayList<>(Arrays.asList(items));
+       // arrayList = new ArrayList<>(Arrays.asList(items));
 
         arrayList = new ArrayList<>();
-        arrayList.add(cook.currentOrders.get(0).food.name + " : " + cook.currentOrders.get(0).food.estimatedCookTime);
-        arrayList.add(cook.currentOrders.get(1).food.name + " : " + cook.currentOrders.get(1).food.estimatedCookTime);
+        arrayList.add(cook.Orders.get(1).summary());
+        arrayList.add(cook.Orders.get(2).summary());
 
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
         listView.setAdapter(adapter);
@@ -55,17 +57,18 @@ public class MainActivity extends AppCompatActivity {
                 view.setSelected(true);
                 view.setBackgroundResource(R.drawable.select);
 
-                System.out.println(position);
+                //System.out.println(position);
                 //System.out.println("bruh");
             }
         });
 
-        Cook testCook = (Cook) getIntent().getParcelableExtra("testCook");
+       // Cook testCook = (Cook) getIntent().getParcelableExtra("testCook");
 
-        System.out.println(testCook.getFirstName() + " " + testCook.getLastName());
-        System.out.println("size of list" + testCook.menu.size());
-        System.out.println(testCook.menu.get(3).name);
-        System.out.println(testCook.menu.get(1).name);
+        System.out.println(cook.getFirstName() + " " + cook.getLastName());
+        System.out.println("size of list" + cook.menu.size());
+        System.out.println(cook.menu.get(3).name);
+        System.out.println(cook.menu.get(1).name);
+
         /*backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //System.print
@@ -76,6 +79,28 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 System.out.println("bruh");
+                for (int i = 0; i < listView.getCount(); i++) {
+
+                    if (listView.isItemChecked(i)) {
+                        String temp = listView.getItemAtPosition(i).toString();
+                        System.out.println(temp + "ABABABABAB");
+                        String[] orderValues = temp.split("  -  ");
+
+                        int id = Integer.parseInt(orderValues[2]);
+                        System.out.println(id);
+                        Order order = cook.Orders.get(id);
+                        System.out.println(order.summary());
+                        order.updateStatus();
+
+                    }
+                }
+                arrayList.clear();
+                arrayList.add(cook.Orders.get(1).summary());
+                arrayList.add(cook.Orders.get(2).summary());
+
+                //adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
+                listView.setAdapter(adapter);
+
             }
         });
 
