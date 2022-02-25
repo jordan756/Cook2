@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.cook2.ui.login.LoginActivity;
+/*
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -18,12 +19,12 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
+*/
 import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity2 extends AppCompatActivity {
-    //FirebaseFirestore db = FirebaseFirestore.getInstance();
+  //  FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,13 +34,13 @@ public class MainActivity2 extends AppCompatActivity {
 
     public void cookButtonEvent(View v) {
         Log.d("success", "cookButtonEvent");
-        /*
+
         // Create a new user with a first and last name
         Map<String, Object> user = new HashMap<>();
         user.put("first", "Ada");
         user.put("last", "Lovelace");
         user.put("born", 1815);
-
+/*
         // Add a new document with a generated ID
         db.collection("users")
                 .add(user)
@@ -94,8 +95,8 @@ public class MainActivity2 extends AppCompatActivity {
                         }
                     }
                 });
+*/
 
-        */
 
         Intent cookScreen = new Intent(this, LoginActivity.class);
         //v.setEnabled(false);

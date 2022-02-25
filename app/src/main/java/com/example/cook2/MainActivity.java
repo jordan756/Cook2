@@ -45,8 +45,11 @@ public class MainActivity extends AppCompatActivity {
        // arrayList = new ArrayList<>(Arrays.asList(items));
 
         arrayList = new ArrayList<>();
-        arrayList.add(cook.Orders.get(1).summary());
-        arrayList.add(cook.Orders.get(2).summary());
+        for(Order x : cook.Orders.values()) {
+            if (x.status.equals("unaccepted_cook") || x.status.equals("accepted_cook")) {
+                arrayList.add(x.summary());
+            }
+        }
 
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
         listView.setAdapter(adapter);
@@ -83,26 +86,67 @@ public class MainActivity extends AppCompatActivity {
 
                     if (listView.isItemChecked(i)) {
                         String temp = listView.getItemAtPosition(i).toString();
-                        System.out.println(temp + "ABABABABAB");
+
                         String[] orderValues = temp.split("  -  ");
 
                         int id = Integer.parseInt(orderValues[2]);
                         System.out.println(id);
                         Order order = cook.Orders.get(id);
                         System.out.println(order.summary());
-                        order.updateStatus();
-
+                        if (order.status.equals("unaccepted_cook")) {
+                            order.updateStatus();
+                        }
                     }
                 }
                 arrayList.clear();
-                arrayList.add(cook.Orders.get(1).summary());
-                arrayList.add(cook.Orders.get(2).summary());
+                for(Order x : cook.Orders.values()) {
+                    if (x.status.equals("unaccepted_cook") || x.status.equals("accepted_cook")) {
+                        arrayList.add(x.summary());
+                    }
+
+                }
+
 
                 //adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
                 listView.setAdapter(adapter);
 
             }
         });
+
+        end_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("bruh");
+                for (int i = 0; i < listView.getCount(); i++) {
+
+                    if (listView.isItemChecked(i)) {
+                        String temp = listView.getItemAtPosition(i).toString();
+                        String[] orderValues = temp.split("  -  ");
+
+                        int id = Integer.parseInt(orderValues[2]);
+                        System.out.println(id);
+                        Order order = cook.Orders.get(id);
+                        System.out.println(order.summary());
+                        if (order.status.equals("accepted_cook")) {
+                            order.updateStatus();
+                        }
+                    }
+                }
+                arrayList.clear();
+                for(Order x : cook.Orders.values()) {
+                    if (x.status.equals("unaccepted_cook") || x.status.equals("accepted_cook")) {
+                        arrayList.add(x.summary());
+                    }
+
+                }
+
+
+                //adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
+                listView.setAdapter(adapter);
+
+            }
+        });
+
 
 
         /*backButton.setOnClickListener(new View.OnClickListener() {
