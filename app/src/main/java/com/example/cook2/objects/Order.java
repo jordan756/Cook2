@@ -11,23 +11,33 @@ import java.time.LocalTime;
 public class Order implements Parcelable {
     //WILL NEED TO STORE CUSTOMER INFO TOO
     public Food food;
-    public Customer customer;
+    //public Customer customer;
    // public Cook cook;
     public LocalTime estimated_total_time;
     public String status;
-    int orderID; //cooks # item sold
+    public int orderID; //cooks # item sold
     //unaccepted_cook,accepted_cook,finished_cook,accepted_driver,accepted_customer
 
     //public Delivery driver
-    Order(Food food, Customer customer, int id ) {
+    public Order(Food food, int id ) {
         this.food = food;
-        this.customer = customer;
+        //this.customer = customer;
         //this.cook = cook;
         status = "unaccepted_cook";
         //TEMP: REPLACE WITH CALL TO DATABASE TO PREVENT OVERLAP
         //cook.amount_sold++;
         orderID = id;
     }
+    public Order() {
+        this.food = null;
+        //this.customer = customer;
+        //this.cook = cook;
+        status = "unaccepted_cook";
+        //TEMP: REPLACE WITH CALL TO DATABASE TO PREVENT OVERLAP
+        //cook.amount_sold++;
+        orderID = -1;
+    }
+
 
     public void updateStatus() {
         switch (status) {
@@ -52,7 +62,7 @@ public class Order implements Parcelable {
     @RequiresApi(api = Build.VERSION_CODES.O)
     protected Order(Parcel in) {
         food = in.readParcelable(Food.class.getClassLoader());
-        customer = in.readParcelable(Customer.class.getClassLoader());
+     //   customer = in.readParcelable(Customer.class.getClassLoader());
         //cook = in.readParcelable(Cook.class.getClassLoader());
         estimated_total_time = (LocalTime) in.readSerializable();
         status = in.readString();
@@ -81,7 +91,7 @@ public class Order implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeParcelable(food, i);
-        parcel.writeParcelable(customer, i);
+      //  parcel.writeParcelable(customer, i);
        // parcel.writeParcelable(cook, i);
         parcel.writeSerializable(estimated_total_time);
         parcel.writeString(status);

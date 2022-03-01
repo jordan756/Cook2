@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
        // arrayList = new ArrayList<>(Arrays.asList(items));
 
         arrayList = new ArrayList<>();
-        for(Order x : cook.Orders.values()) {
+        for(Order x : cook.getOrders()) {
             if (x.status.equals("unaccepted_cook") || x.status.equals("accepted_cook")) {
                 arrayList.add(x.summary());
             }
@@ -68,9 +68,9 @@ public class MainActivity extends AppCompatActivity {
        // Cook testCook = (Cook) getIntent().getParcelableExtra("testCook");
 
         System.out.println(cook.getFirstName() + " " + cook.getLastName());
-        System.out.println("size of list" + cook.menu.size());
-        System.out.println(cook.menu.get(3).name);
-        System.out.println(cook.menu.get(1).name);
+        System.out.println("size of list" + cook.getMenu().size());
+        System.out.println(cook.getMenu().get(3).name);
+        System.out.println(cook.getMenu().get(1).name);
 
         /*backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
                         int id = Integer.parseInt(orderValues[2]);
                         System.out.println(id);
-                        Order order = cook.Orders.get(id);
+                        Order order = cook.getOrders().get(id);
                         System.out.println(order.summary());
                         if (order.status.equals("unaccepted_cook")) {
                             order.updateStatus();
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 arrayList.clear();
-                for(Order x : cook.Orders.values()) {
+                for(Order x : cook.getOrders()) {
                     if (x.status.equals("unaccepted_cook") || x.status.equals("accepted_cook")) {
                         arrayList.add(x.summary());
                     }
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
 
                         int id = Integer.parseInt(orderValues[2]);
                         System.out.println(id);
-                        Order order = cook.Orders.get(id);
+                        Order order = cook.getOrders().get(id);
                         System.out.println(order.summary());
                         if (order.status.equals("accepted_cook")) {
                             order.updateStatus();
@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 arrayList.clear();
-                for(Order x : cook.Orders.values()) {
+                for(Order x : cook.getOrders()) {
                     if (x.status.equals("unaccepted_cook") || x.status.equals("accepted_cook")) {
                         arrayList.add(x.summary());
                     }

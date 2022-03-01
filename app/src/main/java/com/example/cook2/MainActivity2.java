@@ -1,14 +1,21 @@
 package com.example.cook2;
 
+import static java.lang.Thread.sleep;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.cook2.objects.Cook;
+import com.example.cook2.objects.Food;
+import com.example.cook2.objects.Order;
 import com.example.cook2.ui.login.LoginActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,6 +27,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,18 +41,26 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void cookButtonEvent(View v) {
         Log.d("success", "cookButtonEvent");
 
+        /*
         // Create a new user with a first and last name
         Map<String, Object> user = new HashMap<>();
         user.put("first", "Ada");
         user.put("last", "Lovelace");
         user.put("born", 1815);
+        */
+        ArrayList<String> temp = new ArrayList<>();
+        temp.add("nut free");
+        temp.add("vegan");
+        System.out.println(temp);
 
+        Food food = new Food("ZZZ",69.99, LocalTime.of(0,35),temp);
         // Add a new document with a generated ID
-        db.collection("users")
-                .add(user)
+        db.collection("Food")
+                .add(food)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
@@ -56,17 +73,10 @@ public class MainActivity2 extends AppCompatActivity {
                         Log.w("fbSuccess", "Error adding document", e);
                     }
                 });
-
-        // Create a new user with a first, middle, and last name
-        Map<String, Object> user2 = new HashMap<>();
-        user2.put("first", "Alan");
-        user2.put("middle", "Mathison");
-        user2.put("last", "Turing");
-        user2.put("born", 1912);
-
+       Order order1 = new Order(food,6969);
         // Add a new document with a generated ID
-        db.collection("users")
-                .add(user2)
+        db.collection("Order")
+                .add(order1)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
@@ -81,7 +91,7 @@ public class MainActivity2 extends AppCompatActivity {
                 });
 
         // read data
-        db.collection("users")
+        db.collection("Cooks")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -95,8 +105,6 @@ public class MainActivity2 extends AppCompatActivity {
                         }
                     }
                 });
-
-
 
         Intent cookScreen = new Intent(this, LoginActivity.class);
         //v.setEnabled(false);

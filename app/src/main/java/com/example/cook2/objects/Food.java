@@ -13,7 +13,7 @@ public class Food implements Parcelable {
     public String name;
     public double cost; //2 decimals max
     public LocalTime estimatedCookTime; //input by cook, no data collected yet
-    ArrayList<String> tags;//Vegan, Peanut-Free// chosen by cook
+    public ArrayList<String> tags;//Vegan, Peanut-Free// chosen by cook
 
     //UPDATED BY DATABASE
     private LocalTime actualCookTime; //average of of this type of food
@@ -22,7 +22,7 @@ public class Food implements Parcelable {
     private int numberOfRatings;
 
     //constructor for food
-    Food(String name,double cost,LocalTime estimatedCookTime,ArrayList<String> tags) {
+    public Food(String name,double cost,LocalTime estimatedCookTime,ArrayList<String> tags) {
         this.name = name;
         this.cost = cost;
         this.estimatedCookTime = estimatedCookTime;
