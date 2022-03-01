@@ -17,5 +17,5 @@ Database instructions:
 6. Make sure your emulator is a Pixel 3 or at least has Google Play.
 7. Minimum Android API: 19
 
-More installation details here: https://firebase.google.com/docs/android/setup \
+Full installation details: https://firebase.google.com/docs/android/setup \
 Database Documentation: https://firebase.google.com/docs/firestore
