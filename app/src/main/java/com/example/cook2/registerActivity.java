@@ -13,6 +13,7 @@ import android.widget.Button;
 
 import com.example.cook2.objects.Cook;
 import com.example.cook2.objects.Food;
+import com.example.cook2.objects.Util;
 import com.example.cook2.ui.login.LoginActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -40,20 +41,7 @@ public class registerActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Cook cook = new Cook();
                 // Add a new document with a generated ID
-                db.collection("Cook")
-                        .add(cook)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Log.d("fbSuccess", "DocumentSnapshot added with ID: " + documentReference.getId());
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w("fbSuccess", "Error adding document", e);
-                            }
-                        });
+                Util.setCook(cook,db);
                 Intent i = new Intent(registerActivity.this, MainActivity.class);
                 i.putExtra("testCook",testCook);
                 startActivity(i);

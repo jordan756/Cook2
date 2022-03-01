@@ -16,6 +16,7 @@ import android.widget.Button;
 import com.example.cook2.objects.Cook;
 import com.example.cook2.objects.Food;
 import com.example.cook2.objects.Order;
+import com.example.cook2.objects.Util;
 import com.example.cook2.ui.login.LoginActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -59,37 +60,10 @@ public class MainActivity2 extends AppCompatActivity {
 
         Food food = new Food("ZZZ",69.99, LocalTime.of(0,35),temp);
         // Add a new document with a generated ID
-        db.collection("Food")
-                .add(food)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d("fbSuccess", "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("fbSuccess", "Error adding document", e);
-                    }
-                });
+        Util.setFood(food,db);
        Order order1 = new Order(food,6969);
         // Add a new document with a generated ID
-        db.collection("Order")
-                .add(order1)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d("fbSuccessInsert", "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("fbSuccess", "Error adding document", e);
-                    }
-                });
-
+        Util.setOrder(order1,db);
         // read data
         db.collection("Cooks")
                 .get()
