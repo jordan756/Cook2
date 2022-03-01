@@ -19,7 +19,7 @@ public class driverMainActivity extends AppCompatActivity {
     EditText  firstName3, lastName3, phoneNumber3, emailAddress3, customerPassword2, vehicleM, vehicleColor, vehiclePlate;
     Button cdeliveryButton, backButton, saveButton;
     Switch status3, status;
-    TextView driverProfile;
+    TextView driverProfile, infoText;
 
     //shared preferences
     SharedPreferences sharedPreferences;
@@ -39,9 +39,6 @@ public class driverMainActivity extends AppCompatActivity {
         vehicleColor = findViewById(R.id.vehicleColor);
         vehiclePlate = findViewById(R.id.vehiclePlate);
 
-
-
-
         cdeliveryButton = findViewById(R.id.cdeliveryButton);
         backButton = findViewById(R.id.backButton);
         saveButton = findViewById(R.id.saveButton);
@@ -50,6 +47,7 @@ public class driverMainActivity extends AppCompatActivity {
         status = findViewById(R.id.status);
 
         driverProfile = findViewById(R.id.driverProfile);
+        infoText = findViewById(R.id.infoText);
         //carInformation = findViewById(R.id.carInformation);
 
         sharedPreferences = getSharedPreferences("SP_NAME", MODE_PRIVATE);
@@ -67,6 +65,8 @@ public class driverMainActivity extends AppCompatActivity {
                 String email = emailAddress3.getText().toString();
                 String password = customerPassword2.getText().toString();
                 String vehiclem = vehicleM.getText().toString();
+                String vehiclec = vehicleColor.getText().toString();
+                String vehiclep= vehiclePlate.getText().toString();
 
 
                 //edit data (add new vehicle info)
@@ -79,6 +79,8 @@ public class driverMainActivity extends AppCompatActivity {
                 editor.putString("EMAIL", email);
                 editor.putString("PASSWORD", password);
                 editor.putString("VEHICLE", vehiclem);
+                editor.putString("VEHICLEC", vehiclec);
+                editor.putString("VEHICLEP", vehiclep);
 
                 //apply new changes made to info
                 editor.apply();
@@ -92,19 +94,21 @@ public class driverMainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //data from shared preferences (needs work)
 
-                String first = sharedPreferences.getString("FIRST","");
+                String first = sharedPreferences.getString("FIRST", "");
                 String last = sharedPreferences.getString("LAST", "");
-                int phone = sharedPreferences.getInt("PHONE", 0);
-                String email = sharedPreferences.getString("EMAIL","");
+                int phone = sharedPreferences.getInt("PHONE", 000 - 000 - 0000);
+                String email = sharedPreferences.getString("EMAIL", "");
                 String password = sharedPreferences.getString("PASSWORD", "");
-                String vehiclem = sharedPreferences.getString("VEHICLE","");
+                String vehiclem = sharedPreferences.getString("VEHICLE", "2022 Mazda");
+                String vehiclec = sharedPreferences.getString("VEHICLEC", "Red");
+                int vehiclep = sharedPreferences.getInt("VEHICLEP", 0);
 
                 //show data (needs work)
-                saveButton.setText("Name: " +first +last
-                            +"\nPhone Number:" +phone
-                            +"\nEmail: " +email
-                            +"\nAPassword" +password
-                            +"\nVehicle Info: " +vehiclem);
+                infoText.setText("Name: " +first +last
+                        +"\nPhone Number:" +phone
+                        +"\nEmail: " +email
+                        +"\nPassword" +password
+                        +"\nVehicle Info: " +vehiclem);
 
             }
 

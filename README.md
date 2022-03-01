@@ -6,3 +6,16 @@ Clone Repo with Andriod Studio:
 5. After cloning the project you might see Gradle errors. I usually close out of Andriod Studio and open the project again to fix it.
 
 When I first downloaded the project my emulator didn't work correctly. I fixed this by downloading a new emulator, the Pixel 3 and it worked.
+
+
+Database instructions:
+1. Update Android Studio to latest version 
+2. Pull project
+3. In Android Studio, open file tab on top left. Click on "Invalidate Caches..."
+4. Check all the options
+5. Click "Invalidate and Restart"
+6. Make sure your emulator is a Pixel 3 or at least has Google Play.
+7. Minimum Android API: 19
+
+Full installation details: https://firebase.google.com/docs/android/setup \
+Database Documentation: https://firebase.google.com/docs/firestore
