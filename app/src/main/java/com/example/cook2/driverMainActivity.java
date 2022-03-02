@@ -96,19 +96,19 @@ public class driverMainActivity extends AppCompatActivity {
 
                 String first = sharedPreferences.getString("FIRST", "");
                 String last = sharedPreferences.getString("LAST", "");
-                int phone = sharedPreferences.getInt("PHONE", 000 - 000 - 0000);
+                int phone = sharedPreferences.getInt("PHONE", 0);
                 String email = sharedPreferences.getString("EMAIL", "");
                 String password = sharedPreferences.getString("PASSWORD", "");
-                String vehiclem = sharedPreferences.getString("VEHICLE", "2022 Mazda");
-                String vehiclec = sharedPreferences.getString("VEHICLEC", "Red");
-                int vehiclep = sharedPreferences.getInt("VEHICLEP", 0);
+                String vehiclem = sharedPreferences.getString("VEHICLE", "");
+                String vehiclec = sharedPreferences.getString("VEHICLEC", "");
+                String vehiclep = sharedPreferences.getString("VEHICLEP", "");
 
                 //show data (needs work)
                 infoText.setText("Name: " +first +last
                         +"\nPhone Number:" +phone
                         +"\nEmail: " +email
                         +"\nPassword" +password
-                        +"\nVehicle Info: " +vehiclem);
+                        +"\nVehicle Info: " +vehiclem +vehiclec +vehiclep);
 
             }
 
