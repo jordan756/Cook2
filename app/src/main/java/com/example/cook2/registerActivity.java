@@ -32,16 +32,18 @@ public class registerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         Button registerToMain = findViewById(R.id.registerToMain);
 
+
         Cook testCook = new Cook();
         testCook.getMenu().add(new Food());
-
+        testCook.setFirstName("Geourge");
+        testCook.amount_sold = 3100;
         System.out.println(testCook.getFirstName() + " " + testCook.getLastName());
         registerToMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Cook cook = new Cook();
+              //  Cook cook = new Cook();
                 // Add a new document with a generated ID
-                Util.setCook(cook,db);
+                Util.createCook(testCook,db);
                 Intent i = new Intent(registerActivity.this, MainActivity.class);
                 i.putExtra("testCook",testCook);
                 startActivity(i);

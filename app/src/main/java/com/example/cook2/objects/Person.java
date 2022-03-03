@@ -12,6 +12,7 @@ public class Person  {
     protected int numberOfRatings;
     protected String phoneNumber;
     protected String address; //maybe break into multiple pieces
+  //  protected String  docId;
 
 
 
@@ -61,6 +62,14 @@ public class Person  {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
 

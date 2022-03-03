@@ -16,7 +16,7 @@ public class Cook extends Person implements Parcelable {
 
     private ArrayList<Food> menu;
     //private ArrayList<Order> currentOrders;
-    private int amount_sold;
+    public int amount_sold;
     private ArrayList<Order> Orders;
 
 
@@ -35,9 +35,22 @@ public class Cook extends Person implements Parcelable {
     }
 
 
-
+    public Cook(Cook copy) {
+        this.menu = copy.menu;
+        this.amount_sold = copy.amount_sold;
+        this.Orders = copy.Orders;
+        this.email = copy.email;
+        this.password = copy.password;
+        this.firstName = copy.firstName;
+        this.lastName = copy.lastName;
+        this.currentRating = copy.currentRating;
+         this.numberOfRatings = copy.numberOfRatings;
+         this.phoneNumber = copy.phoneNumber;
+         this.address = copy.address;
+    }
 
     public Cook(String firstName, String lastName, double currentRating, String phone, String address) {
+
         super.firstName = firstName;
         super.lastName = lastName;
         super.currentRating = currentRating;
@@ -47,11 +60,12 @@ public class Cook extends Person implements Parcelable {
         menu = new ArrayList<>();
       //  currentOrders = new ArrayList<>();
         Orders = new ArrayList<>();
+        //docId = firstName+lastName;
     }
     //test cook constructor
     @RequiresApi(api = Build.VERSION_CODES.O)
     public Cook() {
-        super.firstName = "Jordan";
+        super.firstName = "BOBB";
         super.lastName = "the Third";
         super.currentRating = 5;
         super.phoneNumber = "1-696-6969";

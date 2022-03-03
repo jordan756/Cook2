@@ -60,10 +60,10 @@ public class MainActivity2 extends AppCompatActivity {
 
         Food food = new Food("ZZZ",69.99, LocalTime.of(0,35),temp);
         // Add a new document with a generated ID
-        Util.setFood(food,db);
+        //Util.createFood(food,db);
        Order order1 = new Order(food,6969);
         // Add a new document with a generated ID
-        Util.setOrder(order1,db);
+      //  Util.createOrder(order1,db);
         // read data
         db.collection("Cooks")
                 .get()
