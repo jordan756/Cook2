@@ -34,9 +34,13 @@ public class MainActivity extends AppCompatActivity {
         Button end_button = findViewById(R.id.end_button);
 
         //FloatingActionButton backButton = findViewById(R.id.floatingActionButton);
-        String address = getIntent().getExtras().getString("address");
+        String key = getIntent().getExtras().getString("key");
         //System.out.println(address + " KNEO");
-        Cook cook = Util.getCook(address,db);
+        Cook cook = Util.getCook(key,db);
+
+        cook.setFirstName("louis");
+
+        Util.setCook(cook,db);
 
         System.out.println(cook.getFirstName() + cook.getEmail() + "AGAGAGA");
         ArrayList<String> arrayList;

@@ -56,8 +56,9 @@ public class Cook extends Person implements Parcelable {
     *?
      */
 
-    public Cook(String firstName, String lastName, double currentRating, String phone, String address) {
-
+    public Cook(String firstName, String lastName, double currentRating, String phone, String address,String password,String email) {
+        this.password = password;
+        this.email = email;
         super.firstName = firstName;
         super.lastName = lastName;
         super.currentRating = currentRating;
@@ -83,6 +84,8 @@ public class Cook extends Person implements Parcelable {
         super.phoneNumber = "1-696-6969";
         super.address = "at your mom's house";
         menu = new ArrayList<>();
+        super.email = "43@gmail";
+        super.password = "password123";
     //    currentOrders = new ArrayList<>();
         Orders = new ArrayList<>();
         ArrayList<String> tags = new ArrayList(); tags.add("nut-free"); tags.add("vegan");

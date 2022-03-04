@@ -16,18 +16,18 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Util {
 
+    // USES EMAIL + PASSWORD AS KEY FOR DATABASE
     public static void setCook(Cook cook, FirebaseFirestore db) {
-     //   Cook temp = new Cook(cook);
-       // System.out.println(cook.getFirstName() + " BRBRBRBRBRBRBR");
-        db.collection("Cook").document(cook.address).set(cook);
+
+        db.collection("Cook").document(cook.email+cook.password).set(cook);
     }
 
 
     //Might pause program getting results, will need threading
-    public static Cook getCook(String address, FirebaseFirestore db) {
+    public static Cook getCook(String key, FirebaseFirestore db) {
         Task<DocumentSnapshot> temp = null;
         while(temp == null) {
-            temp = db.collection("Cook").document(address).get();
+            temp = db.collection("Cook").document(key).get();
         }
         while(!temp.isComplete()) {
             //sleep(1000);

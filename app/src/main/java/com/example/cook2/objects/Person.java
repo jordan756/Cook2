@@ -13,8 +13,14 @@ public class Person  {
     protected String phoneNumber;
     protected String address; //maybe break into multiple pieces
   //  protected String  docId;
+    public String getKey() {
+        return email + password;
+    }
 
-
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public String getPassword() {return password;}
 
     public String getFirstName() {
         return firstName;
