@@ -7,13 +7,14 @@ import android.os.Parcelable;
 import androidx.annotation.RequiresApi;
 
 import java.time.LocalTime;
+import java.util.Date;
 
 public class Order implements Parcelable {
     //WILL NEED TO STORE CUSTOMER INFO TOO
     public Food food;
     //public Customer customer;
    // public Cook cook;
-    public LocalTime estimated_total_time;
+    public Date estimated_total_time;
     public String status;
     public int orderID; //cooks # item sold
     //unaccepted_cook,accepted_cook,finished_cook,accepted_driver,accepted_customer
@@ -29,13 +30,7 @@ public class Order implements Parcelable {
         orderID = id;
     }
     public Order() {
-        this.food = null;
-        //this.customer = customer;
-        //this.cook = cook;
-        status = "unaccepted_cook";
-        //TEMP: REPLACE WITH CALL TO DATABASE TO PREVENT OVERLAP
-        //cook.amount_sold++;
-        orderID = -1;
+
     }
 
 
@@ -64,7 +59,7 @@ public class Order implements Parcelable {
         food = in.readParcelable(Food.class.getClassLoader());
      //   customer = in.readParcelable(Customer.class.getClassLoader());
         //cook = in.readParcelable(Cook.class.getClassLoader());
-        estimated_total_time = (LocalTime) in.readSerializable();
+        estimated_total_time = (Date) in.readSerializable();
         status = in.readString();
         orderID = in.readInt();
     }

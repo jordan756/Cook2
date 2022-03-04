@@ -33,19 +33,20 @@ public class registerActivity extends AppCompatActivity {
         Button registerToMain = findViewById(R.id.registerToMain);
 
 
-        Cook testCook = new Cook();
+        Cook testCook = new Cook("useless");
         testCook.getMenu().add(new Food());
         testCook.setFirstName("Geourge");
         testCook.amount_sold = 3100;
-        System.out.println(testCook.getFirstName() + " " + testCook.getLastName());
+        testCook.print();
+        System.out.println("/????????");
         registerToMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
               //  Cook cook = new Cook();
                 // Add a new document with a generated ID
-                Util.createCook(testCook,db);
+                Util.setCook(testCook,db);
                 Intent i = new Intent(registerActivity.this, MainActivity.class);
-                i.putExtra("testCook",testCook);
+                i.putExtra("address",testCook.getAddress());
                 startActivity(i);
             }
 

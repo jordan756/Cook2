@@ -6,9 +6,12 @@ import android.os.Parcelable;
 
 import androidx.annotation.RequiresApi;
 
+import com.google.firebase.database.DataSnapshot;
+
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 
 public class Cook extends Person implements Parcelable {
@@ -24,7 +27,9 @@ public class Cook extends Person implements Parcelable {
         return menu;
     }
 
-
+    public void setOrders(ArrayList<Order> orders) {
+        Orders = orders;
+    }
 
     public int getAmount_sold() {
         return amount_sold;
@@ -34,9 +39,9 @@ public class Cook extends Person implements Parcelable {
         return Orders;
     }
 
-
-    public Cook(Cook copy) {
-        this.menu = copy.menu;
+    /*
+    public Cook(DataSnapshot copy) {
+        this.menu = copy.getmenu;
         this.amount_sold = copy.amount_sold;
         this.Orders = copy.Orders;
         this.email = copy.email;
@@ -48,6 +53,8 @@ public class Cook extends Person implements Parcelable {
          this.phoneNumber = copy.phoneNumber;
          this.address = copy.address;
     }
+    *?
+     */
 
     public Cook(String firstName, String lastName, double currentRating, String phone, String address) {
 
@@ -62,9 +69,14 @@ public class Cook extends Person implements Parcelable {
         Orders = new ArrayList<>();
         //docId = firstName+lastName;
     }
+    public Cook() {
+        ArrayList<String> tags = new ArrayList();
+        menu = new ArrayList<>();
+        Orders = new ArrayList<>();
+    }
     //test cook constructor
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public Cook() {
+    public Cook(String address) {
         super.firstName = "BOBB";
         super.lastName = "the Third";
         super.currentRating = 5;
@@ -74,9 +86,9 @@ public class Cook extends Person implements Parcelable {
     //    currentOrders = new ArrayList<>();
         Orders = new ArrayList<>();
         ArrayList<String> tags = new ArrayList(); tags.add("nut-free"); tags.add("vegan");
-        Food food1 = new Food("Pizza", 9.95, LocalTime.of(0,35), tags);
-        Food food2 = new Food("hotdog", 2.00, LocalTime.of(0,7), tags);
-        Food food3 = new Food("burger", 4.49, LocalTime.of(0,10), tags);
+        Food food1 = new Food("Pizza", 9.95, new Date(0, 0, 0, 0, 35, 0), tags);
+        Food food2 = new Food("hotdog", 2.00, new Date(0, 0, 0, 0, 7, 0), tags);
+        Food food3 = new Food("burger", 4.49, new Date(0, 0, 0, 0, 10, 0), tags);
         menu.add(food1); menu.add(food2); menu.add(food3);
 
         Order order1 = new Order(food1,++amount_sold);
@@ -137,5 +149,11 @@ public class Cook extends Person implements Parcelable {
         parcel.writeString( phoneNumber);
         parcel.writeString(address); //ma
         parcel.writeInt(amount_sold);
+    }
+    public void print() {
+        System.out.println("Menu " + menu);
+        System.out.println("Orders " + Orders);
+        System.out.println("Amt sld " + amount_sold);
+        System.out.println("Firstname " + firstName);
     }
 }

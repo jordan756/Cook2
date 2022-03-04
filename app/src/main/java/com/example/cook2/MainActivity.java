@@ -14,14 +14,16 @@ import android.widget.ListView;
 
 import com.example.cook2.objects.Cook;
 import com.example.cook2.objects.Order;
+import com.example.cook2.objects.Util;
 import com.example.cook2.ui.login.LoginActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
-
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +34,11 @@ public class MainActivity extends AppCompatActivity {
         Button end_button = findViewById(R.id.end_button);
 
         //FloatingActionButton backButton = findViewById(R.id.floatingActionButton);
-        Cook cook = getIntent().getParcelableExtra("testCook");
+        String address = getIntent().getExtras().getString("address");
+        //System.out.println(address + " KNEO");
+        Cook cook = Util.getCook(address,db);
+
+        System.out.println(cook.getFirstName() + cook.getEmail() + "AGAGAGA");
         ArrayList<String> arrayList;
         ArrayAdapter<String> adapter;
 
@@ -43,6 +49,12 @@ public class MainActivity extends AppCompatActivity {
 
         String[] items = {"Example Order 1 (When we get database, we can remove these)", "Example Order 2", "Example Order 3"};
        // arrayList = new ArrayList<>(Arrays.asList(items));
+        if (cook.getOrders() == null) {
+            System.out.println("NULL ORDERS");
+            return;
+        }
+
+        cook.print();
 
         arrayList = new ArrayList<>();
         for(Order x : cook.getOrders()) {
@@ -91,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
                         int id = Integer.parseInt(orderValues[2]);
                         System.out.println(id);
-                        Order order = cook.getOrders().get(id);
+                        Order order = cook.getOrders().get(id - 1);
                         System.out.println(order.summary());
                         if (order.status.equals("unaccepted_cook")) {
                             order.updateStatus();
@@ -125,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
                         int id = Integer.parseInt(orderValues[2]);
                         System.out.println(id);
-                        Order order = cook.getOrders().get(id);
+                        Order order = cook.getOrders().get(id - 1);
                         System.out.println(order.summary());
                         if (order.status.equals("accepted_cook")) {
                             order.updateStatus();

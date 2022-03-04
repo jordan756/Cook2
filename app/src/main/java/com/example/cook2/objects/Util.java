@@ -1,24 +1,48 @@
 package com.example.cook2.objects;
 
+import static java.lang.Thread.sleep;
+
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Util {
 
-    public static void createCook(Cook cook, FirebaseFirestore db) {
-        Cook temp = new Cook(cook);
-        System.out.println(cook.getFirstName() + " BRBRBRBRBRBRBR");
-        db.collection("Cook").document(cook.address).set(temp);
+    public static void setCook(Cook cook, FirebaseFirestore db) {
+     //   Cook temp = new Cook(cook);
+       // System.out.println(cook.getFirstName() + " BRBRBRBRBRBRBR");
+        db.collection("Cook").document(cook.address).set(cook);
     }
-    public static void updateCook(Cook cook, FirebaseFirestore db) {
-        db.collection("Cook").document(cook.address).update(cook.address,cook);
+
+
+    //Might pause program getting results, will need threading
+    public static Cook getCook(String address, FirebaseFirestore db) {
+        Task<DocumentSnapshot> temp = null;
+        while(temp == null) {
+            temp = db.collection("Cook").document(address).get();
+        }
+        while(!temp.isComplete()) {
+            //sleep(1000);
+        }
+        DocumentSnapshot temp2 = temp.getResult();
+        if (!temp2.exists()) {
+            return null;
+        }
+       // Cook cook = temp2.data();
+        Cook cook = temp2.toObject(Cook.class);
+        System.out.print(cook.firstName);
+        return cook;
+
     }
+
 
     public static void createFood(Food food, FirebaseFirestore db) {
         db.collection("Food")

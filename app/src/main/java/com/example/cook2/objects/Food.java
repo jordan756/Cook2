@@ -7,12 +7,13 @@ import androidx.annotation.RequiresApi;
 
 import java.time.LocalTime; //https://docs.oracle.com/javase/8/docs/api/java/time/LocalTime.html
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Food implements Parcelable {
     //CHOSEN BY COOK
     public String name;
     public double cost; //2 decimals max
-    public LocalTime estimatedCookTime; //input by cook, no data collected yet
+    public Date estimatedCookTime; //input by cook, no data collected yet
     public ArrayList<String> tags;//Vegan, Peanut-Free// chosen by cook
 
     //UPDATED BY DATABASE
@@ -22,7 +23,7 @@ public class Food implements Parcelable {
     private int numberOfRatings;
 
     //constructor for food
-    public Food(String name,double cost,LocalTime estimatedCookTime,ArrayList<String> tags) {
+    public Food(String name,double cost,Date estimatedCookTime,ArrayList<String> tags) {
         this.name = name;
         this.cost = cost;
         this.estimatedCookTime = estimatedCookTime;
@@ -41,7 +42,7 @@ public class Food implements Parcelable {
         amountSold = in.readInt();
         currentRating = in.readDouble();
         numberOfRatings = in.readInt();
-        estimatedCookTime = (LocalTime) in.readSerializable();
+        estimatedCookTime = (Date) in.readSerializable();
     }
 
     public static final Creator<Food> CREATOR = new Creator<Food>() {

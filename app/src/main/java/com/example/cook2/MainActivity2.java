@@ -32,6 +32,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Date;
+
 
 public class MainActivity2 extends AppCompatActivity {
    FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -58,7 +60,7 @@ public class MainActivity2 extends AppCompatActivity {
         temp.add("vegan");
         System.out.println(temp);
 
-        Food food = new Food("ZZZ",69.99, LocalTime.of(0,35),temp);
+        Food food = new Food("ZZZ",69.99, new Date(0, 0, 0, 0, 35, 0),temp);
         // Add a new document with a generated ID
         //Util.createFood(food,db);
        Order order1 = new Order(food,6969);
