@@ -150,7 +150,7 @@ public class LoginActivity extends AppCompatActivity {
 
     // Temporary solution for current stage in coding -- **FIX_ME**
     public void signIn(View v) {
-        Intent i = new Intent(this, MainActivity3.class);
+        Intent i = new Intent(this, CustomerProfileActivity.class);
         startActivity(i);
     }
 

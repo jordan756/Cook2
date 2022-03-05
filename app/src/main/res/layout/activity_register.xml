@@ -77,4 +77,6 @@
         android:layout_gravity="center"
         android:text="confirm acc, go to cook main" />
 
+
+
 </LinearLayout>

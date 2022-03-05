@@ -18,8 +18,8 @@ public class MainActivity3 extends AppCompatActivity {
         Intent i = new Intent(this, CustomerProfileActivity.class);
         startActivity(i);
     }
-
-    public void launchCooksMenus(View v) {
+//moved to "CustomerProfileActivity"
+/*    public void launchCooksMenus(View v) {
         Intent i = new Intent(this, CustomerViewCooksActivity.class);
         startActivity(i);
     }
@@ -27,5 +27,5 @@ public class MainActivity3 extends AppCompatActivity {
     public void launchOrderDetails(View v) {
         Intent i = new Intent(this, CustomerProgressActivity.class);
         startActivity(i);
-    }
+    }*/
 }
