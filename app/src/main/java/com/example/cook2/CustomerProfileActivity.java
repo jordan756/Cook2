@@ -22,4 +22,6 @@ public class CustomerProfileActivity extends AppCompatActivity {
         Intent i = new Intent(this, CustomerViewCooksActivity.class);
         startActivity(i);
     }
+
+
 }
