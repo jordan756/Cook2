@@ -3,6 +3,7 @@ package com.example.cook2.objects;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.Editable;
 
 import androidx.annotation.RequiresApi;
 
