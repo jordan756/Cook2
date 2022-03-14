@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".ui.login.LoginActivity">
+    tools:context=".loginActivity">
 
     <EditText
         android:id="@+id/username"
@@ -67,18 +67,33 @@
     <Button
         android:id="@+id/login"
         android:layout_width="254dp"
-        android:layout_height="46dp"
+        android:layout_height="48dp"
         android:layout_gravity="start"
         android:layout_marginStart="28dp"
 
         android:layout_marginBottom="137dp"
         android:layout_weight="1"
-        android:enabled="false"
+        android:enabled="true"
         android:minHeight="48dp"
+        android:onClick="signIn"
         android:paddingRight="20dp"
         android:text="Sign in"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/password"
         app:layout_constraintTop_toBottomOf="@+id/password" />
+
+    <Button
+        android:id="@+id/create_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:onClick="createAccount"
+        android:text="Create Account"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
