@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
                             order.updateStatus();
                         }
                     }
+                    //send cook here
                 }
                 arrayList.clear();
                 for(Order x : cook.getOrders()) {

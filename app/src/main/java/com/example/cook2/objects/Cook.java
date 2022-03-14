@@ -110,6 +110,8 @@ public class Cook extends Person implements Parcelable {
 
 
     protected Cook(Parcel in) {
+        email = in.readString();
+        password = in.readString();
         //currentOrders = in.readArrayList(Cook.class.getClassLoader());
         menu = in.readArrayList(Cook.class.getClassLoader());
         Orders = in.readArrayList(Cook.class.getClassLoader());
@@ -141,7 +143,8 @@ public class Cook extends Person implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-
+        parcel.writeString(email);
+        parcel.writeString(password);
         //parcel.writeList(currentOrders);
         parcel.writeList(menu);
         parcel.writeList(Orders);

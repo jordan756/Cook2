@@ -19,7 +19,7 @@ public class Util {
     // USES EMAIL + PASSWORD AS KEY FOR DATABASE
     public static void setCook(Cook cook, FirebaseFirestore db) {
 
-        db.collection("Cook").document(cook.email+cook.password).set(cook);
+        db.collection("Cook").document(cook.getKey()).set(cook);
     }
 
 
