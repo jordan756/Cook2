@@ -46,7 +46,7 @@ public class registerActivity extends AppCompatActivity {
                 // Add a new document with a generated ID
                 Util.setCook(testCook,db);
                 Intent i = new Intent(registerActivity.this, MainActivity.class);
-                i.putExtra("address",testCook.getAddress());
+                i.putExtra("key",testCook.getKey());
                 startActivity(i);
             }
 
