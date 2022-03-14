@@ -103,13 +103,13 @@ public class MainActivity2 extends AppCompatActivity {
     public void driverButtonEvent(View v) {
         Log.d("success", "driverButtonEvent");
        //v.setEnabled(false);
-        Intent driverScreen = new Intent(this, driverMainActivity.class);
+        Intent driverScreen = new Intent(this, registerActivity.class);
         startActivity(driverScreen);
     }
 
     public void customerButtonEvent(View v) {
         Log.d("success", "customerButtonEvent");
-        Intent customerScreen = new Intent(this, LoginActivity.class);
+        Intent customerScreen = new Intent(this, CustomerProfileActivity.class);
         //v.setEnabled(false);
         //Intent customerScreen = new Intent(this, customerActivity.class);
         startActivity(customerScreen);

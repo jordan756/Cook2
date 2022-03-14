@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         final EditText usernameEditText = binding.username;
         final EditText passwordEditText = binding.password;
         final Button loginButton = binding.login;
-        final Button registerButton = binding.register;
+        //final Button registerButton = binding.register;
         final ProgressBar loadingProgressBar = binding.loading;
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
@@ -136,7 +136,7 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-        registerButton.setOnClickListener(new View.OnClickListener() {
+/*        registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loadingProgressBar.setVisibility(View.VISIBLE);
@@ -145,12 +145,12 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(LoginActivity.this, registerActivity.class));
                 System.out.println("Here");
             }
-        });
+        });*/
     }
 
     // Temporary solution for current stage in coding -- **FIX_ME**
     public void signIn(View v) {
-        Intent i = new Intent(this, MainActivity3.class);
+        Intent i = new Intent(this, CustomerProfileActivity.class);
         startActivity(i);
     }
 

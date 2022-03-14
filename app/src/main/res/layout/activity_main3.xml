@@ -19,30 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.367" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="375dp"
-        android:layout_height="48dp"
-        android:onClick="launchCooksMenus"
-        android:text="cooks and menus"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.64" />
 
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="375dp"
-        android:layout_height="48dp"
-        android:onClick="launchOrderDetails"
-        android:text="order details"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias="0.089" />
 
     <Button
         android:id="@+id/button7"
@@ -50,7 +27,6 @@
         android:layout_height="48dp"
         android:onClick="launchCustomerProfile"
         android:text="Profile"
-        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"

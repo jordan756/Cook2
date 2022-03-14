@@ -52,4 +52,5 @@ public class registerActivity extends AppCompatActivity {
 
         });
     }
+
 }

@@ -13,10 +13,9 @@
 
     <EditText
         android:id="@+id/username"
-        android:layout_width="334dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="297dp"
-        android:layout_marginBottom="11dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="26dp"
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
@@ -24,77 +23,23 @@
         app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintEnd_toEndOf="@+id/password"
         app:layout_constraintStart_toStartOf="@+id/password"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="334dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="23dp"
-        android:layout_marginEnd="23dp"
-        android:layout_marginBottom="37dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="75dp"
         android:hint="@string/prompt_password"
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:selectAllOnFocus="true"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout2"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="390dp"
-        android:layout_height="138dp"
-        android:layout_marginEnd="3dp"
-        android:layout_marginBottom="97dp"
-        android:orientation="horizontal"
-        android:paddingHorizontal="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/login"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView">
-
-        <Button
-            android:id="@+id/login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="64dp"
-            android:layout_weight="1"
-            android:enabled="false"
-
-            android:minHeight="48dp"
-            android:paddingRight="20dp"
-            android:text="Sign in" />
-
-        <Button
-            android:id="@+id/button13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="signIn"
-            android:text="Sign In (c)" />
-
-        <Button
-            android:id="@+id/register"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="64dp"
-            android:layout_weight="1"
-            android:enabled="true"
-            android:minHeight="48dp"
-            android:paddingHorizontal="20dp"
-            android:paddingStart="4dp"
-            android:text="Register" />
-
-    </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/username" />
 
     <ProgressBar
         android:id="@+id/loading"
@@ -109,16 +54,31 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="127dp"
-        android:layout_marginEnd="76dp"
-        android:layout_marginBottom="221dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="227dp"
+        android:layout_height="116dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="159dp"
+        android:layout_marginBottom="42dp"
+        app:layout_constraintBottom_toTopOf="@+id/username"
+        app:layout_constraintStart_toStartOf="@+id/username"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/hdapp" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="254dp"
+        android:layout_height="46dp"
+        android:layout_gravity="start"
+        android:layout_marginStart="28dp"
+
+        android:layout_marginBottom="137dp"
+        android:layout_weight="1"
+        android:enabled="false"
+        android:minHeight="48dp"
+        android:paddingRight="20dp"
+        android:text="Sign in"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/password"
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

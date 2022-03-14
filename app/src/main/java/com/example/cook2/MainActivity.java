@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
         });*/
     }
 
-    public void updateMenu(View v) {
+    public void editMenu(View v) {
         Intent i = new Intent(this, CookUpdateMenu.class);
         startActivity(i);
     }
