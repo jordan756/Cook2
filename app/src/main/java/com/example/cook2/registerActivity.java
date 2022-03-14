@@ -14,7 +14,7 @@ import android.widget.Button;
 import com.example.cook2.objects.Cook;
 import com.example.cook2.objects.Food;
 import com.example.cook2.objects.Util;
-import com.example.cook2.ui.login.LoginActivity;
+//import com.example.cook2.ui.login.LoginActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;

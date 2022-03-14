@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.cook2.ui.login.LoginActivity;
+//import com.example.cook2.ui.login.LoginActivity;
 
 public class driverMainActivity3 extends AppCompatActivity implements View.OnClickListener {
 
@@ -31,19 +31,19 @@ public class driverMainActivity3 extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick (View v) {
-        switch (v.getId()) {
-            case R.id.backButton2:
-                Intent intent = new Intent(getApplicationContext(), driverMainActivity2.class);
-                startActivity(intent);
-                break;
-            case R.id.anotherButton:
-                Intent intent1 = new Intent(getApplicationContext(), driverMainActivity2.class);
-                startActivity(intent1);
-                break;
-            case R.id.endButton:
-                Intent intent2 = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent2);
-                break;
-        }
+//        switch (v.getId()) {
+//            case R.id.backButton2:
+//                Intent intent = new Intent(getApplicationContext(), driverMainActivity2.class);
+//                startActivity(intent);
+//                break;
+//            case R.id.anotherButton:
+//                Intent intent1 = new Intent(getApplicationContext(), driverMainActivity2.class);
+//                startActivity(intent1);
+//                break;
+//            case R.id.endButton:
+//                Intent intent2 = new Intent(getApplicationContext(), LoginActivity.class);
+//                startActivity(intent2);
+//                break;
+//        }
     }
 }
