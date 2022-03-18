@@ -17,7 +17,7 @@ import java.util.HashMap;
 
 public class Cook extends Person implements Parcelable {
 
-
+    public boolean open;
     private ArrayList<Food> menu;
     //private ArrayList<Order> currentOrders;
     public int amount_sold;
@@ -70,6 +70,8 @@ public class Cook extends Person implements Parcelable {
       //  currentOrders = new ArrayList<>();
         Orders = new ArrayList<>();
         //docId = firstName+lastName;
+        open = false;
+        key = email + password;
     }
     public Cook() {
         ArrayList<String> tags = new ArrayList();
@@ -83,10 +85,10 @@ public class Cook extends Person implements Parcelable {
         super.lastName = "the Third";
         super.currentRating = 5;
         super.phoneNumber = "1-696-6969";
-        super.address = "at your mom's house";
+        super.address = address;
         menu = new ArrayList<>();
-        super.email = "43@gmail";
-        super.password = "password123";
+        super.email = "test";
+        super.password = "test";
     //    currentOrders = new ArrayList<>();
         Orders = new ArrayList<>();
         ArrayList<String> tags = new ArrayList(); tags.add("nut-free"); tags.add("vegan");
@@ -104,12 +106,16 @@ public class Cook extends Person implements Parcelable {
 
         //currentOrders.add(order1);
         //currentOrders.add(order2);
+        open = false;
+        key = email + password;
 
     }
 
 
 
+    @RequiresApi(api = Build.VERSION_CODES.Q)
     protected Cook(Parcel in) {
+        key = in.readString();
         email = in.readString();
         password = in.readString();
         //currentOrders = in.readArrayList(Cook.class.getClassLoader());
@@ -122,9 +128,11 @@ public class Cook extends Person implements Parcelable {
         phoneNumber = in.readString();
         address = in.readString(); //ma
         amount_sold = in.readInt();
+        open = in.readBoolean();
     }
 
     public static final Creator<Cook> CREATOR = new Creator<Cook>() {
+        @RequiresApi(api = Build.VERSION_CODES.Q)
         @Override
         public Cook createFromParcel(Parcel in) {
             return new Cook(in);
@@ -141,21 +149,22 @@ public class Cook extends Person implements Parcelable {
         return 0;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(key);
         parcel.writeString(email);
         parcel.writeString(password);
-        //parcel.writeList(currentOrders);
         parcel.writeList(menu);
         parcel.writeList(Orders);
         parcel.writeString(firstName);
-        //System.out.println(firstName);
         parcel.writeString(lastName);
         parcel.writeDouble(currentRating);
         parcel.writeInt(numberOfRatings);
         parcel.writeString( phoneNumber);
         parcel.writeString(address); //ma
         parcel.writeInt(amount_sold);
+        parcel.writeBoolean(open);
     }
     public void print() {
         System.out.println("Menu " + menu);

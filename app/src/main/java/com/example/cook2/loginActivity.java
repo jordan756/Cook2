@@ -1,7 +1,11 @@
 package com.example.cook2;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 //import android.widget.Button;
 import android.text.TextUtils;
@@ -28,13 +32,19 @@ public class loginActivity extends AppCompatActivity {
     EditText emailInput;
     EditText passwordInput;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        Cook test = new Cook("YMCA");
+        Util.setCook(test,db);
+
     }
 
     public void signIn(View v) {
+        System.out.println("here");
         emailInput = findViewById(R.id.username);
         passwordInput = findViewById(R.id.password);
         email = emailInput.getText().toString();
@@ -62,11 +72,18 @@ public class loginActivity extends AppCompatActivity {
                                     Log.d("firebaseQuery", document.getId() + " => " + document.getData());
 //                                    Log.d("firebaseQuery", userType);
 //                                    Log.d("firebaseQuery", user.getUserType());
-
-                                    if (userType == "Cook") {
+                                        System.out.println(userType);
+                                    if (userType.equals("Cook")) {
                                         //Cook cook = document.toObject(Cook.class);
                                         //String myUserType = cook.getUserType();
-                                        Cook cook = Util.getCook(user.getEmail()+user.getPassword(), db);
+                                     //   Cook cook = Util.getCook(user.getEmail()+user.getPassword(), db);
+                                        Cook testCook = Util.getCook(user.getEmail() + user.getPassword(), db);
+                                        System.out.println("here1");
+                                        Intent i = new Intent(loginActivity.this, MainActivity.class);
+
+                                        i.putExtra("Cook",testCook);
+                                        startActivity(i);
+
 
                                     } else if (userType == "Customer") {
 

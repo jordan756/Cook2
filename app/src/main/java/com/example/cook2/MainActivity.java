@@ -24,7 +24,7 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-
+    Cook cook;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -33,14 +33,11 @@ public class MainActivity extends AppCompatActivity {
         Button start_button = findViewById(R.id.start_button);
         Button end_button = findViewById(R.id.end_button);
 
-        //FloatingActionButton backButton = findViewById(R.id.floatingActionButton);
-        String key = getIntent().getExtras().getString("key");
-        //System.out.println(address + " KNEO");
-        Cook cook = Util.getCook(key,db);
+        //String key = getIntent().getExtras().getString("key");
+        cook = getIntent().getExtras().getParcelable("Cook");
 
-        cook.setFirstName("louis");
 
-        Util.setCook(cook,db);
+
 
         System.out.println(cook.getFirstName() + cook.getEmail() + "AGAGAGA");
         ArrayList<String> arrayList;
@@ -85,8 +82,8 @@ public class MainActivity extends AppCompatActivity {
 
         System.out.println(cook.getFirstName() + " " + cook.getLastName());
         System.out.println("size of list" + cook.getMenu().size());
-        System.out.println(cook.getMenu().get(3).name);
-        System.out.println(cook.getMenu().get(1).name);
+    //    System.out.println(cook.getMenu().get(3).name);
+     //   System.out.println(cook.getMenu().get(1).name);
 
         /*backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -126,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
                 //adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
                 listView.setAdapter(adapter);
-
+                Util.setCook(cook,db);
             }
         });
 
@@ -160,22 +157,19 @@ public class MainActivity extends AppCompatActivity {
 
                 //adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
                 listView.setAdapter(adapter);
-
+                Util.setCook(cook,db);
             }
         });
 
 
 
-        /*backButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //System.print
-                System.out.println("floating button");
-            }
-        });*/
+
     }
 
     public void editMenu(View v) {
+
         Intent i = new Intent(this, CookUpdateMenu.class);
+        i.putExtra("Cook",cook);
         startActivity(i);
     }
 }

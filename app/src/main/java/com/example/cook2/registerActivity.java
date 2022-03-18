@@ -33,12 +33,8 @@ public class registerActivity extends AppCompatActivity {
         Button registerToMain = findViewById(R.id.registerToMain);
 
 
-        Cook testCook = new Cook("useless");
-        testCook.getMenu().add(new Food());
-        testCook.setFirstName("Geourge");
-        testCook.amount_sold = 3100;
-        testCook.print();
-        System.out.println("/????????");
+        Cook testCook = new Cook("GYM");
+
         registerToMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

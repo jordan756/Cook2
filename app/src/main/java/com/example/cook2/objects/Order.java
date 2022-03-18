@@ -7,11 +7,12 @@ import android.os.Parcelable;
 import androidx.annotation.RequiresApi;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Order implements Parcelable {
     //WILL NEED TO STORE CUSTOMER INFO TOO
-    public Food food;
+    public ArrayList<Food> foods;
     //public Customer customer;
    // public Cook cook;
     public Date estimated_total_time;
@@ -21,7 +22,8 @@ public class Order implements Parcelable {
 
     //public Delivery driver
     public Order(Food food, int id ) {
-        this.food = food;
+        this.foods = new ArrayList<>();
+        foods.add(food);
         //this.customer = customer;
         //this.cook = cook;
         status = "unaccepted_cook";
@@ -52,11 +54,13 @@ public class Order implements Parcelable {
     }
     //returns string of values imporant for order
     public String summary() {
-        return food.name + "  -  " + status + "  -  " + orderID;
+        System.out.println(foods);
+        return foods.get(0).name + "  -  " + status + "  -  " + orderID;
     }
     @RequiresApi(api = Build.VERSION_CODES.O)
+
     protected Order(Parcel in) {
-        food = in.readParcelable(Food.class.getClassLoader());
+        foods = in.readArrayList(Food.class.getClassLoader());
      //   customer = in.readParcelable(Customer.class.getClassLoader());
         //cook = in.readParcelable(Cook.class.getClassLoader());
         estimated_total_time = (Date) in.readSerializable();
@@ -85,7 +89,7 @@ public class Order implements Parcelable {
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeParcelable(food, i);
+        parcel.writeList(foods);
       //  parcel.writeParcelable(customer, i);
        // parcel.writeParcelable(cook, i);
         parcel.writeSerializable(estimated_total_time);

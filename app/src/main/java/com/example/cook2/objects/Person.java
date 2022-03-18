@@ -13,14 +13,12 @@ public class Person  {
     protected String address; //maybe break into multiple pieces
     protected String key;
     protected String userType;
-    protected String userTypeKey;
+   // protected String userTypeKey;
 
     public Person() {}
 
 
-    public String getUserTypeKey() {
-        return userTypeKey;
-    }
+
     public String getUserType() {
         return userType;
     }
@@ -76,9 +74,7 @@ public class Person  {
     public void setPassword(String password) {
         this.password = password;
     }
-    public void setUserTypeKey(String userTypeKey) {
-        this.userTypeKey = userTypeKey;
-    }
+
     public void setUserType(String userType) {
         this.userType = userType;
     }
