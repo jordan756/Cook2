@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.cook2.objects.Cook;
 import com.example.cook2.objects.Food;
 import com.example.cook2.objects.Order;
 import com.example.cook2.objects.Util;
@@ -32,7 +33,7 @@ public class CookUpdateMenu extends AppCompatActivity {
        super.onCreate(savedInstanceState);
        setContentView(R.layout.activity_cook_update_menu);
    }*/
-
+    Cook cook;
     private ListView listMenu;
     private ArrayList<String> menuItems;
     private ArrayList<String> checkedPosition;
@@ -69,6 +70,14 @@ public class CookUpdateMenu extends AppCompatActivity {
         tags.addTextChangedListener(watcher);
         deleteMenuButton = (Button) findViewById(R.id.button14);
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menuItems);
+
+        //ADDED BY JORDAN
+
+        cook = getIntent().getExtras().getParcelable("Cook");
+
+
+
+        // ADDED BY JORDAN
 
 
         listMenu.setAdapter(adapter);
@@ -147,8 +156,10 @@ public class CookUpdateMenu extends AppCompatActivity {
             ArrayList<String> tagsList = new ArrayList<String>();
             tagsList.add(tags.getText().toString());
             Food newMenuItem  = new Food(dishName.getText().toString(), Double.parseDouble(dishCost.getText().toString()), time, tagsList);
-            System.out.println(newMenuItem.name);
-            Util.createFood(newMenuItem, db);
+            cook.getMenu().add(newMenuItem);
+            Util.setCook(cook,db);
+          //  System.out.println(newMenuItem.name);
+           // Util.createFood(newMenuItem, db);
             menuItems.add("Dish: " + dishName.getText().toString() + "\n" + "Cost: " + dishCost.getText().toString() + "\n" + hour.getText().toString() + "Hr " + min.getText().toString() + "Min" + "\n" + "Tags: " + tags.getText().toString());
         }
 
