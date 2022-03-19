@@ -3,6 +3,7 @@ package com.example.cook2;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -24,6 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 
 public class CookUpdateMenu extends AppCompatActivity {
 
@@ -33,7 +35,7 @@ public class CookUpdateMenu extends AppCompatActivity {
        super.onCreate(savedInstanceState);
        setContentView(R.layout.activity_cook_update_menu);
    }*/
-    Cook cook;
+    private Cook cook;
     private ListView listMenu;
     private ArrayList<String> menuItems;
     private ArrayList<String> checkedPosition;
@@ -50,6 +52,8 @@ public class CookUpdateMenu extends AppCompatActivity {
     private ArrayList<String> temp;
 
     public void onCreate(Bundle icicle) {
+
+
         super.onCreate(icicle);
         setContentView(R.layout.activity_cook_update_menu);
         listMenu = (ListView) findViewById(R.id.listMenu);
@@ -69,18 +73,22 @@ public class CookUpdateMenu extends AppCompatActivity {
         min.addTextChangedListener(watcher);
         tags.addTextChangedListener(watcher);
         deleteMenuButton = (Button) findViewById(R.id.button14);
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menuItems);
 
         //ADDED BY JORDAN
 
         cook = getIntent().getExtras().getParcelable("Cook");
+        cook = Util.getCook(cook.getKey(),db);
 
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menuItems);
 
-
+        for (Food foodItem: cook.getMenu()) {
+            String temp = "Dish: " + foodItem.name + "\n" + "Cost: " + foodItem.cost + "\n" + foodItem.estimatedCookTime.getHours() + "Hr " + foodItem.estimatedCookTime.getMinutes() + "Min" + "\n" + "Tags: " + foodItem.tags.get(0);
+            menuItems.add(temp);
+        }
         // ADDED BY JORDAN
-
-
         listMenu.setAdapter(adapter);
+
+
 
         listMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -110,11 +118,28 @@ public class CookUpdateMenu extends AppCompatActivity {
                 for (int i = 0; i < checkedPosition.size(); i++) {
                     adapter.remove(checkedPosition.get(i));
                     menuItems.remove(checkedPosition.get(i));
-                }
+                    //convert string to object
+                    String temp = checkedPosition.get(i);
+                    String temp1 = temp.split("Dish: ")[1];
+                    String name = temp1.split("\nCost: ",3)[0];
+                    System.out.println(name);
 
+                    for (Iterator<Food> it = cook.getMenu().iterator(); it.hasNext(); ) {
+                        Food food = it.next();
+                        if (food.name.equals(name)) {
+                            it.remove();
+                            break;
+                        }
+                    }
+
+
+                }
+                System.out.println(cook.getMenu());
+                Util.setCook(cook,db);
                 listMenu.setAdapter(adapter);
                 checkedPosition.clear();
             }
+
         });
     }
 

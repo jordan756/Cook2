@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
         //String key = getIntent().getExtras().getString("key");
         cook = getIntent().getExtras().getParcelable("Cook");
-
+        //HAVE TO DO THIS TO GET UPDATED COOK FROM EDIT MENU
+        cook = Util.getCook(cook.getKey(),db);
 
 
 

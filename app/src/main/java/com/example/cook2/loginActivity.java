@@ -38,8 +38,8 @@ public class loginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Cook test = new Cook("YMCA");
-        Util.setCook(test,db);
+       // Cook test = new Cook("YMCA");
+       // Util.setCook(test,db);
 
     }
 
@@ -78,9 +78,9 @@ public class loginActivity extends AppCompatActivity {
                                         //String myUserType = cook.getUserType();
                                      //   Cook cook = Util.getCook(user.getEmail()+user.getPassword(), db);
                                         Cook testCook = Util.getCook(user.getEmail() + user.getPassword(), db);
+
                                         System.out.println("here1");
                                         Intent i = new Intent(loginActivity.this, MainActivity.class);
-
                                         i.putExtra("Cook",testCook);
                                         startActivity(i);
 
