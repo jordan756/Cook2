@@ -172,4 +172,7 @@ public class Cook extends Person implements Parcelable {
         System.out.println("Amt sld " + amount_sold);
         System.out.println("Firstname " + firstName);
     }
+    public void changeOpen() {
+        open = !open;
+    }
 }

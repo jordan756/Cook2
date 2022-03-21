@@ -9,8 +9,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ToggleButton;
 
 import com.example.cook2.objects.Cook;
 import com.example.cook2.objects.Order;
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Button changeStatus = findViewById((R.id.toggleButton));
         Button start_button = findViewById(R.id.start_button);
         Button end_button = findViewById(R.id.end_button);
 
@@ -37,6 +40,14 @@ public class MainActivity extends AppCompatActivity {
         cook = getIntent().getExtras().getParcelable("Cook");
         //HAVE TO DO THIS TO GET UPDATED COOK FROM EDIT MENU
         cook = Util.getCook(cook.getKey(),db);
+        String temp;
+        if (cook.open) {
+            temp = "Availibility: Open";
+            changeStatus.setText(temp);
+        } else {
+            temp = "Availibility: CLosed";
+            changeStatus.setText(temp);
+        }
 
 
 
@@ -127,7 +138,27 @@ public class MainActivity extends AppCompatActivity {
                 Util.setCook(cook,db);
             }
         });
+        changeStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cook.changeOpen();
+                Util.setCook(cook,db);
+                if (cook.open) {
+                    String temp = "Availibility: Open";
+                    changeStatus.setText(temp);
+                    System.out.println("CHECKED");
+                    System.out.println("status:" + cook.open);
+                } else {
+                    String temp = "Availibility: Closed";
+                    changeStatus.setText(temp);
 
+                    System.out.println("UNCHECKED");
+                    System.out.println("status:" + cook.open);
+                }
+        }
+
+
+        });
         end_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -161,10 +192,6 @@ public class MainActivity extends AppCompatActivity {
                 Util.setCook(cook,db);
             }
         });
-
-
-
-
     }
 
     public void editMenu(View v) {

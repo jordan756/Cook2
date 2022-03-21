@@ -24,9 +24,9 @@
     <ListView
         android:id="@+id/listOrders"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="368dp"
 
-        android:choiceMode="multipleChoice"/>
+        android:choiceMode="multipleChoice" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -73,6 +73,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Profile" />
+
+        <Button
+
+            android:id="@+id/toggleButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ToggleButton" />
 
     </LinearLayout>
 
