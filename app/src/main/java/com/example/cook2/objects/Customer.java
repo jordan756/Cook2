@@ -7,18 +7,45 @@ import java.util.ArrayList;
 
 public class Customer extends Person implements Parcelable {
 
-    public ArrayList<Order> currentOrders;
-    public Customer() {
+    private ArrayList<Order> Orders;
+
+    public Customer(String firstName, String lastName, double currentRating, String phone, String address,String password,String email) {
+        this.password = password;
+        this.email = email;
+        super.firstName = firstName;
+        super.lastName = lastName;
+        super.currentRating = currentRating;
+        super.phoneNumber = phone;
+        super.address = address;
+        Orders = new ArrayList<>();
+        key = email + password;
+    }
+    public Customer(String email) {
+        this.password = "test1";
+        this.email = email;
         super.firstName = "Customer";
         super.lastName = "ayaya";
         super.currentRating = 3;
         super.phoneNumber = "1-696-6969";
         super.address = "outside";
-        currentOrders = new ArrayList<>();
+        Orders = new ArrayList<>();
+        key = email + password;
     }
-//MAY NEED TO ALSO HAVE THIS ON PARENT CLASS
+    public Customer() {
+        Orders = new ArrayList<>();
+    }
+
+    public ArrayList<Order> getOrders() {
+        return Orders;
+    }
+
+    public void setOrders(ArrayList<Order> orders) {
+        Orders = orders;
+    }
+
+    //MAY NEED TO ALSO HAVE THIS ON PARENT CLASS
     protected Customer(Parcel in) {
-        currentOrders = in.createTypedArrayList(Order.CREATOR);
+        Orders = in.createTypedArrayList(Order.CREATOR);
 
         firstName = in.readString();
         lastName = in.readString();
@@ -47,7 +74,7 @@ public class Customer extends Person implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeTypedList(currentOrders);
+        parcel.writeTypedList(Orders);
 
         parcel.writeString(firstName);
         //System.out.println(firstName);
