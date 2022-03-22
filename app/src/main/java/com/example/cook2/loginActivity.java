@@ -13,6 +13,7 @@ import android.util.Log;
 import android.widget.EditText;
 
 import com.example.cook2.objects.Cook;
+import com.example.cook2.objects.Customer;
 import com.example.cook2.objects.Person;
 import com.example.cook2.objects.Util;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -38,8 +39,8 @@ public class loginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-       // Cook test = new Cook("YMCA");
-       // Util.setCook(test,db);
+       // Customer test = new Customer("test1");
+       // Util.setCustomer(test,db);
 
     }
 
@@ -85,9 +86,15 @@ public class loginActivity extends AppCompatActivity {
                                         startActivity(i);
 
 
-                                    } else if (userType == "Customer") {
+                                    } else if (userType.equals("Customer")) {
+                                        Customer testCustomer = Util.getCustomer(user.getEmail() + user.getPassword(), db);
 
-                                    } else if (userType == "Driver") {
+                                        System.out.println("here2");
+                                        Intent i = new Intent(loginActivity.this, CustomerMain.class);
+                                        i.putExtra("Customer",testCustomer);
+                                        startActivity(i);
+
+                                    } else if (userType.equals("Driver")) {
 
                                     }
 

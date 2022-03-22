@@ -6,6 +6,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -22,6 +23,27 @@ public class Util {
         db.collection("Cook").document(cook.getKey()).set(cook);
     }
 
+    public static void setCustomer(Customer customer, FirebaseFirestore db) {
+        db.collection("Customer").document(customer.getKey()).set(customer);
+    }
+
+    public static Customer getCustomer(String key, FirebaseFirestore db) {
+        Task<DocumentSnapshot> temp = null;
+        while(temp == null) {
+            temp = db.collection("Customer").document(key).get();
+        }
+        while(!temp.isComplete()) {
+            //sleep(1000);
+        }
+        DocumentSnapshot temp2 = temp.getResult();
+        if (!temp2.exists()) {
+            return null;
+        }
+        // Cook cook = temp2.data();
+        Customer customer = temp2.toObject(Customer.class);
+        System.out.print(customer.firstName);
+        return customer;
+    }
 
     //Might pause program getting results, will need threading
     public static Cook getCook(String key, FirebaseFirestore db) {

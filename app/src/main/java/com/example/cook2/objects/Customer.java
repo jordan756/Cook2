@@ -45,8 +45,12 @@ public class Customer extends Person implements Parcelable {
 
     //MAY NEED TO ALSO HAVE THIS ON PARENT CLASS
     protected Customer(Parcel in) {
-        Orders = in.createTypedArrayList(Order.CREATOR);
 
+        password = in.readString();
+        email = in.readString();
+        key = in.readString();
+
+        Orders = in.readArrayList(Customer.class.getClassLoader());
         firstName = in.readString();
         lastName = in.readString();
         currentRating = in.readDouble();
@@ -74,8 +78,10 @@ public class Customer extends Person implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(password);
+        parcel.writeString(email);
+        parcel.writeString(key);
         parcel.writeTypedList(Orders);
-
         parcel.writeString(firstName);
         //System.out.println(firstName);
         parcel.writeString(lastName);
