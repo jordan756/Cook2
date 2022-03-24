@@ -39,6 +39,9 @@ public class loginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
+        //Util.getAllCooks(db);
+       // System.out.println("here");
        // Customer test = new Customer("test1");
        // Util.setCustomer(test,db);
 
