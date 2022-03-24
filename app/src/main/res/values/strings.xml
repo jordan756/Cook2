@@ -18,4 +18,13 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="address">Address</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="register">Register:</string>
+    <string name="customer">Customer</string>
+    <string name="cook">Cook</string>
+    <string name="driver">Driver</string>
+    <string name="register_as">Register As:</string>
 </resources>

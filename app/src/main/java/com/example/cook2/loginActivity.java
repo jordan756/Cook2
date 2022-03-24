@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -114,6 +115,52 @@ public class loginActivity extends AppCompatActivity {
                         }
                     });
 
+            // Simpler query for Document using email + password concat
+//            db.collection("Person").document(email.concat(password)).get()
+//            .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                @Override
+//                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                    if (task.isSuccessful()) {
+//                        DocumentSnapshot document = task.getResult();
+//                        if (document.exists()) {
+//                            Log.d("login", "DocumentSnapshot data: " + document.getData());
+//                            String userType = document.getString("userType");
+//                            Person user = document.toObject(Person.class);
+//                            //String userType = user.getUserType();
+//                            Log.d("firebaseQuery", document.getId() + " => " + document.getData());
+////                                    Log.d("firebaseQuery", userType);
+////                                    Log.d("firebaseQuery", user.getUserType());
+//                            System.out.println(userType);
+//                            if (userType.equals("Cook")) {
+//                                //Cook cook = document.toObject(Cook.class);
+//                                //String myUserType = cook.getUserType();
+//                                //   Cook cook = Util.getCook(user.getEmail()+user.getPassword(), db);
+//                                Cook testCook = Util.getCook(user.getEmail() + user.getPassword(), db);
+//
+//                                System.out.println("here1");
+//                                Intent i = new Intent(loginActivity.this, MainActivity.class);
+//                                i.putExtra("Cook",testCook);
+//                                startActivity(i);
+//
+//                            } else if (userType == "Customer") {
+//
+//                            } else if (userType == "Driver") {
+//
+//                            }
+//
+//                        } else {
+//                            Log.d("login", "No such document");
+//                            emailInput.setError("Try again.");
+//                            passwordInput.setError("Try again.");
+//                        }
+//                    } else {
+//                        Log.d("login", "get failed with ", task.getException());
+//                        emailInput.setError("Try again.");
+//                        passwordInput.setError("Try again.");
+//                    }
+//                }
+//            });
+
             emailInput.setError("Wrong username or password.");
             passwordInput.setError("Wrong username or password.");
             //------------
@@ -121,6 +168,7 @@ public class loginActivity extends AppCompatActivity {
     }
 
     public void createAccount(View v) {
-        v.setEnabled(false);
+        Intent registerScreen = new Intent(this, MainActivity4.class);
+        startActivity(registerScreen);
     }
 }
