@@ -58,11 +58,8 @@ public class Util {
         if (!temp2.exists()) {
             return null;
         }
-       // Cook cook = temp2.data();
         Cook cook = temp2.toObject(Cook.class);
-        System.out.print(cook.firstName);
         return cook;
-
     }
 
 

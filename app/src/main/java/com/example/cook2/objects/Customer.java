@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Customer extends Person implements Parcelable {
 
@@ -18,8 +19,9 @@ public class Customer extends Person implements Parcelable {
         super.phoneNumber = phone;
         super.address = address;
         Orders = new ArrayList<>();
-        key = email + password;
+        key = email.concat(password);
     }
+
     public Customer(String email) {
         this.password = "test1";
         this.email = email;
@@ -29,9 +31,40 @@ public class Customer extends Person implements Parcelable {
         super.phoneNumber = "1-696-6969";
         super.address = "outside";
         Orders = new ArrayList<>();
-        key = email + password;
+        key = email.concat(password);
+        // key = email + password;
     }
+
     public Customer() {
+        Orders = new ArrayList<>();
+    }
+
+    /*
+        myDoc.put("firstName", firstName);
+        myDoc.put("lastName", lastName);
+        myDoc.put("email", email);
+        myDoc.put("password", password);
+        myDoc.put("address", address);
+        myDoc.put("phoneNumber", phoneNumber);
+        myDoc.put("numberOfRatings", 0);
+        myDoc.put("currentRating", 0);
+        myDoc.put("userTypeKey", email.concat(password));
+        myDoc.put("key", email.concat(password));
+        myDoc.put("userType", "Customer");
+     */
+
+    public Customer(HashMap<String, String> myMap) {
+        super.password = (String) myMap.get("password");
+        super.email = (String) myMap.get("email");
+        super.firstName = (String) myMap.get("firstName");
+        super.lastName = (String) myMap.get("lastName");
+        super.phoneNumber = (String) myMap.get("phoneNumber");
+        super.address = (String) myMap.get("address");
+        super.userType = (String) myMap.get("userType");
+        super.userTypeKey = (String) myMap.get("userTypeKey");
+        super.key = (String) myMap.get("key");
+        super.currentRating = 0;
+        super.numberOfRatings = 0;
         Orders = new ArrayList<>();
     }
 

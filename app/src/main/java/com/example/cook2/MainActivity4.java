@@ -3,12 +3,16 @@ package com.example.cook2;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.cook2.objects.Cook;
+import com.example.cook2.objects.Customer;
+import com.example.cook2.objects.Util;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -16,17 +20,17 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 
+
 public class MainActivity4 extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    String firstName,lastName, email, password, address, phoneNumber, docID;
+    String firstName,lastName, email, password, address, phoneNumber, docID, key;
     EditText fNInput, lNInput, eInput, pInput, aInput, pNInput;
-    HashMap<String, Object> myDoc;
+    HashMap<String, String> myDoc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main4);
-        myDoc = new HashMap<String, Object>();
     }
 
     public boolean getData() {
@@ -43,29 +47,27 @@ public class MainActivity4 extends AppCompatActivity {
         password = pInput.getText().toString();
         address = aInput.getText().toString();
         phoneNumber = pNInput.getText().toString();
-        Log.w("register", firstName);
-        Log.w("register", lastName);
-        Log.w("register", email);
-        Log.w("register", password);
-        Log.w("register", phoneNumber);
+        Log.d("register", firstName);
+        Log.d("register", lastName);
+        Log.d("register", email);
+        Log.d("register", password);
+        Log.d("register", phoneNumber);
 
         if (TextUtils.isEmpty(firstName) | TextUtils.isEmpty(lastName) | TextUtils.isEmpty(email)
                 | TextUtils.isEmpty(password) | TextUtils.isEmpty(address) | TextUtils.isEmpty(phoneNumber)) {
             return false;
         }
 
-        myDoc.clear();
+        key = email.concat(password);
+        myDoc = new HashMap<String, String>();
         myDoc.put("firstName", firstName);
         myDoc.put("lastName", lastName);
         myDoc.put("email", email);
         myDoc.put("password", password);
         myDoc.put("address", address);
         myDoc.put("phoneNumber", phoneNumber);
-        myDoc.put("numberOfRatings", 0);
-        myDoc.put("currentRating", 0);
-        myDoc.put("userTypeKey", email.concat(password));
-        myDoc.put("key", email.concat(password));
-
+        myDoc.put("userTypeKey", key);
+        myDoc.put("key", key);
         return true;
     }
 
@@ -80,12 +82,17 @@ public class MainActivity4 extends AppCompatActivity {
 
     public void registerAsCook(View v) {
         boolean g = getData();
+
         if (!g) {
             setErrors();
         } else {
             myDoc.put("userType", "Cook");
-            db.collection("Person").document(email.concat(password)).set(myDoc);
-            //db.collection("Cook").document(email.concat(password)).set(myDoc);
+            db.collection("Person").document(key).set(myDoc);
+            Cook cook = new Cook(myDoc);
+            Util.setCook(cook, db);
+            Intent cookActivity = new Intent(v.getContext(), MainActivity.class);
+            cookActivity.putExtra("Cook", cook);
+            startActivity(cookActivity);
         }
     }
 
@@ -95,8 +102,12 @@ public class MainActivity4 extends AppCompatActivity {
             setErrors();
         } else {
             myDoc.put("userType", "Customer");
-            db.collection("Person").document(email.concat(password)).set(myDoc);
-            //db.collection("Customer").document(email.concat(password)).set(myDoc);
+            db.collection("Person").document(key).set(myDoc);
+            Customer customer = new Customer(myDoc);
+            Util.setCustomer(customer, db);
+            Intent customerActivity = new Intent(v.getContext(), CustomerMain.class);
+            customerActivity.putExtra("Customer",customer);
+            startActivity(customerActivity);
         }
     }
 
@@ -106,8 +117,12 @@ public class MainActivity4 extends AppCompatActivity {
             setErrors();
         } else {
             myDoc.put("userType", "Driver");
-            db.collection("Person").document(email.concat(password)).set(myDoc);
-            //db.collection("Driver").document(email.concat(password)).set(myDoc);
+            db.collection("Person").document(key).set(myDoc);
+//            Driver driver = new Driver(myDoc);
+//            Util.setDriver(driver, db);
+//            Intent driverActivity = new Intent(v.getContext(), DriverMain.class);
+//            driverActivity.putExtra("Driver",driver);
+//            startActivity(driverActivity);
         }
     }
 }

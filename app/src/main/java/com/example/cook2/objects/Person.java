@@ -13,7 +13,7 @@ public class Person  {
     protected String address; //maybe break into multiple pieces
     protected String key;
     protected String userType;
-   // protected String userTypeKey;
+    protected String userTypeKey;
 
     public Person() {}
 
@@ -48,6 +48,9 @@ public class Person  {
     }
     public String getPassword() {
         return password;
+    }
+    public String getUserTypeKey() {
+        return userTypeKey;
     }
 
     public void setFirstName(String firstName) {

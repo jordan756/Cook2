@@ -30,7 +30,7 @@ import android.view.View;
 
 public class loginActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    String email, password;
+    String email, password, key;
     EditText emailInput;
     EditText passwordInput;
 
@@ -39,18 +39,15 @@ public class loginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-       // Customer test = new Customer("test1");
-       // Util.setCustomer(test,db);
-
     }
 
     public void signIn(View v) {
-        System.out.println("here");
         emailInput = findViewById(R.id.username);
         passwordInput = findViewById(R.id.password);
         email = emailInput.getText().toString();
         password = passwordInput.getText().toString();
+        key = email.concat(password);
+        Log.d("login", "key => " + key);
 
         if (TextUtils.isEmpty(email) && TextUtils.isEmpty(password)) {
             emailInput.setError("Cannot be empty.");
@@ -60,112 +57,49 @@ public class loginActivity extends AppCompatActivity {
         } else if (TextUtils.isEmpty(password)) {
             passwordInput.setError("Cannot be empty.");
         } else {
-            //--------------
-            Log.d("firebaseQuery", "executing query: signIn(View v)");
             db.collection("Person").whereEqualTo("email", email).whereEqualTo("password", password).get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
                                 for (QueryDocumentSnapshot document : task.getResult()) {
+                                    Log.d("login", document.getId() + " => " + document.getData());
+
                                     String userType = document.getString("userType");
                                     Person user = document.toObject(Person.class);
-                                    //String userType = user.getUserType();
-                                    Log.d("firebaseQuery", document.getId() + " => " + document.getData());
-//                                    Log.d("firebaseQuery", userType);
-//                                    Log.d("firebaseQuery", user.getUserType());
-                                        System.out.println(userType);
                                     if (userType.equals("Cook")) {
-                                        //Cook cook = document.toObject(Cook.class);
-                                        //String myUserType = cook.getUserType();
-                                     //   Cook cook = Util.getCook(user.getEmail()+user.getPassword(), db);
                                         Cook testCook = Util.getCook(user.getEmail() + user.getPassword(), db);
-
-                                        System.out.println("here1");
-                                        Intent i = new Intent(loginActivity.this, MainActivity.class);
-                                        i.putExtra("Cook",testCook);
-                                        startActivity(i);
+                                        Intent cookActivity = new Intent(loginActivity.this, MainActivity.class);
+                                        cookActivity.putExtra("Cook", testCook);
+                                        startActivity(cookActivity);
 
 
                                     } else if (userType.equals("Customer")) {
                                         Customer testCustomer = Util.getCustomer(user.getEmail() + user.getPassword(), db);
-
-                                        System.out.println("here2");
-                                        Intent i = new Intent(loginActivity.this, CustomerMain.class);
-                                        i.putExtra("Customer",testCustomer);
-                                        startActivity(i);
+                                        Intent customerActivity = new Intent(loginActivity.this, CustomerMain.class);
+                                        customerActivity.putExtra("Customer", testCustomer);
+                                        startActivity(customerActivity);
 
                                     } else if (userType.equals("Driver")) {
-
+                                        emailInput.setError("Not ready.");
+                                        passwordInput.setError("Not ready.");
                                     }
 
-                                    emailInput.setError("Try again.");
-                                    passwordInput.setError("Try again.");
                                     return;
                                 }
                             } else {
-                                Log.w("firebaseQuery", "Error getting documents.", task.getException());
-                                emailInput.setError("Try again.");
-                                passwordInput.setError("Try again.");
+                                Log.d("firebaseQuery", "Error getting documents.", task.getException());
+                                emailInput.setError("Does not exist.");
+                                passwordInput.setError("Does not exist.");
                                 return;
                             }
                         }
                     });
-
-            // Simpler query for Document using email + password concat
-//            db.collection("Person").document(email.concat(password)).get()
-//            .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                @Override
-//                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                    if (task.isSuccessful()) {
-//                        DocumentSnapshot document = task.getResult();
-//                        if (document.exists()) {
-//                            Log.d("login", "DocumentSnapshot data: " + document.getData());
-//                            String userType = document.getString("userType");
-//                            Person user = document.toObject(Person.class);
-//                            //String userType = user.getUserType();
-//                            Log.d("firebaseQuery", document.getId() + " => " + document.getData());
-////                                    Log.d("firebaseQuery", userType);
-////                                    Log.d("firebaseQuery", user.getUserType());
-//                            System.out.println(userType);
-//                            if (userType.equals("Cook")) {
-//                                //Cook cook = document.toObject(Cook.class);
-//                                //String myUserType = cook.getUserType();
-//                                //   Cook cook = Util.getCook(user.getEmail()+user.getPassword(), db);
-//                                Cook testCook = Util.getCook(user.getEmail() + user.getPassword(), db);
-//
-//                                System.out.println("here1");
-//                                Intent i = new Intent(loginActivity.this, MainActivity.class);
-//                                i.putExtra("Cook",testCook);
-//                                startActivity(i);
-//
-//                            } else if (userType == "Customer") {
-//
-//                            } else if (userType == "Driver") {
-//
-//                            }
-//
-//                        } else {
-//                            Log.d("login", "No such document");
-//                            emailInput.setError("Try again.");
-//                            passwordInput.setError("Try again.");
-//                        }
-//                    } else {
-//                        Log.d("login", "get failed with ", task.getException());
-//                        emailInput.setError("Try again.");
-//                        passwordInput.setError("Try again.");
-//                    }
-//                }
-//            });
-
-            emailInput.setError("Wrong username or password.");
-            passwordInput.setError("Wrong username or password.");
-            //------------
         }
     }
 
     public void createAccount(View v) {
-        Intent registerScreen = new Intent(this, MainActivity4.class);
+        Intent registerScreen = new Intent(v.getContext(), MainActivity4.class);
         startActivity(registerScreen);
     }
 }
