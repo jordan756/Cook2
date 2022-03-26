@@ -44,10 +44,20 @@ public class CustomerViewCooksActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 view.setSelected(true);
                 view.setBackgroundResource(R.drawable.select);
+                int position = adapterView.getSelectedItemPosition();
+               // int position = cooks.();
+
+                System.out.println(position);
             }
         });
 
-
+        viewMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //int position = cooks.pos;
+                //System.out.println(position);
+            }
+        });
 
 
     }
