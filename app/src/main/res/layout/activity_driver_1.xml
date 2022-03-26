@@ -1,165 +1,229 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="20dp"
     tools:context=".driverMainActivity">
-
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="56dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#283593"
-        app:icon="?attr/actionModeCloseDrawable"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/driverProfile"
-        android:layout_width="match_parent"
-        android:layout_height="49dp"
-        android:fontFamily="sans-serif-black"
-        android:text="Driver Profile"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <Switch
-        android:id="@+id/status"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Driver status"
-        android:textColor="@color/black"
-        android:textOff="inactive"
-        android:textOn="active"
-        android:textSize="14sp" />
-
-    <Switch
-        android:id="@+id/status3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Share my location"
-        android:textColor="@color/black"
-        android:textOff="inactive"
-        android:textOn="active"
-        android:textSize="14sp" />
-
-    <EditText
-        android:id="@+id/firstName3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="First name"
-        android:inputType="none|textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/lastName3"
-        android:textSize="16sp"/>
-
-    <EditText
-        android:id="@+id/lastName3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Last name"
-        android:inputType="none|textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/phoneNumber3"
-        android:textSize="16sp"/>
-
-    <EditText
-        android:id="@+id/phoneNumber3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Phone number"
-        android:inputType="none|phone"
-        android:textSize="16sp"/>
-
-    <EditText
-        android:id="@+id/emailAddress3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email"
-        android:inputType="none|textPostalAddress"
-        app:layout_constraintBottom_toTopOf="@+id/customerPassword2"
-        android:textSize="16sp"/>
-
-    <EditText
-        android:id="@+id/customerPassword2"
-        android:layout_width="match_parent"
-        android:layout_height="14dp"
-        android:hint="Password"
-        android:inputType="none|textPostalAddress"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/vehicleInfo"
-        app:layout_constraintTop_toBottomOf="@+id/emailAddress3" />
-
-    <TextView
-        android:id="@+id/carInformation"
-        android:layout_width="match_parent"
-        android:layout_height="37dp"
-        android:fontFamily="sans-serif-black"
-        android:text="Vehicle Information"
-        android:textAlignment="center"
-        android:textSize="16sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/vehicleM"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Vehicle make/model"
-        android:inputType="none|textPostalAddress"
-        android:textSize="16sp"/>
-
-    <EditText
-        android:id="@+id/vehicleColor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Color"
-        android:inputType="none|textPostalAddress"
-        android:textSize="16sp"/>
-
-    <EditText
-        android:id="@+id/vehiclePlate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="License plate number"
-        android:inputType="none|textPostalAddress"
-        android:textSize="16sp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="#C64B2D"
+            android:padding="20dp">
+
+            <ImageView
+                android:id="@+id/userIcon"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerInParent="true"
+                app:srcCompat="@drawable/usericon" />
+
+            <TextView
+                android:id="@+id/driverProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="sans-serif"
+                android:text="Driver Profile"
+                android:textColor="#EAE7E7"
+                android:textSize="20sp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-100dp"
+            android:padding="20dp">
 
 
-        <Button
-            android:id="@+id/saveButton"
-            android:layout_width="150dp"
-            android:layout_height="match_parent"
-            android:backgroundTint="#283593"
-            android:text="Save"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"/>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="125dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="#C64B2D"
+                app:cardElevation="10dp">
 
-        <Button
-            android:id="@+id/cdeliveryButton"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:backgroundTint="#283593"
-            android:text="Current Deliveries" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/locationimg_jpg" />
+
+                    <TextView
+                        android:id="@+id/locationLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_centerInParent="true"
+                        android:includeFontPadding="false"
+                        android:text="Driver Status"
+                        android:textColor="#EAE7E7"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/locationDesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/locationLabel"
+                        android:layout_centerInParent="true"
+                        android:includeFontPadding="false"
+                        android:text="On/Off (button?)"
+                        android:textColor="#EAE7E7"
+                        android:textSize="14sp" />
 
 
+                </RelativeLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="125dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="#C64B2D"
+                app:cardElevation="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/logoutimg_png" />
+
+                    <TextView
+                        android:id="@+id/switchLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_centerInParent="true"
+                        android:includeFontPadding="false"
+                        android:text="Switch User"
+                        android:textColor="#EAE7E7"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/switchDesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/switchLabel"
+                        android:layout_centerInParent="true"
+                        android:includeFontPadding="false"
+                        android:text="insert button?"
+                        android:textColor="#EAE7E7"
+                        android:textSize="14sp" />
+
+
+                </RelativeLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="First Name" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="Last Name " />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="Phone " />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="Email address " />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="Password " />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="License Id # " />
+
+
+            <TextView
+                android:id="@+id/vehicleLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:includeFontPadding="false"
+                android:text="Vehicle Information"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="Vehicle Make " />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="Vehicle Model" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="Vehicle Color " />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#C64B2D"
+                android:text="Current Deliveries"
+                android:textAllCaps="false"
+                android:textSize="16sp" />
+
+
+        </LinearLayout>
     </LinearLayout>
+</ScrollView>
 
-
-    <TextView
-        android:id="@+id/infoText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="35dp"
-        android:layout_marginHorizontal="15dp"
-        android:fontFamily="sans-serif-black"
-        android:textSize="12sp" />
-
-
-</LinearLayout>

@@ -33,16 +33,16 @@ public class registerActivity extends AppCompatActivity {
         Button registerToMain = findViewById(R.id.registerToMain);
 
 
-        Cook testCook = new Cook("GYM");
+       // Cook testCook = new Cook("GYM");
 
         registerToMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
               //  Cook cook = new Cook();
                 // Add a new document with a generated ID
-                Util.setCook(testCook,db);
+          //      Util.setCook(testCook,db);
                 Intent i = new Intent(registerActivity.this, MainActivity.class);
-                i.putExtra("key",testCook.getKey());
+         //       i.putExtra("key",testCook.getKey());
                 startActivity(i);
             }
 

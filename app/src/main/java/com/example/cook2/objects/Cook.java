@@ -207,4 +207,8 @@ public class Cook extends Person implements Parcelable {
     public void changeOpen() {
         open = !open;
     }
+
+    public String summary() {
+        return firstName + " " + address + " rating: " + currentRating + "/5";
+    }
 }

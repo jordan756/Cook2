@@ -11,9 +11,17 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.model.Document;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Util {
 
@@ -62,7 +70,27 @@ public class Util {
         return cook;
     }
 
+    public static ArrayList<Cook> getAllCooks(FirebaseFirestore db) {
+        ArrayList<Cook> allCooks = new ArrayList<>();
+        Task<QuerySnapshot> bruh = db.collection("Cook").whereEqualTo("open",true).get();
+        while(!bruh.isComplete()) {
 
+        }
+        System.out.println(bruh);
+        System.out.println(bruh.getResult().size());
+        System.out.println(bruh.getResult().getDocuments());
+        //ArrayList<DocumentSnapshot> temp = new ArrayList<>();
+       // temp.addAll(bruh.getResult().getDocuments());
+        List<DocumentSnapshot> temp= bruh.getResult().getDocuments();
+
+        for (DocumentSnapshot doc : temp) {
+            allCooks.add(doc.toObject(Cook.class));
+        }
+        //System.out.println(allCooks.get(0).firstName + allCooks.get(1).firstName);
+
+
+        return allCooks;
+    }
     public static void createFood(Food food, FirebaseFirestore db) {
         db.collection("Food")
                 .add(food)
