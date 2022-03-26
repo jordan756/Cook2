@@ -99,7 +99,7 @@ public class loginActivity extends AppCompatActivity {
     }
 
     public void createAccount(View v) {
-        Intent registerScreen = new Intent(v.getContext(), MainActivity4.class);
+        Intent registerScreen = new Intent(v.getContext(), registerActivity.class);
         startActivity(registerScreen);
     }
 }

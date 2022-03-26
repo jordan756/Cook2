@@ -30,9 +30,9 @@ public class driverMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_driver_1);
 
         //initialize (xml)
-        firstName = findViewById(R.id.firstName);
-        lastName = findViewById(R.id.lastName);
-        phoneNumber = findViewById(R.id.phoneNumber);
+//        firstName = findViewById(R.id.firstName);
+//        lastName = findViewById(R.id.lastName);
+//        phoneNumber = findViewById(R.id.phoneNumber);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
 
