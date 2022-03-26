@@ -13,9 +13,6 @@
             android:name=".CustomerMain"
             android:exported="false" />
         <activity
-            android:name=".MainActivity4"
-            android:exported="false" />
-        <activity
             android:name=".CookUpdateMenu"
             android:exported="false" />
         <activity
