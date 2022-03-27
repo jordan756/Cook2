@@ -20,7 +20,10 @@ public class CustmerViewMenu extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Cook cook;
     Customer customer;
-
+    ListView menuItems;
+    ListView orderItems;
+    Order order;
+    ArrayList<String> orderDetails;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,8 +32,8 @@ public class CustmerViewMenu extends AppCompatActivity {
         // add = findViewById(R.id.addToOrder);
         //Button remove = findViewById(R.id.removeFromOrder);
         //Button createOrder = findViewById(R.id.createOrder);
-        ListView menuItems = (ListView) findViewById(R.id.listMenu);
-        ListView orderItems = (ListView) findViewById(R.id.listOrderItems);
+        menuItems = (ListView) findViewById(R.id.listMenu);
+        orderItems = (ListView) findViewById(R.id.listOrderItems);
 
         ArrayAdapter<String> adapter;
         ArrayAdapter<String> adapter1;
@@ -43,10 +46,10 @@ public class CustmerViewMenu extends AppCompatActivity {
 
         cook = Util.getCook(cook.getKey(),db);
         customer = Util.getCustomer(customer.getKey(),db);
-        Order order = new Order();
+        order = new Order();
         order.foods = new ArrayList<>();
 
-        ArrayList<String> orderDetails = new ArrayList<>();
+        orderDetails = new ArrayList<>();
         ArrayList<String> menu = new ArrayList<>();
         for (Food temp : cook.getMenu()) {
             menu.add(temp.summary());
@@ -60,14 +63,39 @@ public class CustmerViewMenu extends AppCompatActivity {
         menuItems.setAdapter(adapter);
         orderItems.setAdapter(adapter1);
 
+
+        //menuItems.setOnItemClickListener(new );
+
     }
     public void createOrder(View v) {
 
     }
     public void addToOrder(View v) {
+        for (int i = 0; i < menuItems.getCount(); i++) {
+            if (menuItems.isItemChecked(i)) {
+
+                order.foods.add(cook.getMenu().get(i));
+            }
+
+        }
+        //update costs
+        orderDetails.clear();
+        for (Food temp : order.foods) {
+            orderDetails.add(temp.summary());
+        }
 
     }
     public void removeFromOrder(View v) {
-
+        for (int i = 0; i < orderItems.getCount(); i++) {
+            if (orderItems.isItemChecked(i)) {
+                //might go out of bounds
+                orderDetails.remove(i);
+                order.foods.remove(i);
+            }
+        }
+        orderDetails.clear();
+        for (Food temp : order.foods) {
+            orderDetails.add(temp.summary());
+        }
     }
 }

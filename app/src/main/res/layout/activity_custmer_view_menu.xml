@@ -70,8 +70,9 @@
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onCLick="removeFromOrder"
-                android:text="Remove" />
+                android:text="Remove"
+                android:onClick="removeFromOrder"
+                 />
 
         </LinearLayout>
 

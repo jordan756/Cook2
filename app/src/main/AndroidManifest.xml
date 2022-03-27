@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cook2">
         <activity
+            android:name=".CustmerViewMenu"
+            android:exported="false" />
+        <activity
             android:name=".CustomerMain"
             android:exported="false" />
         <activity
