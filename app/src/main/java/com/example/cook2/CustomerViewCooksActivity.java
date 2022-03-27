@@ -54,10 +54,12 @@ public class CustomerViewCooksActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 int position = cooks.getCheckedItemPosition();
-                System.out.println(position);
+                //System.out.println(position);
                 if (position == -1) {
                     return;
                 }
+
+
 
                 Cook cook = allCooks.get(position);
 

@@ -74,4 +74,8 @@ public class Food implements Parcelable {
         parcel.writeInt(numberOfRatings);
         parcel.writeSerializable(estimatedCookTime);
     }
+
+    public String summary() {
+        return name + " Price: " + String.format("%.2f",cost);
+    }
 }

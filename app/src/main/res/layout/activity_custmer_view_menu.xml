@@ -19,7 +19,7 @@
             android:textSize="30sp"
             android:ems="10"
             android:inputType="time"
-            android:text="Available Menu " />
+            android:text="Create Order " />
     </LinearLayout>
 
     <LinearLayout
@@ -56,28 +56,31 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/start_button"
+                android:id="@+id/addToOrder"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:insetLeft="0dp"
-                android:text="Start Order" />
+                android:text="Add"
+                android:onClick="addToOrder"
+                />
 
             <Button
-                android:id="@+id/end_button"
+                android:id="@+id/removeFromOrder"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="end order" />
+                android:onCLick="removeFromOrder"
+                android:text="Remove" />
 
         </LinearLayout>
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/createOrder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="editMenu"
-            android:text="Edit Menu" />
+            android:onClick="createOrder"
+            android:text="CreateOrder" />
 
         <Button
             android:id="@+id/button2"
@@ -91,12 +94,12 @@
             android:layout_height="wrap_content"
             android:text="Profile" />
 
-        <Button
+        <TextView
 
             android:id="@+id/toggleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ToggleButton" />
+            android:text="Order Cost: ).))" />
 
     </LinearLayout>
 
