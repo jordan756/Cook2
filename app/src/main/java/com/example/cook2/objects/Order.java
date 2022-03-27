@@ -6,11 +6,16 @@ import android.os.Parcelable;
 
 import androidx.annotation.RequiresApi;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Order implements Parcelable {
+
+    private static final DecimalFormat df = new DecimalFormat("0.00");
+
     //WILL NEED TO STORE CUSTOMER INFO TOO
     public ArrayList<Food> foods;
     //public Customer customer;
@@ -95,5 +100,13 @@ public class Order implements Parcelable {
         parcel.writeSerializable(estimated_total_time);
         parcel.writeString(status);
         parcel.writeInt(orderID);
+    }
+    public double totalCost() {
+        double sum = 0;
+        for (Food food: foods) {
+            sum += food.cost;
+        }
+        df.setRoundingMode(RoundingMode.UP);
+        return Double.parseDouble(df.format(sum));
     }
 }

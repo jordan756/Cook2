@@ -3,9 +3,11 @@ package com.example.cook2;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.cook2.objects.Cook;
 import com.example.cook2.objects.Customer;
@@ -24,6 +26,9 @@ public class CustmerViewMenu extends AppCompatActivity {
     ListView orderItems;
     Order order;
     ArrayList<String> orderDetails;
+    ArrayAdapter<String> adapter;
+    ArrayAdapter<String> adapter1;
+    TextView cost;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,9 +39,8 @@ public class CustmerViewMenu extends AppCompatActivity {
         //Button createOrder = findViewById(R.id.createOrder);
         menuItems = (ListView) findViewById(R.id.listMenu);
         orderItems = (ListView) findViewById(R.id.listOrderItems);
+        cost = findViewById(R.id.cost);
 
-        ArrayAdapter<String> adapter;
-        ArrayAdapter<String> adapter1;
 
 
 
@@ -65,9 +69,23 @@ public class CustmerViewMenu extends AppCompatActivity {
 
 
         //menuItems.setOnItemClickListener(new );
-
+    menuItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            view.setSelected(true);
+            view.setBackgroundResource(R.drawable.select);
+        }
+    });
+    orderItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            view.setSelected(true);
+            view.setBackgroundResource(R.drawable.select);
+        }
+    });
     }
     public void createOrder(View v) {
+        //Make sure
 
     }
     public void addToOrder(View v) {
@@ -83,19 +101,38 @@ public class CustmerViewMenu extends AppCompatActivity {
         for (Food temp : order.foods) {
             orderDetails.add(temp.summary());
         }
-
+        System.out.println(order.foods);
+        orderItems.setAdapter(adapter1);
+        String temp = "Total Cost: $" + order.totalCost();
+        cost.setText(temp);
     }
     public void removeFromOrder(View v) {
         for (int i = 0; i < orderItems.getCount(); i++) {
             if (orderItems.isItemChecked(i)) {
                 //might go out of bounds
-                orderDetails.remove(i);
-                order.foods.remove(i);
+                //orderDetails.remove(i);
+
+                String temp = orderItems.getItemAtPosition(i).toString();
+                String[] orderValues = temp.split(" \\$ ");
+
+                String name = orderValues[0];
+                System.out.println(name);
+                Double cost = Double.parseDouble(orderValues[1]);
+                for (Food food : order.foods) {
+                    if (food.name.equals(name) && food.cost == cost) {
+                        order.foods.remove(food);
+                        break;
+                    }
+                }
+
             }
         }
         orderDetails.clear();
         for (Food temp : order.foods) {
             orderDetails.add(temp.summary());
         }
+        orderItems.setAdapter(adapter1);
+        String temp = "Total Cost: $" + order.totalCost();
+        cost.setText(temp);
     }
 }

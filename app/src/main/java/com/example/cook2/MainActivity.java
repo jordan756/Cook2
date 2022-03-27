@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 view.setSelected(true);
                 view.setBackgroundResource(R.drawable.select);
 
+
                 //System.out.println(position);
                 //System.out.println("bruh");
             }

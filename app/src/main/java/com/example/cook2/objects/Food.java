@@ -76,6 +76,6 @@ public class Food implements Parcelable {
     }
 
     public String summary() {
-        return name + " Price: " + String.format("%.2f",cost);
+        return name + " $ " + String.format("%.2f",cost);
     }
 }
