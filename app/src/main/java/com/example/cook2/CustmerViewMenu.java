@@ -29,11 +29,13 @@ public class CustmerViewMenu extends AppCompatActivity {
         // add = findViewById(R.id.addToOrder);
         //Button remove = findViewById(R.id.removeFromOrder);
         //Button createOrder = findViewById(R.id.createOrder);
-        ListView menu = (ListView) findViewById(R.id.listMenu);
+        ListView menuItems = (ListView) findViewById(R.id.listMenu);
         ListView orderItems = (ListView) findViewById(R.id.listOrderItems);
 
         ArrayAdapter<String> adapter;
         ArrayAdapter<String> adapter1;
+
+
 
 
         cook = getIntent().getExtras().getParcelable("Cook");
@@ -44,12 +46,19 @@ public class CustmerViewMenu extends AppCompatActivity {
         Order order = new Order();
         order.foods = new ArrayList<>();
 
-
-        ArrayList<String> Menu = new ArrayList<>();
+        ArrayList<String> orderDetails = new ArrayList<>();
+        ArrayList<String> menu = new ArrayList<>();
         for (Food temp : cook.getMenu()) {
-            Menu.add(temp.summary());
+            menu.add(temp.summary());
         }
+        for (Food temp : order.foods) {
+            orderDetails.add(temp.summary());
+        }
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menu);
+        adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, orderDetails);
 
+        menuItems.setAdapter(adapter);
+        orderItems.setAdapter(adapter1);
 
     }
     public void createOrder(View v) {
