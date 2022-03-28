@@ -56,17 +56,19 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/orderDetailsButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:enabled="true"
+            android:text="Order Details" />
+
+        <Button
             android:id="@+id/button3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="editMenu"
             android:text="Edit Menu" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Message" />
 
         <Button
             android:id="@+id/button"

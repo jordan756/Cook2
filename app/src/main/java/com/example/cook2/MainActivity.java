@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.ToggleButton;
 
 import com.example.cook2.objects.Cook;
+import com.example.cook2.objects.Food;
 import com.example.cook2.objects.Order;
 import com.example.cook2.objects.Util;
 //import com.example.cook2.ui.login.LoginActivity;
@@ -27,6 +28,7 @@ import java.util.Arrays;
 public class MainActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Cook cook;
+    Order order;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         Button changeStatus = findViewById((R.id.toggleButton));
         Button start_button = findViewById(R.id.start_button);
         Button end_button = findViewById(R.id.end_button);
+        Button orderDetailsBtn = findViewById(R.id.orderDetailsButton);
 
         //String key = getIntent().getExtras().getString("key");
         cook = getIntent().getExtras().getParcelable("Cook");
@@ -202,6 +205,33 @@ public class MainActivity extends AppCompatActivity {
                 //adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
                 listView.setAdapter(adapter);
                // Util.setCook(cook,db);
+            }
+        });
+
+        orderDetailsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for (int i = 0; i < listView.getCount(); i++) {
+
+                    ArrayList<String> ordersList = new ArrayList<String>();
+                    if (listView.isItemChecked(i)) {
+                        String temp = listView.getItemAtPosition(i).toString();
+                        String[] orderValues = temp.split("  -  ");
+
+                        String orderKey = (orderValues[2]);
+                        //System.out.println("order key: " + orderKey);
+
+                        order = Util.getOrder(orderKey, db);
+                        for (Food e : order.foods) {
+                            ordersList.add("Dish: " + e.name + "\n" + "Cost: $" + e.cost + "\n" + "Time: " + e.estimatedCookTime.getHours() + "Hr " + e.estimatedCookTime.getMinutes() + "Min");
+                            //System.out.println("name is: " + e.name);
+                        }
+                        Intent x = new Intent(view.getContext(), OrderDetailsActivity.class);
+                        x.putExtra("DetailsList", ordersList);
+                        startActivity(x);
+                    }
+                }
+                // System.out.println()
             }
         });
     }

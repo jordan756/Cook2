@@ -13,6 +13,9 @@
             android:name=".CustmerViewMenu"
             android:exported="false" />
         <activity
+            android:name=".OrderDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".CustomerMain"
             android:exported="false" />
         <activity
