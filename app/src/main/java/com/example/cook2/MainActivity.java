@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         //HAVE TO DO THIS TO GET UPDATED COOK FROM EDIT MENU
         String key = cook.getKey();
         cook = Util.getCook(key,db);
+        ArrayList<Order> orders = Util.getAllOrders(cook.getOrders(),db);
         String temp;
         if (cook.open) {
             temp = "Availibility: Open";
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         cook.print();
 
         arrayList = new ArrayList<>();
-        for(Order x : cook.getOrders()) {
+        for(Order x : orders) {
             if (x.status.equals("unaccepted_cook") || x.status.equals("accepted_cook")) {
                 arrayList.add(x.summary());
             }
@@ -116,18 +117,24 @@ public class MainActivity extends AppCompatActivity {
 
                         String[] orderValues = temp.split("  -  ");
 
-                        int id = Integer.parseInt(orderValues[2]);
+                        String id = (orderValues[2]);
                         System.out.println(id);
-                        Order order = cook.getOrders().get(id - 1);
-                        System.out.println(order.summary());
-                        if (order.status.equals("unaccepted_cook")) {
-                            order.updateStatus();
+
+                        for (Order order: orders) {
+                            System.out.println(order.summary());
+                            if (order.orderKey.equals(id)) {
+                                if (order.status.equals("unaccepted_cook")) {
+                                    order.updateStatus();
+                                    Util.setOrder(order,db);
+                                }
+                            }
                         }
                     }
                     //send cook here
                 }
+
                 arrayList.clear();
-                for(Order x : cook.getOrders()) {
+                for(Order x : orders) {
                     if (x.status.equals("unaccepted_cook") || x.status.equals("accepted_cook")) {
                         arrayList.add(x.summary());
                     }
@@ -137,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
 
                 //adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
                 listView.setAdapter(adapter);
-                Util.setCook(cook,db);
+               // Util.setCook(cook,db);
             }
         });
         changeStatus.setOnClickListener(new View.OnClickListener() {
@@ -171,17 +178,20 @@ public class MainActivity extends AppCompatActivity {
                         String temp = listView.getItemAtPosition(i).toString();
                         String[] orderValues = temp.split("  -  ");
 
-                        int id = Integer.parseInt(orderValues[2]);
+                        String id = (orderValues[2]);
                         System.out.println(id);
-                        Order order = cook.getOrders().get(id - 1);
-                        System.out.println(order.summary());
-                        if (order.status.equals("accepted_cook")) {
-                            order.updateStatus();
+
+                        for (Order order: orders) {
+                            System.out.println(order.summary());
+                            if (order.status.equals("accepted_cook")) {
+                                order.updateStatus();
+                                Util.setOrder(order,db);
+                            }
                         }
                     }
                 }
                 arrayList.clear();
-                for(Order x : cook.getOrders()) {
+                for(Order x : orders) {
                     if (x.status.equals("unaccepted_cook") || x.status.equals("accepted_cook")) {
                         arrayList.add(x.summary());
                     }
@@ -191,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
 
                 //adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
                 listView.setAdapter(adapter);
-                Util.setCook(cook,db);
+               // Util.setCook(cook,db);
             }
         });
     }

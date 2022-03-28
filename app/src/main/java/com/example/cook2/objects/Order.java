@@ -15,26 +15,32 @@ import java.util.Date;
 public class Order implements Parcelable {
 
     private static final DecimalFormat df = new DecimalFormat("0.00");
-
+    //public String orderId;
+    public String cookKey;
+    public String customerKey;
+    public String orderKey;
     //WILL NEED TO STORE CUSTOMER INFO TOO
     public ArrayList<Food> foods;
     //public Customer customer;
    // public Cook cook;
     public Date estimated_total_time;
     public String status;
-    public int orderID; //cooks # item sold
+
     //unaccepted_cook,accepted_cook,finished_cook,accepted_driver,accepted_customer
 
     //public Delivery driver
-    public Order(Food food, int id ) {
+    public Order(Cook cook, Customer customer) {
+        cookKey = cook.getKey();
+        customerKey = customer.getKey();
+
         this.foods = new ArrayList<>();
-        foods.add(food);
+       // foods.add(food);
         //this.customer = customer;
         //this.cook = cook;
         status = "unaccepted_cook";
         //TEMP: REPLACE WITH CALL TO DATABASE TO PREVENT OVERLAP
         //cook.amount_sold++;
-        orderID = id;
+      //  orderKey = cookKey + ;
     }
     public Order() {
 
@@ -56,11 +62,12 @@ public class Order implements Parcelable {
                 status = "accepted_customer";
                 break;
         }
+
     }
     //returns string of values imporant for order
     public String summary() {
         System.out.println(foods);
-        return foods.get(0).name + "  -  " + status + "  -  " + orderID;
+        return foods.get(0).name + "  -  " + status + "  -  " + orderKey;
     }
     @RequiresApi(api = Build.VERSION_CODES.O)
 
@@ -70,7 +77,11 @@ public class Order implements Parcelable {
         //cook = in.readParcelable(Cook.class.getClassLoader());
         estimated_total_time = (Date) in.readSerializable();
         status = in.readString();
-        orderID = in.readInt();
+        orderKey = in.readString();
+        cookKey = in.readString();
+        customerKey = in.readString();
+
+
     }
 
     public static final Creator<Order> CREATOR = new Creator<Order>() {
@@ -99,7 +110,9 @@ public class Order implements Parcelable {
        // parcel.writeParcelable(cook, i);
         parcel.writeSerializable(estimated_total_time);
         parcel.writeString(status);
-        parcel.writeInt(orderID);
+        parcel.writeString(orderKey);
+        parcel.writeString(cookKey);
+        parcel.writeString(customerKey);
     }
     public double totalCost() {
         double sum = 0;

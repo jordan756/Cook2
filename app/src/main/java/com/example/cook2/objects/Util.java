@@ -34,6 +34,9 @@ public class Util {
     public static void setCustomer(Customer customer, FirebaseFirestore db) {
         db.collection("Customer").document(customer.getKey()).set(customer);
     }
+    public static void setOrder(Order order, FirebaseFirestore db) {
+        db.collection("Order").document(order.orderKey).set(order);
+    }
 
     public static Customer getCustomer(String key, FirebaseFirestore db) {
         Task<DocumentSnapshot> temp = null;
@@ -70,6 +73,30 @@ public class Util {
         return cook;
     }
 
+    public static Order getOrder(String key, FirebaseFirestore db) {
+        Task<DocumentSnapshot> temp = null;
+        while(temp == null) {
+            temp = db.collection("Order").document(key).get();
+        }
+        while(!temp.isComplete()) {
+            //sleep(1000);
+        }
+        DocumentSnapshot temp2 = temp.getResult();
+        if (!temp2.exists()) {
+            return null;
+        }
+        // Cook cook = temp2.data();
+        Order order = temp2.toObject(Order.class);
+        System.out.print(order.orderKey);
+        return order;
+    }
+    public static ArrayList<Order> getAllOrders(ArrayList<String> orderKeys,FirebaseFirestore db) {
+        ArrayList<Order> allOrders = new ArrayList<>();
+        for (String temp: orderKeys) {
+            allOrders.add(getOrder(temp,db));
+        }
+        return allOrders;
+    }
     public static ArrayList<Cook> getAllCooks(FirebaseFirestore db) {
         ArrayList<Cook> allCooks = new ArrayList<>();
         Task<QuerySnapshot> bruh = db.collection("Cook").whereEqualTo("open",true).get();

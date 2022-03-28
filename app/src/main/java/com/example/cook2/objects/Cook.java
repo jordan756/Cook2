@@ -21,23 +21,23 @@ public class Cook extends Person implements Parcelable {
     private ArrayList<Food> menu;
     //private ArrayList<Order> currentOrders;
     public int amount_sold;
-    private ArrayList<Order> Orders;
+    private ArrayList<String> orderIds;
 
 
     public ArrayList<Food> getMenu() {
         return menu;
     }
 
-    public void setOrders(ArrayList<Order> orders) {
-        Orders = orders;
+    public void setOrders(ArrayList<String> orders) {
+        orderIds = orders;
     }
 
     public int getAmount_sold() {
         return amount_sold;
     }
 
-    public ArrayList<Order> getOrders() {
-        return Orders;
+    public ArrayList<String> getOrders() {
+        return orderIds;
     }
 
     /*
@@ -68,7 +68,7 @@ public class Cook extends Person implements Parcelable {
         amount_sold = 0;
         menu = new ArrayList<>();
       //  currentOrders = new ArrayList<>();
-        Orders = new ArrayList<>();
+        orderIds = new ArrayList<>();
         //docId = firstName+lastName;
         open = false;
         super.key = email.concat(password);
@@ -100,7 +100,7 @@ public class Cook extends Person implements Parcelable {
         super.numberOfRatings = 0;
         amount_sold = 0;
         menu = new ArrayList<>();
-        Orders = new ArrayList<>();
+        orderIds = new ArrayList<>();
         open = false;
     }
 
@@ -108,7 +108,7 @@ public class Cook extends Person implements Parcelable {
     public Cook() {
         ArrayList<String> tags = new ArrayList();
         menu = new ArrayList<>();
-        Orders = new ArrayList<>();
+        orderIds = new ArrayList<>();
     }
     //test cook constructor
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -122,19 +122,9 @@ public class Cook extends Person implements Parcelable {
         super.email = "test";
         super.password = "test";
     //    currentOrders = new ArrayList<>();
-        Orders = new ArrayList<>();
-        ArrayList<String> tags = new ArrayList(); tags.add("nut-free"); tags.add("vegan");
-        Food food1 = new Food("Pizza", 9.95, new Date(0, 0, 0, 0, 35, 0), tags);
-        Food food2 = new Food("hotdog", 2.00, new Date(0, 0, 0, 0, 7, 0), tags);
-        Food food3 = new Food("burger", 4.49, new Date(0, 0, 0, 0, 10, 0), tags);
-        menu.add(food1); menu.add(food2); menu.add(food3);
+        orderIds = new ArrayList<>();
+        //ArrayList<String> tags = new ArrayList(); tags.add("nut-free"); tags.add("vegan");
 
-        Order order1 = new Order(food1,++amount_sold);
-        Orders.add(order1);
-        Order order2 = new Order(food2,++amount_sold);
-        Orders.add(order2);
-        Order order3 = new Order(food2,++amount_sold);
-        Orders.add(order3);
 
         //currentOrders.add(order1);
         //currentOrders.add(order2);
@@ -152,7 +142,7 @@ public class Cook extends Person implements Parcelable {
         password = in.readString();
         //currentOrders = in.readArrayList(Cook.class.getClassLoader());
         menu = in.readArrayList(Cook.class.getClassLoader());
-        Orders = in.readArrayList(Cook.class.getClassLoader());
+        orderIds = in.readArrayList(String.class.getClassLoader());
         firstName = in.readString();
         lastName = in.readString();
         currentRating = in.readDouble();
@@ -188,7 +178,7 @@ public class Cook extends Person implements Parcelable {
         parcel.writeString(email);
         parcel.writeString(password);
         parcel.writeList(menu);
-        parcel.writeList(Orders);
+        parcel.writeList(orderIds);
         parcel.writeString(firstName);
         parcel.writeString(lastName);
         parcel.writeDouble(currentRating);
@@ -200,7 +190,7 @@ public class Cook extends Person implements Parcelable {
     }
     public void print() {
         System.out.println("Menu " + menu);
-        System.out.println("Orders " + Orders);
+        System.out.println("Orders " + orderIds);
         System.out.println("Amt sld " + amount_sold);
         System.out.println("Firstname " + firstName);
     }

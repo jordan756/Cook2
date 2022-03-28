@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class Customer extends Person implements Parcelable {
 
-    private ArrayList<Order> Orders;
+    private ArrayList<String> Orders;
 
     public Customer(String firstName, String lastName, double currentRating, String phone, String address,String password,String email) {
         this.password = password;
@@ -68,11 +68,11 @@ public class Customer extends Person implements Parcelable {
         Orders = new ArrayList<>();
     }
 
-    public ArrayList<Order> getOrders() {
+    public ArrayList<String> getOrders() {
         return Orders;
     }
 
-    public void setOrders(ArrayList<Order> orders) {
+    public void setOrders(ArrayList<String> orders) {
         Orders = orders;
     }
 
@@ -83,7 +83,7 @@ public class Customer extends Person implements Parcelable {
         email = in.readString();
         key = in.readString();
 
-        Orders = in.readArrayList(Customer.class.getClassLoader());
+        Orders = in.readArrayList(String.class.getClassLoader());
         firstName = in.readString();
         lastName = in.readString();
         currentRating = in.readDouble();
@@ -114,7 +114,7 @@ public class Customer extends Person implements Parcelable {
         parcel.writeString(password);
         parcel.writeString(email);
         parcel.writeString(key);
-        parcel.writeTypedList(Orders);
+        parcel.writeList(Orders);
         parcel.writeString(firstName);
         //System.out.println(firstName);
         parcel.writeString(lastName);

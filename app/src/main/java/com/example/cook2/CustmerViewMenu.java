@@ -1,6 +1,8 @@
 package com.example.cook2;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -50,7 +52,7 @@ public class CustmerViewMenu extends AppCompatActivity {
 
         cook = Util.getCook(cook.getKey(),db);
         customer = Util.getCustomer(customer.getKey(),db);
-        order = new Order();
+        order = new Order(cook,customer);
         order.foods = new ArrayList<>();
 
         orderDetails = new ArrayList<>();
@@ -85,6 +87,30 @@ public class CustmerViewMenu extends AppCompatActivity {
     });
     }
     public void createOrder(View v) {
+        if (order.foods.size() == 0) {
+            return;
+        }
+        cook = Util.getCook(cook.getKey(),db);
+       // customer = Util.getCustomer(customer.getKey(),db);
+
+        order.status = "unaccepted_cook";
+
+        order.orderKey = cook.getKey() + cook.amount_sold;
+        cook.amount_sold = cook.amount_sold + 1;
+
+
+        cook.getOrders().add(order.orderKey);
+        customer.getOrders().add(order.orderKey);
+
+        Util.setCook(cook,db);
+        Util.setCustomer(customer,db);
+        Util.setOrder(order,db);
+
+
+        Intent i = new Intent(CustmerViewMenu.this, CustomerMain.class);
+        i.putExtra("Customer",customer);
+        startActivity(i);
+
         //Make sure
 
     }
