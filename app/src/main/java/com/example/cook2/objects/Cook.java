@@ -19,9 +19,9 @@ public class Cook extends Person implements Parcelable {
 
     public boolean open;
     private ArrayList<Food> menu;
-    //private ArrayList<Order> currentOrders;
     public int amount_sold;
     private ArrayList<String> orderIds;
+    //private ArrayList<Order> currentOrders;
 
 
     public ArrayList<Food> getMenu() {
@@ -65,37 +65,24 @@ public class Cook extends Person implements Parcelable {
         super.currentRating = currentRating;
         super.phoneNumber = phone;
         super.address = address;
+        super.key = email.concat(password);
         amount_sold = 0;
         menu = new ArrayList<>();
-      //  currentOrders = new ArrayList<>();
         orderIds = new ArrayList<>();
-        //docId = firstName+lastName;
         open = false;
-        super.key = email.concat(password);
     }
 
-    /*
-        myDoc.put("firstName", firstName);
-        myDoc.put("lastName", lastName);
-        myDoc.put("email", email);
-        myDoc.put("password", password);
-        myDoc.put("address", address);
-        myDoc.put("phoneNumber", phoneNumber);
-        myDoc.put("userTypeKey", email.concat(password));
-        myDoc.put("key", email.concat(password));
-        myDoc.put("userType", "Cook");
-     */
 
     public Cook (HashMap<String, String> myMap) {
-        super.password = (String) myMap.get("password");
-        super.email = (String) myMap.get("email");
-        super.firstName = (String) myMap.get("firstName");
-        super.lastName = (String) myMap.get("lastName");
-        super.phoneNumber = (String) myMap.get("phoneNumber");
-        super.address = (String) myMap.get("address");
-        super.key = (String) myMap.get("key");
-        super.userType = (String) myMap.get("userType");
-        super.userTypeKey = (String) myMap.get("userTypeKey");
+        super.password = myMap.get("password");
+        super.email = myMap.get("email");
+        super.firstName = myMap.get("firstName");
+        super.lastName = myMap.get("lastName");
+        super.phoneNumber = myMap.get("phoneNumber");
+        super.address = myMap.get("address");
+        super.key = myMap.get("key");
+        super.userType = myMap.get("userType");
+        super.userTypeKey = myMap.get("userTypeKey");
         super.currentRating = 0;
         super.numberOfRatings = 0;
         amount_sold = 0;
@@ -110,6 +97,7 @@ public class Cook extends Person implements Parcelable {
         menu = new ArrayList<>();
         orderIds = new ArrayList<>();
     }
+
     //test cook constructor
     @RequiresApi(api = Build.VERSION_CODES.O)
     public Cook(String address) {
@@ -118,19 +106,17 @@ public class Cook extends Person implements Parcelable {
         super.currentRating = 5;
         super.phoneNumber = "1-696-6969";
         super.address = address;
-        menu = new ArrayList<>();
+
         super.email = "test";
         super.password = "test";
-    //    currentOrders = new ArrayList<>();
+        super.key = email + password;
+        menu = new ArrayList<>();
+        open = false;
         orderIds = new ArrayList<>();
+        //currentOrders = new ArrayList<>();
         //ArrayList<String> tags = new ArrayList(); tags.add("nut-free"); tags.add("vegan");
-
-
         //currentOrders.add(order1);
         //currentOrders.add(order2);
-        open = false;
-        key = email + password;
-
     }
 
 
