@@ -24,7 +24,11 @@
         android:layout_width="match_parent"
         android:layout_height="525dp"
         android:orientation="vertical">
-
+        <ListView
+            android:id="@+id/listOrders"
+            android:layout_width="match_parent"
+            android:layout_height="368dp"
+            android:choiceMode="multipleChoice" />
     </LinearLayout>
 
     <LinearLayout

@@ -67,7 +67,7 @@ public class Order implements Parcelable {
     //returns string of values imporant for order
     public String summary() {
         System.out.println(foods);
-        return foods.get(0).name + "  -  " + status + "  -  " + orderKey;
+        return "# items: " + foods.size() + "  -  " + status + "  -  " + orderKey;
     }
     @RequiresApi(api = Build.VERSION_CODES.O)
 
