@@ -81,8 +81,10 @@ public class loginActivity extends AppCompatActivity {
                                         startActivity(customerActivity);
 
                                     } else if (userType.equals("Driver")) {
-                                        emailInput.setError("Not ready.");
-                                        passwordInput.setError("Not ready.");
+                                        Customer testDriver = Util.getDriver(user.getEmail() + user.getPassword(), db);
+                                        Intent driverActivity = new Intent(loginActivity.this, CustomerMain.class);
+                                        driverActivity.putExtra("Customer", testDriver);
+                                        startActivity(driverActivity);
                                     }
 
                                     return;
