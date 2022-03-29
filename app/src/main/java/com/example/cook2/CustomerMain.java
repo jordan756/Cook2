@@ -19,6 +19,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -56,17 +58,34 @@ public class CustomerMain extends AppCompatActivity {
             }
         });
 
+        db.collection("Order")
+                .whereEqualTo("customerKey", customer.getKey())
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value,
+                                        @Nullable FirebaseFirestoreException e) {
+                        if (e != null) {
+                           // Log.w(TAG, "Listen failed.", e);
+                            return;
+                        }
+
+                        ArrayList<Order> orders = new ArrayList<>();
+                        for (QueryDocumentSnapshot doc : value) {
+                          //  if (doc.get("name") != null) {
+                                orders.add(doc.toObject(Order.class));
+                               // orders.add(doc.getString("name"));
+                          //  }
+                        }
+                        arrayList.clear();
+                        for (Order order : orders) {
+                            arrayList.add(order.summary());
+                        }
+                        listView.setAdapter(adapter);
+                        //Log.d(TAG, "Current cites in CA: " + cities);
 
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                for (int x = 0; x < 1000000;x++) {
-                    System.out.println(x);
-                }
-            }
-        }); //.start();
+                    }
+                });
 
     }
 
