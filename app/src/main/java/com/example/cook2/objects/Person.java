@@ -17,8 +17,6 @@ public class Person  {
 
     public Person() {}
 
-
-
     public String getUserType() {
         return userType;
     }
@@ -77,7 +75,6 @@ public class Person  {
     public void setPassword(String password) {
         this.password = password;
     }
-
     public void setUserType(String userType) {
         this.userType = userType;
     }

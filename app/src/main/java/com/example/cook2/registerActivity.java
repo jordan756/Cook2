@@ -12,6 +12,7 @@ import android.widget.EditText;
 
 import com.example.cook2.objects.Cook;
 import com.example.cook2.objects.Customer;
+import com.example.cook2.objects.Driver;
 import com.example.cook2.objects.Util;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -118,11 +119,11 @@ public class registerActivity extends AppCompatActivity {
         } else {
             myDoc.put("userType", "Driver");
             db.collection("Person").document(key).set(myDoc);
-//            Driver driver = new Driver(myDoc);
-//            Util.setDriver(driver, db);
-//            Intent driverActivity = new Intent(v.getContext(), DriverMain.class);
-//            driverActivity.putExtra("Driver",driver);
-//            startActivity(driverActivity);
+            Driver driver = new Driver(myDoc);
+            Util.setDriver(driver, db);
+            Intent driverActivity = new Intent(v.getContext(), driverMainActivity2.class);
+            driverActivity.putExtra("Driver",driver);
+            startActivity(driverActivity);
         }
     }
 }

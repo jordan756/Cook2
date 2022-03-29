@@ -10,70 +10,54 @@ public class Customer extends Person implements Parcelable {
 
     private ArrayList<String> Orders;
 
-    public Customer(String firstName, String lastName, double currentRating, String phone, String address,String password,String email) {
-        this.password = password;
-        this.email = email;
-        super.firstName = firstName;
-        super.lastName = lastName;
-        super.currentRating = currentRating;
-        super.phoneNumber = phone;
-        super.address = address;
-        Orders = new ArrayList<>();
-        key = email.concat(password);
+    public ArrayList<String> getOrders() {
+        return Orders;
     }
-
-    public Customer(String email) {
-        this.password = "test1";
-        this.email = email;
-        super.firstName = "Customer";
-        super.lastName = "ayaya";
-        super.currentRating = 3;
-        super.phoneNumber = "1-696-6969";
-        super.address = "outside";
-        Orders = new ArrayList<>();
-        key = email.concat(password);
-        // key = email + password;
+    public void setOrders(ArrayList<String> orders) {
+        Orders = orders;
     }
 
     public Customer() {
         Orders = new ArrayList<>();
     }
 
-    /*
-        myDoc.put("firstName", firstName);
-        myDoc.put("lastName", lastName);
-        myDoc.put("email", email);
-        myDoc.put("password", password);
-        myDoc.put("address", address);
-        myDoc.put("phoneNumber", phoneNumber);
-        myDoc.put("numberOfRatings", 0);
-        myDoc.put("currentRating", 0);
-        myDoc.put("userTypeKey", email.concat(password));
-        myDoc.put("key", email.concat(password));
-        myDoc.put("userType", "Customer");
-     */
+    public Customer(String firstName, String lastName, double currentRating, String phone, String address, String password, String email) {
+        super.password = password;
+        super.email = email;
+        super.firstName = firstName;
+        super.lastName = lastName;
+        super.currentRating = currentRating;
+        super.phoneNumber = phone;
+        super.address = address;
+        super.key = email.concat(password);
+        Orders = new ArrayList<>();
+    }
 
     public Customer(HashMap<String, String> myMap) {
-        super.password = (String) myMap.get("password");
-        super.email = (String) myMap.get("email");
-        super.firstName = (String) myMap.get("firstName");
-        super.lastName = (String) myMap.get("lastName");
-        super.phoneNumber = (String) myMap.get("phoneNumber");
-        super.address = (String) myMap.get("address");
-        super.userType = (String) myMap.get("userType");
-        super.userTypeKey = (String) myMap.get("userTypeKey");
-        super.key = (String) myMap.get("key");
+        super.password = myMap.get("password");
+        super.email = myMap.get("email");
+        super.firstName = myMap.get("firstName");
+        super.lastName = myMap.get("lastName");
+        super.phoneNumber = myMap.get("phoneNumber");
+        super.address = myMap.get("address");
+        super.userType = myMap.get("userType");
+        super.userTypeKey = myMap.get("userTypeKey");
+        super.key = myMap.get("key");
         super.currentRating = 0;
         super.numberOfRatings = 0;
         Orders = new ArrayList<>();
     }
 
-    public ArrayList<String> getOrders() {
-        return Orders;
-    }
-
-    public void setOrders(ArrayList<String> orders) {
-        Orders = orders;
+    public Customer(String email) {
+        super.password = "test1";
+        super.email = email;
+        super.firstName = "Customer";
+        super.lastName = "ayaya";
+        super.currentRating = 3;
+        super.phoneNumber = "1-696-6969";
+        super.address = "outside";
+        super.key = email.concat(password);
+        Orders = new ArrayList<>();
     }
 
     //MAY NEED TO ALSO HAVE THIS ON PARENT CLASS
@@ -116,11 +100,10 @@ public class Customer extends Person implements Parcelable {
         parcel.writeString(key);
         parcel.writeList(Orders);
         parcel.writeString(firstName);
-        //System.out.println(firstName);
         parcel.writeString(lastName);
         parcel.writeDouble(currentRating);
         parcel.writeInt(numberOfRatings);
         parcel.writeString( phoneNumber);
-        parcel.writeString(address); //ma
+        parcel.writeString(address);
     }
 }

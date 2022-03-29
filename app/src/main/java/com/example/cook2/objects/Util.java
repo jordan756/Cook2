@@ -27,13 +27,17 @@ public class Util {
 
     // USES EMAIL + PASSWORD AS KEY FOR DATABASE
     public static void setCook(Cook cook, FirebaseFirestore db) {
-
         db.collection("Cook").document(cook.getKey()).set(cook);
     }
 
     public static void setCustomer(Customer customer, FirebaseFirestore db) {
         db.collection("Customer").document(customer.getKey()).set(customer);
     }
+
+    public static void setDriver(Driver driver, FirebaseFirestore db) {
+        db.collection("Driver").document(driver.getKey()).set(driver);
+    }
+
     public static void setOrder(Order order, FirebaseFirestore db) {
         db.collection("Order").document(order.orderKey).set(order);
     }
@@ -71,6 +75,22 @@ public class Util {
         }
         Cook cook = temp2.toObject(Cook.class);
         return cook;
+    }
+
+    public static Customer getDriver(String key, FirebaseFirestore db) {
+        Task<DocumentSnapshot> temp = null;
+        while(temp == null) {
+            temp = db.collection("Driver").document(key).get();
+        }
+        while(!temp.isComplete()) {
+            //sleep(1000);
+        }
+        DocumentSnapshot temp2 = temp.getResult();
+        if (!temp2.exists()) {
+            return null;
+        }
+        Customer driver = temp2.toObject(Customer.class);
+        return driver;
     }
 
     public static Order getOrder(String key, FirebaseFirestore db) {
