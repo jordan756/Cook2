@@ -2,14 +2,14 @@ package com.example.cook2.objects;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 
-//import java.util.ArrayList;
-
 public class Driver extends Person implements Parcelable {
-    String vehicleMake, vehicleColor, vehiclePlate;
+    private String vehicleMake;
+    private String vehicleColor;
+    private String vehiclePlate;
+
+    public Driver() {}
 
     public Driver(String firstName, String lastName, double currentRating, String phone, String address,String password,String email) {
         super.firstName = firstName;
@@ -20,9 +20,9 @@ public class Driver extends Person implements Parcelable {
         super.phoneNumber = phone;
         super.address = address;
         super.key = email.concat(password);
-        vehicleMake = "";
-        vehicleColor = "";
-        vehiclePlate = "";
+        vehicleMake = "test";
+        vehicleColor = "test";
+        vehiclePlate = "test";
     }
 
     public Driver(HashMap<String, String> myMap) {
@@ -37,9 +37,21 @@ public class Driver extends Person implements Parcelable {
         super.userTypeKey = myMap.get("userTypeKey");
         super.currentRating = 0;
         super.numberOfRatings = 0;
-        vehicleMake = "";
-        vehicleColor = "";
-        vehiclePlate = "";
+        vehicleMake = "test";
+        vehicleColor = "test";
+        vehiclePlate = "test";
+    }
+
+    public String getVehicleMake() {
+        return vehicleMake;
+    }
+
+    public String getVehicleColor() {
+        return vehicleColor;
+    }
+
+    public String getVehiclePlate() {
+        return vehiclePlate;
     }
 
     protected Driver(Parcel in) {
@@ -51,7 +63,6 @@ public class Driver extends Person implements Parcelable {
         currentRating = in.readDouble();
         numberOfRatings = in.readInt();
         phoneNumber = in.readString();
-        //add vehicle info
         vehicleMake = in.readString();
         vehicleColor = in.readString();
         vehiclePlate = in.readString();
@@ -84,7 +95,6 @@ public class Driver extends Person implements Parcelable {
         parcel.writeInt(numberOfRatings);
         parcel.writeString( phoneNumber);
         parcel.writeString(address);
-        //add vehicle info
         parcel.writeString(vehicleMake);
         parcel.writeString(vehicleColor);
         parcel.writeString(vehiclePlate);

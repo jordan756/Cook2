@@ -10,31 +10,26 @@ public class Customer extends Person implements Parcelable {
 
     private ArrayList<String> Orders;
 
-    public Customer(String firstName, String lastName, double currentRating, String phone, String address,String password,String email) {
-        this.password = password;
-        this.email = email;
+    public ArrayList<String> getOrders() {
+        return Orders;
+    }
+    public void setOrders(ArrayList<String> orders) {
+        Orders = orders;
+    }
+
+    public Customer() {
+        Orders = new ArrayList<>();
+    }
+
+    public Customer(String firstName, String lastName, double currentRating, String phone, String address, String password, String email) {
+        super.password = password;
+        super.email = email;
         super.firstName = firstName;
         super.lastName = lastName;
         super.currentRating = currentRating;
         super.phoneNumber = phone;
         super.address = address;
-        Orders = new ArrayList<>();
-        key = email.concat(password);
-    }
-
-    public Customer(String email) {
-        this.password = "test1";
-        this.email = email;
-        super.firstName = "Customer";
-        super.lastName = "ayaya";
-        super.currentRating = 3;
-        super.phoneNumber = "1-696-6969";
-        super.address = "outside";
-        Orders = new ArrayList<>();
-        key = email.concat(password);
-    }
-
-    public Customer() {
+        super.key = email.concat(password);
         Orders = new ArrayList<>();
     }
 
@@ -53,12 +48,16 @@ public class Customer extends Person implements Parcelable {
         Orders = new ArrayList<>();
     }
 
-    public ArrayList<String> getOrders() {
-        return Orders;
-    }
-
-    public void setOrders(ArrayList<String> orders) {
-        Orders = orders;
+    public Customer(String email) {
+        super.password = "test1";
+        super.email = email;
+        super.firstName = "Customer";
+        super.lastName = "ayaya";
+        super.currentRating = 3;
+        super.phoneNumber = "1-696-6969";
+        super.address = "outside";
+        super.key = email.concat(password);
+        Orders = new ArrayList<>();
     }
 
     //MAY NEED TO ALSO HAVE THIS ON PARENT CLASS

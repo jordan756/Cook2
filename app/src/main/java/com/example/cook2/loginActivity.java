@@ -73,7 +73,6 @@ public class loginActivity extends AppCompatActivity {
                                         cookActivity.putExtra("Cook", testCook);
                                         startActivity(cookActivity);
 
-
                                     } else if (userType.equals("Customer")) {
                                         Customer testCustomer = Util.getCustomer(user.getEmail() + user.getPassword(), db);
                                         Intent customerActivity = new Intent(loginActivity.this, CustomerMain.class);
@@ -82,7 +81,7 @@ public class loginActivity extends AppCompatActivity {
 
                                     } else if (userType.equals("Driver")) {
                                         Customer testDriver = Util.getDriver(user.getEmail() + user.getPassword(), db);
-                                        Intent driverActivity = new Intent(loginActivity.this, CustomerMain.class);
+                                        Intent driverActivity = new Intent(loginActivity.this, driverMainActivity2.class);
                                         driverActivity.putExtra("Customer", testDriver);
                                         startActivity(driverActivity);
                                     }
