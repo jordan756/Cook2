@@ -114,12 +114,13 @@ public class Order implements Parcelable {
         parcel.writeString(cookKey);
         parcel.writeString(customerKey);
     }
-    public double totalCost() {
+    public String totalCost() {
         double sum = 0;
         for (Food food: foods) {
             sum += food.cost;
         }
         df.setRoundingMode(RoundingMode.UP);
-        return Double.parseDouble(df.format(sum));
+        //System.out.println( Double.parseDouble(df.format(sum)));
+        return df.format(sum);
     }
 }
