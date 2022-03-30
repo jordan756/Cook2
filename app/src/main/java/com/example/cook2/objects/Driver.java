@@ -2,24 +2,58 @@ package com.example.cook2.objects;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
-//import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Driver extends Person implements Parcelable {
+    private String vehicleMake;
+    private String vehicleColor;
+    private String vehiclePlate;
 
-    //private ArrayList<Order> Orders;
+    public Driver() {}
 
     public Driver(String firstName, String lastName, double currentRating, String phone, String address,String password,String email) {
         super.firstName = firstName;
         super.lastName = lastName;
-        this.email = email;
-        this.password = password;
+        super.email = email;
+        super.password = password;
         super.currentRating = currentRating;
         super.phoneNumber = phone;
         super.address = address;
-       // Orders = new ArrayList<>();
-        key = email + password;
-}
+        super.key = email.concat(password);
+        vehicleMake = "test";
+        vehicleColor = "test";
+        vehiclePlate = "test";
+    }
+
+    public Driver(HashMap<String, String> myMap) {
+        super.password = myMap.get("password");
+        super.email = myMap.get("email");
+        super.firstName = myMap.get("firstName");
+        super.lastName = myMap.get("lastName");
+        super.phoneNumber = myMap.get("phoneNumber");
+        super.address = myMap.get("address");
+        super.key = myMap.get("key");
+        super.userType = myMap.get("userType");
+        super.userTypeKey = myMap.get("userTypeKey");
+        super.currentRating = 0;
+        super.numberOfRatings = 0;
+        vehicleMake = "test";
+        vehicleColor = "test";
+        vehiclePlate = "test";
+    }
+
+    public String getVehicleMake() {
+        return vehicleMake;
+    }
+
+    public String getVehicleColor() {
+        return vehicleColor;
+    }
+
+    public String getVehiclePlate() {
+        return vehiclePlate;
+    }
+
     protected Driver(Parcel in) {
         email = in.readString();
         password = in.readString();
@@ -29,10 +63,9 @@ public class Driver extends Person implements Parcelable {
         currentRating = in.readDouble();
         numberOfRatings = in.readInt();
         phoneNumber = in.readString();
-        //add vehicle info
-        //vehicleMake = in.readString();
-        //vehicleColor = in.readString();
-        //vehiclePlate = in.readString();
+        vehicleMake = in.readString();
+        vehicleColor = in.readString();
+        vehiclePlate = in.readString();
     }
 
     public static final Creator<Driver> CREATOR = new Creator<Driver>() {
@@ -62,9 +95,8 @@ public class Driver extends Person implements Parcelable {
         parcel.writeInt(numberOfRatings);
         parcel.writeString( phoneNumber);
         parcel.writeString(address);
-        //add vehicle info
-        //parcel.writeString(vehicleMake);
-        //parcel.writeString(vehicleColor);
-        //parcel.writeSting(vehiclePlate);
+        parcel.writeString(vehicleMake);
+        parcel.writeString(vehicleColor);
+        parcel.writeString(vehiclePlate);
     }
 }

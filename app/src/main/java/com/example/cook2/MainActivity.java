@@ -15,12 +15,18 @@ import android.widget.ListView;
 import android.widget.ToggleButton;
 
 import com.example.cook2.objects.Cook;
+import com.example.cook2.objects.Customer;
 import com.example.cook2.objects.Food;
 import com.example.cook2.objects.Order;
 import com.example.cook2.objects.Util;
 //import com.example.cook2.ui.login.LoginActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.annotations.Nullable;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Cook cook;
     Order order;
+    ArrayList<Order> orders;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -43,8 +50,9 @@ public class MainActivity extends AppCompatActivity {
         cook = getIntent().getExtras().getParcelable("Cook");
         //HAVE TO DO THIS TO GET UPDATED COOK FROM EDIT MENU
         String key = cook.getKey();
-        cook = Util.getCook(key,db);
-        ArrayList<Order> orders = Util.getAllOrders(cook.getOrders(),db);
+        final DocumentReference docRef = db.collection("Cook").document(key);
+       // cook = Util.getCook(key,db);
+        orders = Util.getAllOrders(cook.getOrders(),db);
         String temp;
         if (cook.open) {
             temp = "Availibility: Open";
@@ -232,6 +240,43 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 // System.out.println()
+            }
+        });
+        //final DocumentReference docRef = db.collection("Cook").document(cook.getKey());
+        docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot snapshot,
+                                @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    // Log.w(TAG, "Listen failed.", e);
+                    System.out.println("Listen failed.");
+                    System.out.println("1");
+                    return;
+                }
+
+                String source = snapshot != null && snapshot.getMetadata().hasPendingWrites()
+                        ? "Local" : "Server";
+                System.out.println("2");
+
+                if (snapshot != null && snapshot.exists()) {
+                    System.out.println("3");
+                    cook = snapshot.toObject(Cook.class);
+
+                    System.out.println(cook.getFirstName());
+
+                    orders = Util.getAllOrders(cook.getOrders(),db);
+                    arrayList.clear();
+                    for(Order x : orders) {
+                        if (x.status.equals("unaccepted_cook") || x.status.equals("accepted_cook")) {
+                            arrayList.add(x.summary());
+                        }
+                    }
+                    listView.setAdapter(adapter);
+                    //  Log.d(TAG, source + " data: " + snapshot.getData());
+                } else {
+                    System.out.println("4");
+                    // Log.d(TAG, source + " data: null");
+                }
             }
         });
     }

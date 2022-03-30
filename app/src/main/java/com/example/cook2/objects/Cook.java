@@ -21,41 +21,26 @@ public class Cook extends Person implements Parcelable {
     private ArrayList<Food> menu;
     public int amount_sold;
     private ArrayList<String> orderIds;
-    //private ArrayList<Order> currentOrders;
-
 
     public ArrayList<Food> getMenu() {
         return menu;
+    }
+    public ArrayList<String> getOrders() {
+        return orderIds;
+    }
+    public int getAmount_sold() {
+        return amount_sold;
     }
 
     public void setOrders(ArrayList<String> orders) {
         orderIds = orders;
     }
 
-    public int getAmount_sold() {
-        return amount_sold;
+    public Cook() {
+        ArrayList<String> tags = new ArrayList();
+        menu = new ArrayList<>();
+        orderIds = new ArrayList<>();
     }
-
-    public ArrayList<String> getOrders() {
-        return orderIds;
-    }
-
-    /*
-    public Cook(DataSnapshot copy) {
-        this.menu = copy.getmenu;
-        this.amount_sold = copy.amount_sold;
-        this.Orders = copy.Orders;
-        this.email = copy.email;
-        this.password = copy.password;
-        this.firstName = copy.firstName;
-        this.lastName = copy.lastName;
-        this.currentRating = copy.currentRating;
-         this.numberOfRatings = copy.numberOfRatings;
-         this.phoneNumber = copy.phoneNumber;
-         this.address = copy.address;
-    }
-    *?
-     */
 
     public Cook(String firstName, String lastName, double currentRating, String phone, String address,String password,String email) {
         super.password = password;
@@ -71,7 +56,6 @@ public class Cook extends Person implements Parcelable {
         orderIds = new ArrayList<>();
         open = false;
     }
-
 
     public Cook (HashMap<String, String> myMap) {
         super.password = myMap.get("password");
@@ -89,13 +73,6 @@ public class Cook extends Person implements Parcelable {
         menu = new ArrayList<>();
         orderIds = new ArrayList<>();
         open = false;
-    }
-
-
-    public Cook() {
-        ArrayList<String> tags = new ArrayList();
-        menu = new ArrayList<>();
-        orderIds = new ArrayList<>();
     }
 
     //test cook constructor
