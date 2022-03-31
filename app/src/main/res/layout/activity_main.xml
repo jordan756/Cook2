@@ -49,13 +49,17 @@
         android:textSize="20dp"
         android:paddingTop="10dp"/>
 
-    <ListView
-        android:id="@+id/listOrders"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="368dp"
-        android:paddingTop="100dp"
-
-        android:choiceMode="multipleChoice" />
+        android:layout_height="525dp"
+        android:orientation="vertical">
+        <ListView
+            android:id="@+id/listOrders"
+            android:layout_width="match_parent"
+            android:layout_height="368dp"
+            android:choiceMode="multipleChoice"
+            android:paddingTop="50dp"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
