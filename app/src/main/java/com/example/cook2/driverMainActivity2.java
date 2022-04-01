@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.cook2.objects.Cook;
+import com.example.cook2.objects.Driver;
 import com.example.cook2.objects.Food;
 import com.example.cook2.objects.Order;
 import com.example.cook2.objects.Util;
@@ -19,7 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
-public class driverMainActivity2 extends AppCompatActivity implements View.OnClickListener {
+public class driverMainActivity2 extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Button button1, button2, button3, button4;
     TextView addressText;
@@ -28,6 +29,7 @@ public class driverMainActivity2 extends AppCompatActivity implements View.OnCli
     ListView driverOrdersList;
     ListView driverOrdersAcceptedList;
     ArrayList<String> arrayList;
+    Driver driver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +41,12 @@ public class driverMainActivity2 extends AppCompatActivity implements View.OnCli
         button3 = findViewById(R.id.endOrder);
         button4 = findViewById(R.id.profileButton);
         addressText = findViewById(R.id.address);
+        driver = getIntent().getExtras().getParcelable("Driver");
 
-        button1.setOnClickListener(this);
-        button2.setOnClickListener(this);
-        button3.setOnClickListener(this);
-        button4.setOnClickListener(this);
+//        button1.setOnClickListener(this);
+//        button2.setOnClickListener(this);
+//        button3.setOnClickListener(this);
+//        button4.setOnClickListener(this);
 
 
         orders = Util.getAllOrdersOpen(db);
@@ -74,27 +77,6 @@ public class driverMainActivity2 extends AppCompatActivity implements View.OnCli
 //        });
     }
 
-    @Override
-    public void onClick (View v) {
-        switch (v.getId()) {
-            case R.id.addToOrder:
-                Intent intent = new Intent(getApplicationContext(), driverMainActivity3.class);
-                startActivity(intent);
-                break;
-            case R.id.startOrder:
-                Intent intent1 = new Intent(getApplicationContext(), driverMainActivity.class);
-                startActivity(intent1);
-                break;
-            case R.id.endButton:
-                Intent intent2 = new Intent(getApplicationContext(), driverMainActivity.class);
-                startActivity(intent2);
-                break;
-            case R.id.profileButton:
-                Intent intent3 = new Intent(getApplicationContext(), driverMainActivity.class);
-                startActivity(intent3);
-                break;
-        }
-    }
 
     public void startOrder(View view) {
         //        for (int i = 0; i < listView.getCount(); i++) {
@@ -118,6 +100,35 @@ public class driverMainActivity2 extends AppCompatActivity implements View.OnCli
 //                }
 //            }
 //        }
+    }
+
+    public void endOrder(View view) {
+        //        for (int i = 0; i < listView.getCount(); i++) {
+//
+//            if (listView.isItemChecked(i)) {
+//                String temp = listView.getItemAtPosition(i).toString();
+//
+//                String[] orderValues = temp.split("  -  ");
+//
+//                String id = (orderValues[2]);
+//                System.out.println(id);
+//
+//                for (Order order: orders) {
+//                    System.out.println(order.summary());
+//                    if (order.orderKey.equals(id)) {
+//                        if (order.status.equals("unaccepted_cook")) {
+//                            order.updateStatus();
+//                            Util.setOrder(order,db);
+//                        }
+//                    }
+//                }
+//            }
+//        }
+    }
+
+    public void profileButtonEvent(View view) {
+        Intent profileActivity = new Intent(getApplicationContext(), driverMainActivity.class);
+        startActivity(profileActivity);
     }
 
     public void getAddresses(View view) {

@@ -86,12 +86,14 @@
             android:id="@+id/endOrder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="endOrder"
             android:text="End Order" />
 
         <Button
             android:id="@+id/profileButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="profileButtonEvent"
             android:text="Profile" />
 
 
