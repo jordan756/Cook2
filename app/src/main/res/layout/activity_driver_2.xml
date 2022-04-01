@@ -93,6 +93,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+
             <Button
                 android:id="@+id/addToOrder"
                 android:layout_width="150dp"
@@ -102,9 +103,8 @@
                 android:backgroundTint="#2f5a65"
                 android:insetLeft="0dp"
                 android:onClick="getAddresses"
-                android:text="Add"
+                android:text="Address"
                 android:textAllCaps="false" />
-
 
             <Button
                 android:id="@+id/startOrder"

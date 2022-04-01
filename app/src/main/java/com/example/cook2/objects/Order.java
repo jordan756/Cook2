@@ -100,7 +100,7 @@ public class Order implements Parcelable {
     // returns string of values imporant for order
     public String summary() {
         System.out.println(foods);
-        String address = addresses();
+        //String address = addresses();
         return "# items: " + foods.size() + "  -  " + status + "  -  " + orderKey;
 //        return "# items: " + foods.size() + "  -  " + status + "  -  " + orderKey + "  -  " + address;
     }
@@ -200,13 +200,13 @@ public class Order implements Parcelable {
         this.estimated_total_time = estimated_total_time;
     }
 
-    public String getStatus() {
-        return status;
-    }
+//    public String getStatus() {
+//        return status;
+//    }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+//    public void setStatus(String status) {
+//        this.status = status;
+//    }
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
