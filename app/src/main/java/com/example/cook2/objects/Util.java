@@ -120,21 +120,17 @@ public class Util {
         return allOrders;
     }
 
-    public static ArrayList<Order> getAllOrdersCollection(FirebaseFirestore db) {
-        Task<QuerySnapshot> temp = null;
+    public static ArrayList<Order> getAllOrdersOpen(FirebaseFirestore db) {
         ArrayList<Order> allOrders = new ArrayList<>();
-        while(temp == null) {
-            temp = db.collection("Order").get();
+        Task<QuerySnapshot> bruh = db.collection("Order").whereEqualTo("status","finished_cook").get();
+        while(!bruh.isComplete()) {
+
         }
-        while(!temp.isComplete()) { }
 
-        QuerySnapshot temp2 = temp.getResult();
+        List<DocumentSnapshot> temp= bruh.getResult().getDocuments();
 
-        for (QueryDocumentSnapshot o: temp2) {
-            if (o.exists()) {
-                Order tempOrder = o.toObject(Order.class);
-                allOrders.add(tempOrder);
-            }
+        for (DocumentSnapshot doc : temp) {
+            allOrders.add(doc.toObject(Order.class));
         }
 
         return allOrders;

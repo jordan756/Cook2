@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.cook2.objects.Cook;
@@ -14,10 +17,17 @@ import com.example.cook2.objects.Order;
 import com.example.cook2.objects.Util;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
+
 public class driverMainActivity2 extends AppCompatActivity implements View.OnClickListener {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Button button1, button2, button3, button4;
     TextView addressText;
+    ArrayList<Order> orders;
+    ArrayAdapter<String> adapter;
+    ListView driverOrdersList;
+    ListView driverOrdersAcceptedList;
+    ArrayList<String> arrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +45,33 @@ public class driverMainActivity2 extends AppCompatActivity implements View.OnCli
         button3.setOnClickListener(this);
         button4.setOnClickListener(this);
 
+
+        orders = Util.getAllOrdersOpen(db);
+        driverOrdersList = findViewById(R.id.listMenu);
+        driverOrdersAcceptedList = findViewById(R.id.listOrderItems);
+        arrayList = new ArrayList<>();
+        for (Order x : orders) {
+            arrayList.add(x.summary());
+        }
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
+        driverOrdersList.setAdapter(adapter);
+        driverOrdersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                view.setSelected(true);
+                view.setBackgroundResource(R.drawable.select);
+            }
+        });
+
+
+
+//        orderItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                view.setSelected(true);
+//                view.setBackgroundResource(R.drawable.select);
+//            }
+//        });
     }
 
     @Override
