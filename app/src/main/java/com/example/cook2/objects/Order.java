@@ -9,7 +9,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -53,27 +56,57 @@ public class Order implements Parcelable {
     public Order() {}
 
     public void updateStatus() {
-        switch (status) {
+
+
+        switch (this.status) {
             case "unaccepted_cook":
-                status = "accepted_cook";
+                this.status = "accepted_cook";
+                updateStatusDB();
                 break;
             case "accepted_cook":
-                status = "finished_cook";
+                this.status = "finished_cook";
+                updateStatusDB();
                 break;
             case "finished_cook":
-                status = "accepted_driver";
+                this.status = "accepted_driver";
+                updateStatusDB();
                 break;
             case "accepted_driver":
-                status = "accepted_customer";
+                this.status = "accepted_customer";
+                updateStatusDB();
                 break;
         }
 
     }
 
+    public void updateStatusDB() {
+        DocumentReference statusRef = db.collection("Order").document(orderKey);
+        statusRef
+                .update("status", status)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("Order", "DocumentSnapshot successfully updated!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("Order", "Error updating document", e);
+                    }
+                });
+    }
+
     // returns string of values imporant for order
     public String summary() {
         System.out.println(foods);
-        return "# items: " + foods.size() + "  -  " + status + "  -  " + orderKey;
+        String address = addresses();
+        // return "# items: " + foods.size() + "  -  " + status + "  -  " + orderKey;
+        return "# items: " + foods.size() + "  -  " + status + "  -  " + orderKey + "  -  " + address;
+    }
+
+    public String addresses() {
+        return "Addresses: " + getAddresses();
     }
 
     public String getAddresses() {

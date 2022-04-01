@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,9 +27,11 @@ public class driverMainActivity2 extends AppCompatActivity {
     TextView addressText;
     ArrayList<Order> orders;
     ArrayAdapter<String> adapter;
+    ArrayAdapter<String> adapter2;
     ListView driverOrdersList;
     ListView driverOrdersAcceptedList;
     ArrayList<String> arrayList;
+    ArrayList<String> arrayList2;
     Driver driver;
 
     @Override
@@ -42,12 +45,6 @@ public class driverMainActivity2 extends AppCompatActivity {
         button4 = findViewById(R.id.profileButton);
         addressText = findViewById(R.id.address);
         driver = getIntent().getExtras().getParcelable("Driver");
-
-//        button1.setOnClickListener(this);
-//        button2.setOnClickListener(this);
-//        button3.setOnClickListener(this);
-//        button4.setOnClickListener(this);
-
 
         orders = Util.getAllOrdersOpen(db);
         driverOrdersList = findViewById(R.id.listMenu);
@@ -65,65 +62,67 @@ public class driverMainActivity2 extends AppCompatActivity {
                 view.setBackgroundResource(R.drawable.select);
             }
         });
-
-
-
-//        orderItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                view.setSelected(true);
-//                view.setBackgroundResource(R.drawable.select);
-//            }
-//        });
     }
 
 
     public void startOrder(View view) {
-        //        for (int i = 0; i < listView.getCount(); i++) {
-//
-//            if (listView.isItemChecked(i)) {
-//                String temp = listView.getItemAtPosition(i).toString();
-//
-//                String[] orderValues = temp.split("  -  ");
-//
-//                String id = (orderValues[2]);
-//                System.out.println(id);
-//
-//                for (Order order: orders) {
-//                    System.out.println(order.summary());
-//                    if (order.orderKey.equals(id)) {
-//                        if (order.status.equals("unaccepted_cook")) {
-//                            order.updateStatus();
-//                            Util.setOrder(order,db);
-//                        }
-//                    }
-//                }
-//            }
-//        }
+        arrayList2 = new ArrayList<String>();
+        for (int i = 0; i < driverOrdersList.getCount(); i++) {
+            if (driverOrdersList.isItemChecked(i)) {
+                String temp = driverOrdersList.getItemAtPosition(i).toString();
+                // update status in database:
+                String[] orderValues = temp.split("  -  ");
+                String orderKey = orderValues[2];
+                Order order = Util.getOrder(orderKey, db);
+                order.updateStatus();
+
+
+                // update list item status string
+                orderValues[1] = order.getStatus();
+                String updatedTemp = TextUtils.join("  -  ", orderValues);
+                arrayList2.add(updatedTemp);
+            }
+        }
+        adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList2);
+        driverOrdersAcceptedList.setAdapter(adapter2);
+        driverOrdersAcceptedList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                view.setSelected(true);
+                view.setBackgroundResource(R.drawable.select);
+            }
+        });
     }
 
     public void endOrder(View view) {
-        //        for (int i = 0; i < listView.getCount(); i++) {
-//
-//            if (listView.isItemChecked(i)) {
-//                String temp = listView.getItemAtPosition(i).toString();
-//
-//                String[] orderValues = temp.split("  -  ");
-//
-//                String id = (orderValues[2]);
-//                System.out.println(id);
-//
-//                for (Order order: orders) {
-//                    System.out.println(order.summary());
-//                    if (order.orderKey.equals(id)) {
-//                        if (order.status.equals("unaccepted_cook")) {
-//                            order.updateStatus();
-//                            Util.setOrder(order,db);
-//                        }
-//                    }
-//                }
-//            }
-//        }
+        arrayList2 = new ArrayList<String>();
+        for (int i = 0; i < driverOrdersAcceptedList.getCount(); i++) {
+            if (driverOrdersAcceptedList.isItemChecked(i)) {
+                String temp = driverOrdersAcceptedList.getItemAtPosition(i).toString();
+                // update status in database:
+                String[] orderValues = temp.split("  -  ");
+                if (!orderValues[1].equals("accepted_driver")) {
+                    return;
+                }
+
+                String orderKey = orderValues[2];
+                Order order = Util.getOrder(orderKey, db);
+                order.updateStatus();
+                // update list item status string
+                orderValues[1] = order.getStatus();
+                String updatedTemp = TextUtils.join("  -  ", orderValues);
+                arrayList2.add(updatedTemp);
+            }
+        }
+        adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList2);
+        driverOrdersAcceptedList.setAdapter(adapter2);
+        driverOrdersAcceptedList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                view.setSelected(true);
+                view.setBackgroundResource(R.drawable.select);
+            }
+        });
     }
 
     public void profileButtonEvent(View view) {
@@ -132,33 +131,25 @@ public class driverMainActivity2 extends AppCompatActivity {
     }
 
     public void getAddresses(View view) {
+        for (int i = 0; i < driverOrdersList.getCount(); i++) {
+            if (driverOrdersList.isItemChecked(i)) {
+                String temp = driverOrdersList.getItemAtPosition(i).toString();
+                String[] orderValues = temp.split("  -  ");
+                String addresses = (orderValues[3]);
+                addressText.setText(addresses);
+                return;
+            }
+        }
 
-        //for (int i = 0; i < listView2.getCount(); i++) {
-//
-//            if (listView2.isItemChecked(i)) {
-//                String temp = listView2.getItemAtPosition(i).toString();
-//
-//                String[] orderValues = temp.split("  -  ");
-//
-//                String id = (orderValues[2]);
-//                System.out.println(id);
-//
-//                for (Order order: orders) {
-//                    System.out.println(order.summary());
-//                    if (order.orderKey.equals(id)) {
-//                        if (order.status.equals("unaccepted_cook")) {
-//                            order.updateStatus();
-//                            Util.setOrder(order,db);
-//                        }
-//                    }
-//                }
-//            }
-//        }
-
-        // get addresses from order selected
-        Order temp = new Order();
-        String addresses = temp.getAddresses();
-        addressText.setText(addresses);
+        for (int i = 0; i < driverOrdersAcceptedList.getCount(); i++) {
+            if (driverOrdersAcceptedList.isItemChecked(i)) {
+                String temp = driverOrdersAcceptedList.getItemAtPosition(i).toString();
+                String[] orderValues = temp.split("  -  ");
+                String addresses = (orderValues[3]);
+                addressText.setText(addresses);
+                return;
+            }
+        }
     }
 
 }

@@ -127,7 +127,7 @@ public class Util {
 
         }
 
-        List<DocumentSnapshot> temp= bruh.getResult().getDocuments();
+        List<DocumentSnapshot> temp = bruh.getResult().getDocuments();
 
         for (DocumentSnapshot doc : temp) {
             allOrders.add(doc.toObject(Order.class));
