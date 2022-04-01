@@ -26,78 +26,56 @@ public class Order implements Parcelable {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private static final DecimalFormat df = new DecimalFormat("0.00");
+    //public String orderId;
     public String cookKey;
     public String customerKey;
     public String orderKey;
+    //WILL NEED TO STORE CUSTOMER INFO TOO
     public ArrayList<Food> foods;
+    //public Customer customer;
+   // public Cook cook;
     public Date estimated_total_time;
     public String status;
 
-    // public String orderId;
-    // WILL NEED TO STORE CUSTOMER INFO TOO
-    // public Customer customer;
-    // public Cook cook;
-    // unaccepted_cook,accepted_cook,finished_cook,accepted_driver,accepted_customer
+    //unaccepted_cook,accepted_cook,finished_cook,accepted_driver,accepted_customer
 
-    // public Delivery driver
+    //public Delivery driver
     public Order(Cook cook, Customer customer) {
         cookKey = cook.getKey();
         customerKey = customer.getKey();
-        status = "unaccepted_cook";
+
         this.foods = new ArrayList<>();
-        // foods.add(food);
-        // this.customer = customer;
-        // this.cook = cook;
-        // TEMP: REPLACE WITH CALL TO DATABASE TO PREVENT OVERLAP
-        // cook.amount_sold++;
-        // orderKey = cookKey + ;
+       // foods.add(food);
+        //this.customer = customer;
+        //this.cook = cook;
+        status = "unaccepted_cook";
+        //TEMP: REPLACE WITH CALL TO DATABASE TO PREVENT OVERLAP
+        //cook.amount_sold++;
+      //  orderKey = cookKey + ;
+    }
+    public Order() {
+
     }
 
-    public Order() {}
 
     public void updateStatus() {
-
-
-        switch (this.status) {
+        switch (status) {
             case "unaccepted_cook":
-                this.status = "accepted_cook";
-                //updateStatusDB();
+                status = "accepted_cook";
                 break;
             case "accepted_cook":
-                this.status = "finished_cook";
-                //updateStatusDB();
+                status = "finished_cook";
                 break;
             case "finished_cook":
-                this.status = "accepted_driver";
-                //updateStatusDB();
+                status = "accepted_driver";
                 break;
             case "accepted_driver":
-                this.status = "accepted_customer";
-               //updateStatusDB();
+                status = "accepted_customer";
                 break;
         }
 
     }
-
-//    public void updateStatusDB() {
-//        DocumentReference statusRef = db.collection("Order").document(orderKey);
-//        statusRef
-//                .update("status", status)
-//                .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void aVoid) {
-//                        Log.d("Order", "DocumentSnapshot successfully updated!");
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.w("Order", "Error updating document", e);
-//                    }
-//                });
-//    }
-
-    // returns string of values imporant for order
+    //returns string of values imporant for order
     public String summary() {
         System.out.println(foods);
         //String address = addresses();
@@ -210,15 +188,18 @@ public class Order implements Parcelable {
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
+
     protected Order(Parcel in) {
         foods = in.readArrayList(Food.class.getClassLoader());
+     //   customer = in.readParcelable(Customer.class.getClassLoader());
+        //cook = in.readParcelable(Cook.class.getClassLoader());
         estimated_total_time = (Date) in.readSerializable();
         status = in.readString();
         orderKey = in.readString();
         cookKey = in.readString();
         customerKey = in.readString();
-        // customer = in.readParcelable(Customer.class.getClassLoader());
-        // cook = in.readParcelable(Cook.class.getClassLoader());
+
+
     }
 
     public static final Creator<Order> CREATOR = new Creator<Order>() {
@@ -243,8 +224,8 @@ public class Order implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeList(foods);
-        // parcel.writeParcelable(customer, i);
-        // parcel.writeParcelable(cook, i);
+      //  parcel.writeParcelable(customer, i);
+       // parcel.writeParcelable(cook, i);
         parcel.writeSerializable(estimated_total_time);
         parcel.writeString(status);
         parcel.writeString(orderKey);

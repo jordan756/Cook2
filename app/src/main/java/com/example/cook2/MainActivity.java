@@ -194,9 +194,11 @@ public class MainActivity extends AppCompatActivity {
 
                         for (Order order: orders) {
                             System.out.println(order.summary());
-                            if (order.status.equals("accepted_cook")) {
-                                order.updateStatus();
-                                Util.setOrder(order,db);
+                            if (order.orderKey.equals(id)) {
+                                if (order.status.equals("accepted_cook")) {
+                                    order.updateStatus();
+                                    Util.setOrder(order, db);
+                                }
                             }
                         }
                     }
