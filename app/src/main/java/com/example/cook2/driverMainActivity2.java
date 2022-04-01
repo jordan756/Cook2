@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.cook2.objects.Cook;
 import com.example.cook2.objects.Food;
@@ -15,17 +16,19 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class driverMainActivity2 extends AppCompatActivity implements View.OnClickListener {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    Button button;
+    Button button1, button2, button3, button4;
+    TextView addressText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_2);
 
-        Button button1 = findViewById(R.id.addToOrder);
-        Button button2 = findViewById(R.id.startOrder);
-        Button button3 = findViewById(R.id.endOrder);
-        Button button4 = findViewById(R.id.profileButton);
+        button1 = findViewById(R.id.addToOrder);
+        button2 = findViewById(R.id.startOrder);
+        button3 = findViewById(R.id.endOrder);
+        button4 = findViewById(R.id.profileButton);
+        addressText = findViewById(R.id.address);
 
         button1.setOnClickListener(this);
         button2.setOnClickListener(this);
@@ -105,8 +108,9 @@ public class driverMainActivity2 extends AppCompatActivity implements View.OnCli
 //        }
 
         // get addresses from order selected
-
-        String cookAddress = "";
+        Order temp = new Order();
+        String addresses = temp.getAddresses();
+        addressText.setText(addresses);
     }
 
 }

@@ -137,12 +137,6 @@ public class Util {
             }
         }
 
-//        if (!temp2.exists()) {
-//            return null;
-//        }
-        // Cook cook = temp2.data();
-//        Order order = temp2.toObject(Order.class);
-//        System.out.print(order.orderKey);
         return allOrders;
     }
 
@@ -155,8 +149,8 @@ public class Util {
         System.out.println(bruh);
         System.out.println(bruh.getResult().size());
         System.out.println(bruh.getResult().getDocuments());
-        //ArrayList<DocumentSnapshot> temp = new ArrayList<>();
-       // temp.addAll(bruh.getResult().getDocuments());
+        // ArrayList<DocumentSnapshot> temp = new ArrayList<>();
+        // temp.addAll(bruh.getResult().getDocuments());
         List<DocumentSnapshot> temp= bruh.getResult().getDocuments();
 
         for (DocumentSnapshot doc : temp) {
