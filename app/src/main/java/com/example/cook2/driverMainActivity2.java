@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class driverMainActivity2 extends AppCompatActivity implements View.OnClickListener {
+import com.google.firebase.firestore.FirebaseFirestore;
 
+public class driverMainActivity2 extends AppCompatActivity implements View.OnClickListener {
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     Button button;
 
     @Override

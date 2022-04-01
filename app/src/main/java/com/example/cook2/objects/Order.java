@@ -3,8 +3,15 @@ package com.example.cook2.objects;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -14,38 +21,36 @@ import java.util.Date;
 
 public class Order implements Parcelable {
 
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     private static final DecimalFormat df = new DecimalFormat("0.00");
-    //public String orderId;
     public String cookKey;
     public String customerKey;
     public String orderKey;
-    //WILL NEED TO STORE CUSTOMER INFO TOO
     public ArrayList<Food> foods;
-    //public Customer customer;
-   // public Cook cook;
     public Date estimated_total_time;
     public String status;
 
-    //unaccepted_cook,accepted_cook,finished_cook,accepted_driver,accepted_customer
+    // public String orderId;
+    // WILL NEED TO STORE CUSTOMER INFO TOO
+    // public Customer customer;
+    // public Cook cook;
+    // unaccepted_cook,accepted_cook,finished_cook,accepted_driver,accepted_customer
 
-    //public Delivery driver
+    // public Delivery driver
     public Order(Cook cook, Customer customer) {
         cookKey = cook.getKey();
         customerKey = customer.getKey();
-
-        this.foods = new ArrayList<>();
-       // foods.add(food);
-        //this.customer = customer;
-        //this.cook = cook;
         status = "unaccepted_cook";
-        //TEMP: REPLACE WITH CALL TO DATABASE TO PREVENT OVERLAP
-        //cook.amount_sold++;
-      //  orderKey = cookKey + ;
+        this.foods = new ArrayList<>();
+        // foods.add(food);
+        // this.customer = customer;
+        // this.cook = cook;
+        // TEMP: REPLACE WITH CALL TO DATABASE TO PREVENT OVERLAP
+        // cook.amount_sold++;
+        // orderKey = cookKey + ;
     }
-    public Order() {
 
-    }
-
+    public Order() {}
 
     public void updateStatus() {
         switch (status) {
@@ -64,24 +69,67 @@ public class Order implements Parcelable {
         }
 
     }
-    //returns string of values imporant for order
+
+    // returns string of values imporant for order
     public String summary() {
         System.out.println(foods);
         return "# items: " + foods.size() + "  -  " + status + "  -  " + orderKey;
     }
-    @RequiresApi(api = Build.VERSION_CODES.O)
 
+    public String getAddresses() {
+        String address;
+        address = getCookAddresses() + " " + getCustomerAddresses();
+        return address;
+    }
+
+    public String getCookAddresses() {
+        String address;
+        Task<DocumentSnapshot> temp = null;
+        while(temp == null) {
+            temp = db.collection("Cook").document(cookKey).get();
+        }
+
+        while(!temp.isComplete()) {}
+
+        DocumentSnapshot temp2 = temp.getResult();
+        if (!temp2.exists()) {
+            return null;
+        }
+        Object temp3 = temp2.get("address");
+        address = String.valueOf(temp3);
+
+        return address;
+    }
+
+    public String getCustomerAddresses() {
+        String address;
+        Task<DocumentSnapshot> temp = null;
+        while(temp == null) {
+            temp = db.collection("Customer").document(customerKey).get();
+        }
+
+        while(!temp.isComplete()) {}
+
+        DocumentSnapshot temp2 = temp.getResult();
+        if (!temp2.exists()) {
+            return null;
+        }
+        Object temp3 = temp2.get("address");
+        address = String.valueOf(temp3);
+
+        return address;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     protected Order(Parcel in) {
         foods = in.readArrayList(Food.class.getClassLoader());
-     //   customer = in.readParcelable(Customer.class.getClassLoader());
-        //cook = in.readParcelable(Cook.class.getClassLoader());
         estimated_total_time = (Date) in.readSerializable();
         status = in.readString();
         orderKey = in.readString();
         cookKey = in.readString();
         customerKey = in.readString();
-
-
+        // customer = in.readParcelable(Customer.class.getClassLoader());
+        // cook = in.readParcelable(Cook.class.getClassLoader());
     }
 
     public static final Creator<Order> CREATOR = new Creator<Order>() {
@@ -106,7 +154,7 @@ public class Order implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeList(foods);
-      //  parcel.writeParcelable(customer, i);
+       // parcel.writeParcelable(customer, i);
        // parcel.writeParcelable(cook, i);
         parcel.writeSerializable(estimated_total_time);
         parcel.writeString(status);
