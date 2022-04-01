@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.cook2.objects.Cook;
+import com.example.cook2.objects.Food;
+import com.example.cook2.objects.Order;
+import com.example.cook2.objects.Util;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class driverMainActivity2 extends AppCompatActivity implements View.OnClickListener {
@@ -53,9 +57,57 @@ public class driverMainActivity2 extends AppCompatActivity implements View.OnCli
     }
 
     public void startOrder(View view) {
+        //        for (int i = 0; i < listView.getCount(); i++) {
+//
+//            if (listView.isItemChecked(i)) {
+//                String temp = listView.getItemAtPosition(i).toString();
+//
+//                String[] orderValues = temp.split("  -  ");
+//
+//                String id = (orderValues[2]);
+//                System.out.println(id);
+//
+//                for (Order order: orders) {
+//                    System.out.println(order.summary());
+//                    if (order.orderKey.equals(id)) {
+//                        if (order.status.equals("unaccepted_cook")) {
+//                            order.updateStatus();
+//                            Util.setOrder(order,db);
+//                        }
+//                    }
+//                }
+//            }
+//        }
     }
 
-    public void addToOrder(View view) {
+    public void getAddresses(View view) {
+
+        //for (int i = 0; i < listView2.getCount(); i++) {
+//
+//            if (listView2.isItemChecked(i)) {
+//                String temp = listView2.getItemAtPosition(i).toString();
+//
+//                String[] orderValues = temp.split("  -  ");
+//
+//                String id = (orderValues[2]);
+//                System.out.println(id);
+//
+//                for (Order order: orders) {
+//                    System.out.println(order.summary());
+//                    if (order.orderKey.equals(id)) {
+//                        if (order.status.equals("unaccepted_cook")) {
+//                            order.updateStatus();
+//                            Util.setOrder(order,db);
+//                        }
+//                    }
+//                }
+//            }
+//        }
+
+        // get addresses from order selected
+
+        String cookAddress = "";
     }
+
 }
 

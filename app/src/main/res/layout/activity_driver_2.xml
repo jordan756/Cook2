@@ -55,8 +55,8 @@
             android:id="@+id/cost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
-            android:text="Total Cost: $0.00" />
+            android:textSize="15dp"
+            android:text="Addresses:" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -68,8 +68,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:insetLeft="0dp"
-                android:text="Add"
-                android:onClick="addToOrder"
+                android:text="Addresses"
+                android:onClick="getAddresses"
                 />
 
 

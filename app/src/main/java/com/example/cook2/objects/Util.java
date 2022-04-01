@@ -16,6 +16,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.model.Document;
 
@@ -110,6 +111,7 @@ public class Util {
         System.out.print(order.orderKey);
         return order;
     }
+
     public static ArrayList<Order> getAllOrders(ArrayList<String> orderKeys,FirebaseFirestore db) {
         ArrayList<Order> allOrders = new ArrayList<>();
         for (String temp: orderKeys) {
@@ -117,6 +119,33 @@ public class Util {
         }
         return allOrders;
     }
+
+    public static ArrayList<Order> getAllOrdersCollection(FirebaseFirestore db) {
+        Task<QuerySnapshot> temp = null;
+        ArrayList<Order> allOrders = new ArrayList<>();
+        while(temp == null) {
+            temp = db.collection("Order").get();
+        }
+        while(!temp.isComplete()) { }
+
+        QuerySnapshot temp2 = temp.getResult();
+
+        for (QueryDocumentSnapshot o: temp2) {
+            if (o.exists()) {
+                Order tempOrder = o.toObject(Order.class);
+                allOrders.add(tempOrder);
+            }
+        }
+
+//        if (!temp2.exists()) {
+//            return null;
+//        }
+        // Cook cook = temp2.data();
+//        Order order = temp2.toObject(Order.class);
+//        System.out.print(order.orderKey);
+        return allOrders;
+    }
+
     public static ArrayList<Cook> getAllCooks(FirebaseFirestore db) {
         ArrayList<Cook> allCooks = new ArrayList<>();
         Task<QuerySnapshot> bruh = db.collection("Cook").whereEqualTo("open",true).get();

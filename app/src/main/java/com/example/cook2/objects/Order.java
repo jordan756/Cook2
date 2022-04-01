@@ -120,6 +120,55 @@ public class Order implements Parcelable {
         return address;
     }
 
+
+    public String getCookKey() {
+        return cookKey;
+    }
+
+    public void setCookKey(String cookKey) {
+        this.cookKey = cookKey;
+    }
+
+    public String getCustomerKey() {
+        return customerKey;
+    }
+    public void setCustomerKey(String customerKey) {
+        this.customerKey = customerKey;
+    }
+
+    public String getOrderKey() {
+        return orderKey;
+    }
+
+    public void setOrderKey(String orderKey) {
+        this.orderKey = orderKey;
+    }
+
+    public ArrayList<Food> getFoods() {
+        return foods;
+    }
+
+    public void setFoods(ArrayList<Food> foods) {
+        this.foods = foods;
+    }
+
+    public Date getEstimated_total_time() {
+        return estimated_total_time;
+    }
+
+    public void setEstimated_total_time(Date estimated_total_time) {
+        this.estimated_total_time = estimated_total_time;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     protected Order(Parcel in) {
         foods = in.readArrayList(Food.class.getClassLoader());
@@ -154,8 +203,8 @@ public class Order implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeList(foods);
-       // parcel.writeParcelable(customer, i);
-       // parcel.writeParcelable(cook, i);
+        // parcel.writeParcelable(customer, i);
+        // parcel.writeParcelable(cook, i);
         parcel.writeSerializable(estimated_total_time);
         parcel.writeString(status);
         parcel.writeString(orderKey);
