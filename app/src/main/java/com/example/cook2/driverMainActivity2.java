@@ -16,26 +16,44 @@ public class driverMainActivity2 extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_2);
 
-        Button button1 = findViewById(R.id.startButton);
-        Button button2 = findViewById(R.id.Bbutton);
+        Button button1 = findViewById(R.id.addToOrder);
+        Button button2 = findViewById(R.id.startOrder);
+        Button button3 = findViewById(R.id.endOrder);
+        Button button4 = findViewById(R.id.profileButton);
 
         button1.setOnClickListener(this);
         button2.setOnClickListener(this);
+        button3.setOnClickListener(this);
+        button4.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick (View v) {
         switch (v.getId()) {
-            case R.id.startButton:
+            case R.id.addToOrder:
                 Intent intent = new Intent(getApplicationContext(), driverMainActivity3.class);
                 startActivity(intent);
                 break;
-            case R.id.Bbutton:
+            case R.id.startOrder:
                 Intent intent1 = new Intent(getApplicationContext(), driverMainActivity.class);
                 startActivity(intent1);
                 break;
+            case R.id.endButton:
+                Intent intent2 = new Intent(getApplicationContext(), driverMainActivity.class);
+                startActivity(intent2);
+                break;
+            case R.id.profileButton:
+                Intent intent3 = new Intent(getApplicationContext(), driverMainActivity.class);
+                startActivity(intent3);
+                break;
         }
+    }
+
+    public void startOrder(View view) {
+    }
+
+    public void addToOrder(View view) {
     }
 }
 
