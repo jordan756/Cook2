@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="30dp"
-    android:background="@drawable/bluecolor">
+    android:background="#2f5a65">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,6 +63,7 @@
             android:layout_marginEnd="15dp"
             android:backgroundTint="#2f5a65"
             android:text="View Nearby Cooks"
+
             android:textAllCaps="false"/>
 
 

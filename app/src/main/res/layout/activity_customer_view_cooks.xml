@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="40dp"
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/textView2"
@@ -15,6 +16,8 @@
         android:text="Select cook to view menu"
         app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="sans-serif-black"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,8 +44,74 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
+            android:backgroundTint="#2f5a65"
             app:layout_constraintTop_toBottomOf="@+id/textView2"
             app:layout_constraintVertical_bias="0.804" />
     </LinearLayout>
 
 </LinearLayout>
+
+
+<!--<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="700dp"
+    android:background="@drawable/edges"
+    android:backgroundTint="@color/white"/>
+
+</LinearLayout>
+
+<EditText
+android:id="@+id/editTextTime2"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:ems="10"
+android:inputType="time"
+android:text="Select Cook to View Menu"
+android:backgroundTint="@color/white"
+android:gravity="center_horizontal"
+android:textColor="#2f5a65"
+android:background="@drawable/edges"
+android:fontFamily="sans-serif-black"
+android:textSize="20dp"
+android:paddingTop="15dp"/>
+
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="525dp"
+android:orientation="vertical">
+<ListView
+    android:id="@+id/listOrders"
+    android:layout_width="match_parent"
+    android:layout_height="368dp"
+    android:choiceMode="multipleChoice"
+    android:paddingTop="50dp"/>
+</LinearLayout>
+
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:gravity="bottom"
+android:orientation="vertical"
+android:paddingBottom="20dp">
+
+<Button
+    android:id="@+id/viewCooks"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    android:backgroundTint="#2f5a65"
+    android:text="View Nearby Cooks"
+
+    android:textAllCaps="false"/>
+
+
+</LinearLayout>
+
+
+    </RelativeLayout>-->

@@ -1,61 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:background="#b93b1e"
+    android:padding="25dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/editTextTime2"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:textSize="30sp"
-            android:ems="10"
-            android:inputType="time"
-            android:text="Create Order " />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="368dp"
-        android:orientation="horizontal">
-    <ListView
-        android:id="@+id/listMenu"
-        android:layout_width="200dp"
-        android:layout_height="match_parent"
-
-        android:choiceMode="multipleChoice" />
-
-
-    <ListView
-        android:id="@+id/listOrderItems"
-        android:layout_width="200dp"
-        android:layout_height="368dp"
-
-        android:choiceMode="multipleChoice" />
-    </LinearLayout>
-
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:orientation="vertical">
-        <TextView
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:background="@drawable/edges"
+            android:backgroundTint="@color/white"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/edges"
+        android:backgroundTint="@color/white">
+
+        <TextView
             android:id="@+id/cost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
-            android:text="Total Cost: $0.00" />
+            android:gravity="center_horizontal"
+            android:paddingTop="30dp"
+            android:paddingBottom="0dp"
+            android:text="Total Cost: $0.00"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/editTextTime2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="time"
+        android:text="Create Order"
+        android:backgroundTint="@color/white"
+        android:gravity="center_horizontal"
+        android:textColor="@color/black"
+        android:background="@drawable/edges"
+        android:fontFamily="sans-serif"
+        android:textSize="20dp"
+        android:paddingTop="20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="370dp"
+        android:orientation="horizontal">
+
+        <ListView
+            android:id="@+id/listMenu"
+            android:layout_width="180dp"
+            android:layout_height="match_parent"
+            android:choiceMode="multipleChoice"
+            android:paddingLeft="5dp"
+            android:paddingTop="100dp"/>
+
+        <ListView
+            android:id="@+id/listOrderItems"
+            android:layout_width="match_parent"
+            android:layout_height="370dp"
+            android:paddingTop="100dp"
+            android:choiceMode="multipleChoice" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:paddingBottom="20dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -63,47 +92,180 @@
 
             <Button
                 android:id="@+id/addToOrder"
-                android:layout_width="180dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
                 android:layout_marginEnd="10dp"
+                android:backgroundTint="#9e321a"
                 android:insetLeft="0dp"
-                android:text="Add"
                 android:onClick="addToOrder"
-                />
+                android:text="Add"
+                android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/removeFromOrder"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
                 android:layout_weight="1"
-                android:text="Remove"
+                android:backgroundTint="#9e321a"
                 android:onClick="removeFromOrder"
-                 />
+                android:text="Remove"
+                android:textAllCaps="false" />
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/createOrder"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="createOrder"
-            android:text="Create Order" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Message" />
+            <Button
+                android:id="@+id/createOrder"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="10dp"
+                android:backgroundTint="#9e321a"
+                android:insetLeft="0dp"
+                android:onClick="createOrder"
+                android:text="Create Order"
+                android:textAllCaps="false" />
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Profile" />
+            <Button
+                android:id="@+id/profileButton"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_weight="1"
+                android:backgroundTint="#9e321a"
+                android:text="Profile"
+                android:textAllCaps="false" />
 
-
-
+        </LinearLayout>
     </LinearLayout>
 
+</RelativeLayout>
 
-</LinearLayout>
+
+
+    <!--
+    <?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/editTextTime2"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:textSize="30sp"
+                android:ems="10"
+                android:inputType="time"
+                android:text="Create Order " />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="368dp"
+            android:orientation="horizontal">
+        <ListView
+            android:id="@+id/listMenu"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+
+            android:choiceMode="multipleChoice" />
+
+
+        <ListView
+            android:id="@+id/listOrderItems"
+            android:layout_width="200dp"
+            android:layout_height="368dp"
+
+            android:choiceMode="multipleChoice" />
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+
+                android:id="@+id/cost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:text="Total Cost: $0.00" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/addToOrder"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:insetLeft="0dp"
+                    android:text="Add"
+                    android:onClick="addToOrder"
+                    />
+
+                <Button
+                    android:id="@+id/removeFromOrder"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Remove"
+                    android:onClick="removeFromOrder"
+                     />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/createOrder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="createOrder"
+                android:text="Create Order" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Message" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Profile" />
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>-->
+
+
+
+
+<!--
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="70dp"
+android:background="@drawable/edges"
+android:backgroundTint="@color/black">-->

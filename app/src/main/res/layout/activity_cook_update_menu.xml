@@ -96,6 +96,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:enabled="true"
+            android:backgroundTint="#2f5a65"
+            android:textAllCaps="false"
             android:onClick="createMenuItem"
             android:text="Create Menu Item" />
 
@@ -103,6 +105,8 @@
             android:id="@+id/button14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="#2f5a65"
+            android:textAllCaps="false"
             android:onClick="deleteMenuItem"
             android:text="Delete Menu Item" />
     </LinearLayout>
