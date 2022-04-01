@@ -75,6 +75,7 @@ public class driverMainActivity2 extends AppCompatActivity {
                 String orderKey = orderValues[2];
                 Order order = Util.getOrder(orderKey, db);
                 order.updateStatus();
+                Util.setOrder(order, db);
 
 
                 // update list item status string
@@ -109,11 +110,13 @@ public class driverMainActivity2 extends AppCompatActivity {
                 String orderKey = orderValues[2];
                 Order order = Util.getOrder(orderKey, db);
                 order.updateStatus();
+                Util.setOrder(order, db);
                 // update list item status string
-                //orderValues[1] = order.getStatus();
+                // orderValues[1] = order.getStatus();
                 orderValues[1] = "accepted_customer";
                 String updatedTemp = TextUtils.join("  -  ", orderValues);
                 arrayList2.add(updatedTemp);
+                //arrayList
             }
         }
         adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList2);
