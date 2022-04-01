@@ -61,47 +61,54 @@ public class Order implements Parcelable {
         switch (this.status) {
             case "unaccepted_cook":
                 this.status = "accepted_cook";
-                updateStatusDB();
+                //updateStatusDB();
                 break;
             case "accepted_cook":
                 this.status = "finished_cook";
-                updateStatusDB();
+                //updateStatusDB();
                 break;
             case "finished_cook":
                 this.status = "accepted_driver";
-                updateStatusDB();
+                //updateStatusDB();
                 break;
             case "accepted_driver":
                 this.status = "accepted_customer";
-                updateStatusDB();
+               //updateStatusDB();
                 break;
         }
 
     }
 
-    public void updateStatusDB() {
-        DocumentReference statusRef = db.collection("Order").document(orderKey);
-        statusRef
-                .update("status", status)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d("Order", "DocumentSnapshot successfully updated!");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("Order", "Error updating document", e);
-                    }
-                });
-    }
+//    public void updateStatusDB() {
+//        DocumentReference statusRef = db.collection("Order").document(orderKey);
+//        statusRef
+//                .update("status", status)
+//                .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void aVoid) {
+//                        Log.d("Order", "DocumentSnapshot successfully updated!");
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Log.w("Order", "Error updating document", e);
+//                    }
+//                });
+//    }
 
     // returns string of values imporant for order
     public String summary() {
         System.out.println(foods);
         String address = addresses();
-        // return "# items: " + foods.size() + "  -  " + status + "  -  " + orderKey;
+        return "# items: " + foods.size() + "  -  " + status + "  -  " + orderKey;
+//        return "# items: " + foods.size() + "  -  " + status + "  -  " + orderKey + "  -  " + address;
+    }
+
+    public String summary2() {
+        System.out.println(foods);
+        String address = addresses();
+//        return "# items: " + foods.size() + "  -  " + status + "  -  " + orderKey;
         return "# items: " + foods.size() + "  -  " + status + "  -  " + orderKey + "  -  " + address;
     }
 
