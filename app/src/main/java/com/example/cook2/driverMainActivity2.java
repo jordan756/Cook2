@@ -51,7 +51,7 @@ public class driverMainActivity2 extends AppCompatActivity {
         driverOrdersAcceptedList = findViewById(R.id.listOrderItems);
         arrayList = new ArrayList<>();
         for (Order x : orders) {
-            arrayList.add(x.summary());
+            arrayList.add(x.summary2());
         }
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
         driverOrdersList.setAdapter(adapter);
@@ -78,7 +78,8 @@ public class driverMainActivity2 extends AppCompatActivity {
 
 
                 // update list item status string
-                orderValues[1] = order.getStatus();
+//                orderValues[1] = order.getStatus();
+                orderValues[1] = "accepted_driver";
                 String updatedTemp = TextUtils.join("  -  ", orderValues);
                 arrayList2.add(updatedTemp);
             }
@@ -109,7 +110,8 @@ public class driverMainActivity2 extends AppCompatActivity {
                 Order order = Util.getOrder(orderKey, db);
                 order.updateStatus();
                 // update list item status string
-                orderValues[1] = order.getStatus();
+                //orderValues[1] = order.getStatus();
+                orderValues[1] = "accepted_customer";
                 String updatedTemp = TextUtils.join("  -  ", orderValues);
                 arrayList2.add(updatedTemp);
             }
