@@ -102,9 +102,9 @@ public class CustmerViewMenu extends AppCompatActivity {
         cook.getOrders().add(order.orderKey);
         customer.getOrders().add(order.orderKey);
 
+        Util.setOrder(order,db);
         Util.setCook(cook,db);
         Util.setCustomer(customer,db);
-        Util.setOrder(order,db);
 
 
         Intent i = new Intent(CustmerViewMenu.this, CustomerMain.class);
