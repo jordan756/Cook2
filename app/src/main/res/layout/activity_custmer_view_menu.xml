@@ -140,6 +140,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="#9e321a"
                 android:text="Profile"
+                android:onClick="profileButton"
                 android:textAllCaps="false" />
 
         </LinearLayout>

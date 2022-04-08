@@ -140,7 +140,8 @@
                 android:text="Current Deliveries"
                 android:textAllCaps="false"
                 android:textSize="16sp"
-                android:paddingStart="10dp"/>
+                android:paddingStart="10dp"
+                android:onClick="currentDeliveries"/>
 
             <Button
                 android:id="@+id/button5"
@@ -149,7 +150,8 @@
                 android:layout_gravity="center"
                 android:backgroundTint="#8d3620"
                 android:text="change user"
-                android:paddingStart="10dp"/>
+                android:paddingStart="10dp"
+                android:onClick="switchUser"/>
 
 
         </LinearLayout>

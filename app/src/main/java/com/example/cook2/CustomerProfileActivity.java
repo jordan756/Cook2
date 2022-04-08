@@ -23,5 +23,8 @@ public class CustomerProfileActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-
+    public void switchUser(View view) {
+        Intent switchUser = new Intent(getApplicationContext(), loginActivity.class);
+        startActivity(switchUser);
+    }
 }

@@ -86,6 +86,10 @@ public class CustmerViewMenu extends AppCompatActivity {
         }
     });
     }
+    public void profileButton(View view) {
+        Intent customerProfileActivity = new Intent(getApplicationContext(), CustomerProfileActivity.class);
+        startActivity(customerProfileActivity);
+    }
     public void createOrder(View v) {
         if (order.foods.size() == 0) {
             return;
