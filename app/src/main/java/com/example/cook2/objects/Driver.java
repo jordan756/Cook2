@@ -1,7 +1,10 @@
 package com.example.cook2.objects;
 
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -80,6 +83,7 @@ public class Driver extends Person implements Parcelable {
     }
 
     public static final Creator<Driver> CREATOR = new Creator<Driver>() {
+        @RequiresApi(api = Build.VERSION_CODES.Q)
         @Override
         public Driver createFromParcel(Parcel in) {return new Driver(in);
         }
