@@ -44,6 +44,7 @@ public class Driver extends Person implements Parcelable {
         super.userTypeKey = myMap.get("userTypeKey");
         super.currentRating = 0;
         super.numberOfRatings = 0;
+        orderIds = new ArrayList<>();
         vehicleMake = "test";
         vehicleColor = "test";
         vehiclePlate = "test";
