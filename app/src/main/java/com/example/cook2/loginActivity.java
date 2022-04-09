@@ -14,6 +14,7 @@ import android.widget.EditText;
 
 import com.example.cook2.objects.Cook;
 import com.example.cook2.objects.Customer;
+import com.example.cook2.objects.Driver;
 import com.example.cook2.objects.Person;
 import com.example.cook2.objects.Util;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -80,9 +81,9 @@ public class loginActivity extends AppCompatActivity {
                                         startActivity(customerActivity);
 
                                     } else if (userType.equals("Driver")) {
-                                        Customer testDriver = Util.getDriver(user.getEmail() + user.getPassword(), db);
+                                        Driver testDriver = Util.getDriver(user.getEmail() + user.getPassword(), db);
                                         Intent driverActivity = new Intent(loginActivity.this, driverMainActivity2.class);
-                                        driverActivity.putExtra("Customer", testDriver);
+                                        driverActivity.putExtra("Driver", testDriver);
                                         startActivity(driverActivity);
                                     }
 

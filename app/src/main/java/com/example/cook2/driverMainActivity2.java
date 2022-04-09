@@ -64,7 +64,6 @@ public class driverMainActivity2 extends AppCompatActivity {
         });
     }
 
-
     public void startOrder(View view) {
         arrayList2 = new ArrayList<String>();
         for (int i = 0; i < driverOrdersList.getCount(); i++) {
@@ -110,8 +109,6 @@ public class driverMainActivity2 extends AppCompatActivity {
                 String orderKey = orderValues[2];
                 Order order = Util.getOrder(orderKey, db);
                 order.updateStatus();
-
-
 
                 // Util.setOrder(order, db);
                 Util.removeOrder(order,db);

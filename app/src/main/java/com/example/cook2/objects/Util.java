@@ -98,7 +98,7 @@ public class Util {
         return cook;
     }
 
-    public static Customer getDriver(String key, FirebaseFirestore db) {
+    public static Driver getDriver(String key, FirebaseFirestore db) {
         Task<DocumentSnapshot> temp = null;
         while(temp == null) {
             temp = db.collection("Driver").document(key).get();
@@ -110,7 +110,7 @@ public class Util {
         if (!temp2.exists()) {
             return null;
         }
-        Customer driver = temp2.toObject(Customer.class);
+        Driver driver = temp2.toObject(Driver.class);
         return driver;
     }
 
