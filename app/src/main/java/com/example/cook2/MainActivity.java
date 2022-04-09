@@ -239,6 +239,7 @@ public class MainActivity extends AppCompatActivity {
                         Intent x = new Intent(view.getContext(), OrderDetailsActivity.class);
                         x.putExtra("DetailsList", ordersList);
                         startActivity(x);
+                        break;
                     }
                 }
                 // System.out.println()
