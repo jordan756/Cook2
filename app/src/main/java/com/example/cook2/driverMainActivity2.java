@@ -110,7 +110,14 @@ public class driverMainActivity2 extends AppCompatActivity {
                 String orderKey = orderValues[2];
                 Order order = Util.getOrder(orderKey, db);
                 order.updateStatus();
-                Util.setOrder(order, db);
+
+
+
+                // Util.setOrder(order, db);
+                Util.removeOrder(order,db);
+
+                //NEEDS MORE TESTING
+
                 // update list item status string
                 // orderValues[1] = order.getStatus();
                 orderValues[1] = "accepted_customer";

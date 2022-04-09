@@ -138,7 +138,7 @@ public class Order implements Parcelable {
         return address;
     }
 
-
+/*
     public String getCookKey() {
         return cookKey;
     }
@@ -178,14 +178,14 @@ public class Order implements Parcelable {
         this.estimated_total_time = estimated_total_time;
     }
 
-//    public String getStatus() {
-//        return status;
-//    }
+   public String getStatus() {
+        return status;
+    }
 
-//    public void setStatus(String status) {
-//        this.status = status;
-//    }
-
+    public void setStatus(String status) {
+        this.status = status;
+    }
+*/
 
     @RequiresApi(api = Build.VERSION_CODES.O)
 

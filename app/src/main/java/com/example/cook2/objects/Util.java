@@ -14,6 +14,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -41,6 +42,25 @@ public class Util {
 
     public static void setOrder(Order order, FirebaseFirestore db) {
         db.collection("Order").document(order.orderKey).set(order);
+    }
+    public static void removeOrder(Order order, FirebaseFirestore db) {
+        System.out.println("removing order");
+        db.collection("Order").document(order.orderKey)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        //Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        //og.w(TAG, "Error deleting document", e);
+                    }
+                });
+        db.collection("Cook").document(order.cookKey).update("orders" , FieldValue.arrayRemove(order.orderKey));
+        db.collection("Customer").document(order.cookKey).update("orders" , FieldValue.arrayRemove(order.orderKey));
     }
 
     public static Customer getCustomer(String key, FirebaseFirestore db) {

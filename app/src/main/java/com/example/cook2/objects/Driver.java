@@ -2,14 +2,18 @@ package com.example.cook2.objects;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Driver extends Person implements Parcelable {
+
+    private ArrayList<String> orderIds;
     private String vehicleMake;
     private String vehicleColor;
     private String vehiclePlate;
 
-    public Driver() {}
+    public Driver() { orderIds = new ArrayList<>();}
 
     public Driver(String firstName, String lastName, double currentRating, String phone, String address,String password,String email) {
         super.firstName = firstName;
@@ -23,6 +27,7 @@ public class Driver extends Person implements Parcelable {
         vehicleMake = "test";
         vehicleColor = "test";
         vehiclePlate = "test";
+        orderIds = new ArrayList<>();
     }
 
     public Driver(HashMap<String, String> myMap) {
@@ -63,6 +68,8 @@ public class Driver extends Person implements Parcelable {
         currentRating = in.readDouble();
         numberOfRatings = in.readInt();
         phoneNumber = in.readString();
+        address = in.readString();
+        orderIds = in.readArrayList(String.class.getClassLoader());
         vehicleMake = in.readString();
         vehicleColor = in.readString();
         vehiclePlate = in.readString();
@@ -86,14 +93,16 @@ public class Driver extends Person implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(password);
         parcel.writeString(email);
-        parcel.writeString(key);
+        parcel.writeString(password);
         parcel.writeString(firstName);
         parcel.writeString(lastName);
+        parcel.writeString(key);
         parcel.writeDouble(currentRating);
         parcel.writeInt(numberOfRatings);
-        parcel.writeString( phoneNumber);
+        parcel.writeString(phoneNumber);
+        parcel.writeList(orderIds);
+
         parcel.writeString(address);
         parcel.writeString(vehicleMake);
         parcel.writeString(vehicleColor);
