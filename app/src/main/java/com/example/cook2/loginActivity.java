@@ -68,6 +68,7 @@ public class loginActivity extends AppCompatActivity {
 
                                     String userType = document.getString("userType");
                                     Person user = document.toObject(Person.class);
+
                                     if (userType.equals("Cook")) {
                                         Cook testCook = Util.getCook(user.getEmail() + user.getPassword(), db);
                                         Intent cookActivity = new Intent(loginActivity.this, MainActivity.class);

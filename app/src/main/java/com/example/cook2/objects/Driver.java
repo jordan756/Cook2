@@ -13,7 +13,9 @@ public class Driver extends Person implements Parcelable {
     private String vehicleColor;
     private String vehiclePlate;
 
-    public Driver() { orderIds = new ArrayList<>();}
+    public Driver() {
+        orderIds = new ArrayList<>();
+    }
 
     public Driver(String firstName, String lastName, double currentRating, String phone, String address,String password,String email) {
         super.firstName = firstName;
@@ -50,13 +52,14 @@ public class Driver extends Person implements Parcelable {
     public String getVehicleMake() {
         return vehicleMake;
     }
-
     public String getVehicleColor() {
         return vehicleColor;
     }
-
     public String getVehiclePlate() {
         return vehiclePlate;
+    }
+    public ArrayList<String> getOrderIds() {
+        return orderIds;
     }
 
     protected Driver(Parcel in) {
