@@ -17,12 +17,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class DriverMapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    Driver driver;
+    // Driver driver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        driver = getIntent().getExtras().getParcelable("Driver");
+        // driver = getIntent().getExtras().getParcelable("Driver");
       /*  Uri gmmIntentUri = Uri.parse("google.navigation:q=Taronga+Zoo,+Sydney+Australia");
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
@@ -46,7 +46,7 @@ public class DriverMapsActivity extends AppCompatActivity implements OnMapReadyC
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        //mMap = googleMap;
+        mMap = googleMap;
 
        // LatLng cooksLocation = new LatLng();
        // LatLng customersLocation = new LatLng();
