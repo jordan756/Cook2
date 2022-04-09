@@ -55,4 +55,14 @@ public class driverMainActivity extends AppCompatActivity {
 
 
     }
+
+    public void currentDeliveries(View view) {
+        Intent currentDeliveries = new Intent(getApplicationContext(), driverMainActivity3.class);
+        startActivity(currentDeliveries);
+    }
+
+    public void switchUser(View view) {
+        Intent switchUser = new Intent(getApplicationContext(), loginActivity.class);
+        startActivity(switchUser);
+    }
 }

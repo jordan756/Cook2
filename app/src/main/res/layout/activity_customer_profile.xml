@@ -137,7 +137,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:backgroundTint="#C64B2D"
-                android:text="change user" />
+                android:text="change user"
+                android:onClick="switchUser"/>
 
             <Button
                 android:id="@+id/button8"
