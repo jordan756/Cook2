@@ -105,9 +105,10 @@ public class Driver extends Person implements Parcelable {
         parcel.writeDouble(currentRating);
         parcel.writeInt(numberOfRatings);
         parcel.writeString(phoneNumber);
+        parcel.writeString(address);
         parcel.writeList(orderIds);
 
-        parcel.writeString(address);
+
         parcel.writeString(vehicleMake);
         parcel.writeString(vehicleColor);
         parcel.writeString(vehiclePlate);
