@@ -4,6 +4,8 @@ Clone Repo with Andriod Studio:
 3. Login into your github, second tab on the left side. I logged in using the token generation method. You can try the other login method if it works.
 4. Copy URL of this repository into the url box, then change the directory to the empty folder. Make sure to refresh the directory list.
 5. After cloning the project you might see Gradle errors. I usually close out of Andriod Studio and open the project again to fix it.
+6. Must add MAPS_API_KEY=AIzaSyBMOUh18j-PtZfxLdCLxKWeiuwOGtbIMOU in local.properties for google maps api
+7. Build app first before running
 
 When I first downloaded the project my emulator didn't work correctly. I fixed this by downloading a new emulator, the Pixel 3 and it worked.
 
