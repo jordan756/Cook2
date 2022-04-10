@@ -219,8 +219,7 @@ public class Util {
         for (DocumentSnapshot doc : temp) {
             allCooks.add(doc.toObject(Cook.class));
         }
-        //System.out.println(allCooks.get(0).firstName + allCooks.get(1).firstName);
-
+        // System.out.println(allCooks.get(0).firstName + allCooks.get(1).firstName);
 
         return allCooks;
     }
@@ -264,6 +263,7 @@ public class Util {
 
     public static void editProfile(String key, String userType, HashMap<String, Object> map, FirebaseFirestore db) {
         // update Person
+        // adds more data to Person if user is Driver but it won't affect anything
         db.collection("Person").document(key)
                 .update(map)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {

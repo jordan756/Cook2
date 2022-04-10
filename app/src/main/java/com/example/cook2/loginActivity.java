@@ -71,30 +71,30 @@ public class loginActivity extends AppCompatActivity {
                                         Intent cookActivity = new Intent(loginActivity.this, CookMainActivity.class);
                                         cookActivity.putExtra("Cook", testCook);
                                         startActivity(cookActivity);
-                                        finish();
+                                        finishAffinity();
 
                                     } else if (userType.equals("Customer")) {
                                         Customer testCustomer = Util.getCustomer(user.getEmail() + user.getPassword(), db);
                                         Intent customerActivity = new Intent(loginActivity.this, CustomerMain.class);
                                         customerActivity.putExtra("Customer", testCustomer);
                                         startActivity(customerActivity);
-                                        finish();
+                                        finishAffinity();
 
                                     } else if (userType.equals("Driver")) {
                                         Driver testDriver = Util.getDriver(user.getEmail() + user.getPassword(), db);
                                         Intent driverActivity = new Intent(loginActivity.this, DriverMainActivity.class);
                                         driverActivity.putExtra("Driver", testDriver);
                                         startActivity(driverActivity);
-                                        finish();
+                                        finishAffinity();
                                     }
 
                                     return;
                                 }
+
                             } else {
                                 Log.d("firebaseQuery", "Error getting documents.", task.getException());
                                 emailInput.setError("Does not exist.");
                                 passwordInput.setError("Does not exist.");
-                                return;
                             }
                         }
                     });

@@ -174,14 +174,16 @@ public class DriverMainActivity extends AppCompatActivity {
         }
             arrayList2.add(x.summary2());
         }
-        //adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList2);
+        // adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList2);
         driverOrdersAcceptedList.setAdapter(adapter2);
 
     }
 
     public void profileButtonEvent(View view) {
         Intent profileActivity = new Intent(getApplicationContext(), DriverProfileActivity.class);
+        profileActivity.putExtra("Driver", driver);
         startActivity(profileActivity);
+        // finishAffinity();
     }
 
     public void getAddresses(View view) {

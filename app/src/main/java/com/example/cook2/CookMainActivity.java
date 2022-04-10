@@ -40,12 +40,12 @@ public class CookMainActivity extends AppCompatActivity {
         Button end_button = findViewById(R.id.end_button);
         Button orderDetailsBtn = findViewById(R.id.orderDetailsButton);
 
-        //String key = getIntent().getExtras().getString("key");
+//        String key = getIntent().getExtras().getString("key");
         cook = getIntent().getExtras().getParcelable("Cook");
-        //HAVE TO DO THIS TO GET UPDATED COOK FROM EDIT MENU
+//        HAVE TO DO THIS TO GET UPDATED COOK FROM EDIT MENU
         String key = cook.getKey();
         final DocumentReference docRef = db.collection("Cook").document(key);
-       // cook = Util.getCook(key,db);
+//        cook = Util.getCook(key,db);
         orders = Util.getAllOrders(cook.getOrders(),db);
         String temp;
         if (cook.open) {
@@ -55,8 +55,6 @@ public class CookMainActivity extends AppCompatActivity {
             temp = "Availibility: CLosed";
             changeStatus.setText(temp);
         }
-
-
 
         System.out.println(cook.getFirstName() + cook.getEmail() + "AGAGAGA");
         ArrayList<String> arrayList;
@@ -75,7 +73,6 @@ public class CookMainActivity extends AppCompatActivity {
         }
 
         cook.print();
-
         arrayList = new ArrayList<>();
         for(Order x : orders) {
             if (x.status.equals("unaccepted_cook") || x.status.equals("accepted_cook")) {
@@ -91,10 +88,8 @@ public class CookMainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 view.setSelected(true);
                 view.setBackgroundResource(R.drawable.select);
-
-
-                //System.out.println(position);
-                //System.out.println("bruh");
+//                System.out.println(position);
+//                System.out.println("bruh");
             }
         });
 
@@ -102,15 +97,16 @@ public class CookMainActivity extends AppCompatActivity {
 
         System.out.println(cook.getFirstName() + " " + cook.getLastName());
         System.out.println("size of list" + cook.getMenu().size());
-    //    System.out.println(cook.getMenu().get(3).name);
-     //   System.out.println(cook.getMenu().get(1).name);
+//        System.out.println(cook.getMenu().get(3).name);
+//        System.out.println(cook.getMenu().get(1).name);
 
-        /*backButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //System.print
-                System.out.println("floating button");
-            }
-        });*/
+//        backButton.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                //System.print
+//                System.out.println("floating button");
+//            }
+//        });
+
         start_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,9 +115,7 @@ public class CookMainActivity extends AppCompatActivity {
 
                     if (listView.isItemChecked(i)) {
                         String temp = listView.getItemAtPosition(i).toString();
-
                         String[] orderValues = temp.split("  -  ");
-
                         String id = (orderValues[2]);
                         System.out.println(id);
 
@@ -143,7 +137,6 @@ public class CookMainActivity extends AppCompatActivity {
                     if (x.status.equals("unaccepted_cook") || x.status.equals("accepted_cook")) {
                         arrayList.add(x.summary());
                     }
-
                 }
 
 
@@ -152,6 +145,7 @@ public class CookMainActivity extends AppCompatActivity {
                // Util.setCook(cook,db);
             }
         });
+
         changeStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -165,14 +159,12 @@ public class CookMainActivity extends AppCompatActivity {
                 } else {
                     String temp = "Availibility: Closed";
                     changeStatus.setText(temp);
-
                     System.out.println("UNCHECKED");
                     System.out.println("status:" + cook.open);
                 }
-        }
-
-
+            }
         });
+
         end_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -197,6 +189,7 @@ public class CookMainActivity extends AppCompatActivity {
                         }
                     }
                 }
+
                 arrayList.clear();
                 for(Order x : orders) {
                     if (x.status.equals("unaccepted_cook") || x.status.equals("accepted_cook")) {
@@ -204,7 +197,6 @@ public class CookMainActivity extends AppCompatActivity {
                     }
 
                 }
-
 
                 //adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
                 listView.setAdapter(adapter);
@@ -230,6 +222,7 @@ public class CookMainActivity extends AppCompatActivity {
                             ordersList.add("Dish: " + e.name + "\n" + "Cost: $" + e.cost + "\n" + "Time: " + e.estimatedCookTime.getHours() + "Hr " + e.estimatedCookTime.getMinutes() + "Min");
                             //System.out.println("name is: " + e.name);
                         }
+
                         Intent x = new Intent(view.getContext(), OrderDetailsActivity.class);
                         x.putExtra("DetailsList", ordersList);
                         startActivity(x);
@@ -239,6 +232,7 @@ public class CookMainActivity extends AppCompatActivity {
                 // System.out.println()
             }
         });
+
         //final DocumentReference docRef = db.collection("Cook").document(cook.getKey());
         docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override

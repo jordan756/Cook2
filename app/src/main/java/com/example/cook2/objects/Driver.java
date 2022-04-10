@@ -15,6 +15,7 @@ public class Driver extends Person implements Parcelable {
     private String vehicleMake;
     private String vehicleColor;
     private String vehiclePlate;
+    private String vehicleModel;
 
     public Driver() {
         orderIds = new ArrayList<>();
@@ -32,6 +33,7 @@ public class Driver extends Person implements Parcelable {
         vehicleMake = "test";
         vehicleColor = "test";
         vehiclePlate = "test";
+        vehicleModel = "test";
         orderIds = new ArrayList<>();
     }
 
@@ -51,6 +53,7 @@ public class Driver extends Person implements Parcelable {
         vehicleMake = "test";
         vehicleColor = "test";
         vehiclePlate = "test";
+        vehicleModel = "test";
     }
 
     public String getVehicleMake() {
@@ -61,6 +64,9 @@ public class Driver extends Person implements Parcelable {
     }
     public String getVehiclePlate() {
         return vehiclePlate;
+    }
+    public String getVehicleModel() {
+        return vehicleModel;
     }
     public ArrayList<String> getOrderIds() {
         return orderIds;
@@ -80,6 +86,7 @@ public class Driver extends Person implements Parcelable {
         vehicleMake = in.readString();
         vehicleColor = in.readString();
         vehiclePlate = in.readString();
+        vehicleModel = in.readString();
     }
 
     public static final Creator<Driver> CREATOR = new Creator<Driver>() {
@@ -110,11 +117,11 @@ public class Driver extends Person implements Parcelable {
         parcel.writeInt(numberOfRatings);
         parcel.writeString(phoneNumber);
         parcel.writeString(address);
+
         parcel.writeList(orderIds);
-
-
         parcel.writeString(vehicleMake);
         parcel.writeString(vehicleColor);
         parcel.writeString(vehiclePlate);
+        parcel.writeString(vehicleModel);
     }
 }

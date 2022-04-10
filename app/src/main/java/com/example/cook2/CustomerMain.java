@@ -33,7 +33,6 @@ public class CustomerMain extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_main);
-        Button viewCooks = findViewById(R.id.viewCooks);
         ListView listView = (ListView) findViewById(R.id.listOrders);
 
         customer = getIntent().getParcelableExtra("Customer");
@@ -50,15 +49,6 @@ public class CustomerMain extends AppCompatActivity {
 
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
         listView.setAdapter(adapter);
-
-        viewCooks.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(CustomerMain.this, CustomerViewCooksActivity.class);
-                i.putExtra("Customer",customer);
-                startActivity(i);
-            }
-        });
 
         db.collection("Order")
                 .whereEqualTo("customerKey", customer.getKey())
@@ -91,6 +81,13 @@ public class CustomerMain extends AppCompatActivity {
         Intent profileActivity = new Intent(v.getContext(), CustomerProfileActivity.class);
         profileActivity.putExtra("Customer", customer);
         startActivity(profileActivity);
-        finish();
+        // finishAffinity();
+    }
+
+    public void viewNearbyCooks(View v) {
+        Intent i = new Intent(CustomerMain.this, CustomerViewCooksActivity.class);
+        i.putExtra("Customer", customer);
+        startActivity(i);
+        // finishAffinity();
     }
 }

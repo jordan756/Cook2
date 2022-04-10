@@ -53,105 +53,124 @@
             android:background="#C64B2D">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/driverFN"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:hint="First Name"
                 android:background="@drawable/edges"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:paddingStart="10dp"/>
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/driverLN"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:hint="Last Name "
                 android:background="@drawable/edges"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:paddingStart="10dp"/>
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/driverPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:hint="Phone "
                 android:background="@drawable/edges"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:paddingStart="10dp"/>
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/driverAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="Email address "
+                android:hint="Address"
                 android:background="@drawable/edges"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:paddingStart="10dp"/>
 
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:hint="Password "-->
+<!--                android:background="@drawable/edges"-->
+<!--                android:textSize="25sp"-->
+<!--                android:paddingStart="10dp"/>-->
+
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/driverLicenseID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="Password "
+                android:hint="License Plate"
                 android:background="@drawable/edges"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:paddingStart="10dp"/>
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:hint="License Id # "
-                android:background="@drawable/edges"
-                android:textSize="25sp"
-                android:paddingStart="10dp"/>
-
-            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/driverVehicleMake"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:hint="Vehicle Make "
                 android:background="@drawable/edges"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:paddingStart="10dp"/>
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/driverVehicleModel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:hint="Vehicle Model"
                 android:background="@drawable/edges"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:paddingStart="10dp"/>
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/driverVehicleColor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:hint="Vehicle Color "
                 android:background="@drawable/edges"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:paddingStart="10dp" />
 
             <Button
+                android:id="@+id/driverUpdateButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#8d3620"
-                android:text="Current Deliveries"
+                android:text="Update"
                 android:textAllCaps="false"
                 android:textSize="16sp"
                 android:paddingStart="10dp"
-                android:onClick="currentDeliveries"/>
+                android:onClick="driverUpdate"/>
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/driverSignOutButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:backgroundTint="#8d3620"
-                android:text="change user"
+                android:text="Sign out"
                 android:paddingStart="10dp"
-                android:onClick="switchUser"/>
+                android:onClick="driverSignOut"/>
+
+            <Button
+                android:id="@+id/driverBackButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="#8d3620"
+                android:paddingStart="10dp"
+                android:text="Back"
+                android:onClick="driverProfileToMain" />
 
 
         </LinearLayout>

@@ -17,12 +17,8 @@ import java.util.HashMap;
 public class CustomerProfileActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Customer customer;
-    EditText fnInput;
-    EditText lnInput;
-    EditText phoneInput;
-    EditText addressInput;
-    String key, userType;
-    String firstName, lastName, phone, address;
+    EditText fnInput, lnInput, phoneInput, addressInput;
+    String key, userType, firstName, lastName, phone, address;
     HashMap<String, Object> map;
 
     @Override
@@ -76,13 +72,13 @@ public class CustomerProfileActivity extends AppCompatActivity {
     public void customerSignOut(View view) {
         Intent loginActivity = new Intent(view.getContext(), loginActivity.class);
         startActivity(loginActivity);
-        finish();
+        finishAffinity();
     }
 
     public void customerProfileToMain(View view) {
         Intent customerActivity = new Intent(view.getContext(), CustomerMain.class);
         customerActivity.putExtra("Customer", customer);
         startActivity(customerActivity);
-        finish();
+        finishAffinity();
     }
 }
