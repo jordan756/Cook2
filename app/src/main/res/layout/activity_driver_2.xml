@@ -143,8 +143,8 @@
                 android:layout_marginEnd="15dp"
                 android:layout_weight="1"
                 android:backgroundTint="#2f5a65"
-                android:text="Profile"
                 android:onClick="profileButtonEvent"
+                android:text="Profile"
                 android:textAllCaps="false" />
 
         </LinearLayout>

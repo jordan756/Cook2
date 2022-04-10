@@ -43,7 +43,7 @@ public class Util {
     public static void setOrder(Order order, FirebaseFirestore db) {
         db.collection("Order").document(order.orderKey).set(order);
     }
-    public static void removeOrder(Order order, FirebaseFirestore db) {
+    public static void removeOrder(Order order,Driver driver, FirebaseFirestore db) {
         System.out.println("removing order");
         db.collection("Order").document(order.orderKey)
                 .delete()
@@ -51,6 +51,7 @@ public class Util {
                     @Override
                     public void onSuccess(Void aVoid) {
                         //Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                        System.out.println("Order removed");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -59,8 +60,32 @@ public class Util {
                         //og.w(TAG, "Error deleting document", e);
                     }
                 });
-        db.collection("Cook").document(order.cookKey).update("orders" , FieldValue.arrayRemove(order.orderKey));
-        db.collection("Customer").document(order.cookKey).update("orders" , FieldValue.arrayRemove(order.orderKey));
+        db.collection("Cook").document(order.cookKey).update("orders" , FieldValue.arrayRemove(order.orderKey)).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                System.out.println("cook remove order");
+            }
+        });
+        db.collection("Customer").document(order.customerKey).update("orders" , FieldValue.arrayRemove(order.orderKey)).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                System.out.println("Customer remove order");
+            }
+        });
+        db.collection("Driver").document(driver.getKey()).update("orderIds" , FieldValue.arrayRemove(order.orderKey)).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                System.out.println("Driver remove order");
+            }
+        });
+
+        //try {
+        //    Thread.sleep(2000);
+        //} catch (Exception e) {
+
+        //}
+
+        System.out.println("do success listeners force sync = NO");
     }
 
     public static Customer getCustomer(String key, FirebaseFirestore db) {
