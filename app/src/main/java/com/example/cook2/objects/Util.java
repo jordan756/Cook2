@@ -23,6 +23,7 @@ import com.google.firebase.firestore.model.Document;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 public class Util {
@@ -32,17 +33,22 @@ public class Util {
         db.collection("Cook").document(cook.getKey()).set(cook);
     }
 
+
     public static void setCustomer(Customer customer, FirebaseFirestore db) {
         db.collection("Customer").document(customer.getKey()).set(customer);
     }
+
 
     public static void setDriver(Driver driver, FirebaseFirestore db) {
         db.collection("Driver").document(driver.getKey()).set(driver);
     }
 
+
     public static void setOrder(Order order, FirebaseFirestore db) {
         db.collection("Order").document(order.orderKey).set(order);
     }
+
+
     public static void removeOrder(Order order,Driver driver, FirebaseFirestore db) {
         System.out.println("removing order");
         db.collection("Order").document(order.orderKey)
@@ -60,24 +66,33 @@ public class Util {
                         //og.w(TAG, "Error deleting document", e);
                     }
                 });
-        db.collection("Cook").document(order.cookKey).update("orders" , FieldValue.arrayRemove(order.orderKey)).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                System.out.println("cook remove order");
-            }
-        });
-        db.collection("Customer").document(order.customerKey).update("orders" , FieldValue.arrayRemove(order.orderKey)).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                System.out.println("Customer remove order");
-            }
-        });
-        db.collection("Driver").document(driver.getKey()).update("orderIds" , FieldValue.arrayRemove(order.orderKey)).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                System.out.println("Driver remove order");
-            }
-        });
+
+        db.collection("Cook").document(order.cookKey)
+                .update("orders" , FieldValue.arrayRemove(order.orderKey))
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        System.out.println("cook remove order");
+                    }
+                });
+
+        db.collection("Customer").document(order.customerKey)
+                .update("orders" , FieldValue.arrayRemove(order.orderKey))
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        System.out.println("Customer remove order");
+                    }
+                });
+
+        db.collection("Driver").document(driver.getKey())
+                .update("orderIds" , FieldValue.arrayRemove(order.orderKey))
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        System.out.println("Driver remove order");
+                    }
+                });
 
         //try {
         //    Thread.sleep(2000);
@@ -87,6 +102,7 @@ public class Util {
 
         System.out.println("do success listeners force sync = NO");
     }
+
 
     public static Customer getCustomer(String key, FirebaseFirestore db) {
         Task<DocumentSnapshot> temp = null;
@@ -106,6 +122,7 @@ public class Util {
         return customer;
     }
 
+
     //Might pause program getting results, will need threading
     public static Cook getCook(String key, FirebaseFirestore db) {
         Task<DocumentSnapshot> temp = null;
@@ -123,6 +140,7 @@ public class Util {
         return cook;
     }
 
+
     public static Driver getDriver(String key, FirebaseFirestore db) {
         Task<DocumentSnapshot> temp = null;
         while(temp == null) {
@@ -138,6 +156,7 @@ public class Util {
         Driver driver = temp2.toObject(Driver.class);
         return driver;
     }
+
 
     public static Order getOrder(String key, FirebaseFirestore db) {
         Task<DocumentSnapshot> temp = null;
@@ -157,6 +176,7 @@ public class Util {
         return order;
     }
 
+
     public static ArrayList<Order> getAllOrders(ArrayList<String> orderKeys,FirebaseFirestore db) {
         ArrayList<Order> allOrders = new ArrayList<>();
         for (String temp: orderKeys) {
@@ -164,6 +184,7 @@ public class Util {
         }
         return allOrders;
     }
+
 
     public static ArrayList<Order> getAllOrdersOpen(FirebaseFirestore db) {
         ArrayList<Order> allOrders = new ArrayList<>();
@@ -180,6 +201,7 @@ public class Util {
 
         return allOrders;
     }
+
 
     public static ArrayList<Cook> getAllCooks(FirebaseFirestore db) {
         ArrayList<Cook> allCooks = new ArrayList<>();
@@ -202,6 +224,8 @@ public class Util {
 
         return allCooks;
     }
+
+
     public static void createFood(Food food, FirebaseFirestore db) {
         db.collection("Food")
                 .add(food)
@@ -219,6 +243,7 @@ public class Util {
                 });
     }
 
+
     public static void createOrder(Order order1, FirebaseFirestore db) {
         db.collection("Order")
                 .add(order1)
@@ -232,6 +257,43 @@ public class Util {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.w("fbSuccess", "Error adding document", e);
+                    }
+                });
+    }
+
+
+    public static void editProfile(String key, String userType, HashMap<String, Object> map, FirebaseFirestore db) {
+        // update Person
+        db.collection("Person").document(key)
+                .update(map)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("Util", "DocumentSnapshot successfully updated!");
+                    }
+                })
+
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("Util", "Error updating document", e);
+                    }
+                });
+
+        // update userType
+        db.collection(userType).document(key)
+                .update(map)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("Util", "DocumentSnapshot successfully updated!");
+                    }
+                })
+
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("Util", "Error updating document", e);
                     }
                 });
     }

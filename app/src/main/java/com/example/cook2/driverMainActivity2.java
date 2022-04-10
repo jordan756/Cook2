@@ -108,10 +108,10 @@ public class driverMainActivity2 extends AppCompatActivity {
                 driver.getOrderIds().add(order.orderKey);
 
                 // update list item status string
-//                orderValues[1] = order.getStatus();
-                //orderValues[1] = "accepted_driver";
-                //String updatedTemp = TextUtils.join("  -  ", orderValues);
-                //arrayList2.add(order.summary2());
+                // orderValues[1] = order.getStatus();
+                // orderValues[1] = "accepted_driver";
+                // String updatedTemp = TextUtils.join("  -  ", orderValues);
+                // arrayList2.add(order.summary2());
             }
         }
         Util.setDriver(driver,db);

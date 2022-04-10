@@ -115,6 +115,7 @@
             android:layout_marginEnd="15dp"
             android:backgroundTint="#b0381c"
             android:text="Profile"
+            android:onClick="cookProfileEvent"
             android:textAllCaps="false" />
 
         <Button

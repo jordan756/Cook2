@@ -18,10 +18,7 @@ import com.example.cook2.objects.Driver;
 import com.example.cook2.objects.Person;
 import com.example.cook2.objects.Util;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -71,21 +68,24 @@ public class loginActivity extends AppCompatActivity {
 
                                     if (userType.equals("Cook")) {
                                         Cook testCook = Util.getCook(user.getEmail() + user.getPassword(), db);
-                                        Intent cookActivity = new Intent(loginActivity.this, MainActivity.class);
+                                        Intent cookActivity = new Intent(loginActivity.this, CookMainActivity.class);
                                         cookActivity.putExtra("Cook", testCook);
                                         startActivity(cookActivity);
+                                        finish();
 
                                     } else if (userType.equals("Customer")) {
                                         Customer testCustomer = Util.getCustomer(user.getEmail() + user.getPassword(), db);
                                         Intent customerActivity = new Intent(loginActivity.this, CustomerMain.class);
                                         customerActivity.putExtra("Customer", testCustomer);
                                         startActivity(customerActivity);
+                                        finish();
 
                                     } else if (userType.equals("Driver")) {
                                         Driver testDriver = Util.getDriver(user.getEmail() + user.getPassword(), db);
                                         Intent driverActivity = new Intent(loginActivity.this, driverMainActivity2.class);
                                         driverActivity.putExtra("Driver", testDriver);
                                         startActivity(driverActivity);
+                                        finish();
                                     }
 
                                     return;
@@ -104,5 +104,6 @@ public class loginActivity extends AppCompatActivity {
     public void createAccount(View v) {
         Intent registerScreen = new Intent(v.getContext(), registerActivity.class);
         startActivity(registerScreen);
+        finish();
     }
 }

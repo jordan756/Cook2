@@ -1,6 +1,5 @@
 package com.example.cook2;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,9 +13,6 @@ import com.example.cook2.objects.Cook;
 import com.example.cook2.objects.Customer;
 import com.example.cook2.objects.Driver;
 import com.example.cook2.objects.Util;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -91,9 +87,10 @@ public class registerActivity extends AppCompatActivity {
             db.collection("Person").document(key).set(myDoc);
             Cook cook = new Cook(myDoc);
             Util.setCook(cook, db);
-            Intent cookActivity = new Intent(v.getContext(), MainActivity.class);
+            Intent cookActivity = new Intent(v.getContext(), CookMainActivity.class);
             cookActivity.putExtra("Cook", cook);
             startActivity(cookActivity);
+            finish();
         }
     }
 
@@ -109,6 +106,7 @@ public class registerActivity extends AppCompatActivity {
             Intent customerActivity = new Intent(v.getContext(), CustomerMain.class);
             customerActivity.putExtra("Customer",customer);
             startActivity(customerActivity);
+            finish();
         }
     }
 
@@ -124,6 +122,7 @@ public class registerActivity extends AppCompatActivity {
             Intent driverActivity = new Intent(v.getContext(), driverMainActivity2.class);
             driverActivity.putExtra("Driver",driver);
             startActivity(driverActivity);
+            finish();
         }
     }
 }

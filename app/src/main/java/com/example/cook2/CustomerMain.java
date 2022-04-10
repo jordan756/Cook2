@@ -27,27 +27,29 @@ import java.util.ArrayList;
 public class CustomerMain extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private Customer customer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_main);
-
         Button viewCooks = findViewById(R.id.viewCooks);
+        ListView listView = (ListView) findViewById(R.id.listOrders);
+
         customer = getIntent().getParcelableExtra("Customer");
         customer = Util.getCustomer(customer.getKey(),db);
-        ArrayList<Order> orders = Util.getAllOrders(customer.getOrders(),db);
+        Log.d("cust", "Name: " + customer.getFirstName());
 
+        ArrayList<Order> orders = Util.getAllOrders(customer.getOrders(), db);
         ArrayList<String> arrayList = new ArrayList<>();
         ArrayAdapter<String> adapter;
 
-        ListView listView = (ListView) findViewById(R.id.listOrders);
         for (Order order : orders) {
             arrayList.add(order.summary());
         }
+
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
         listView.setAdapter(adapter);
-
-
 
         viewCooks.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,29 +67,30 @@ public class CustomerMain extends AppCompatActivity {
                     public void onEvent(@Nullable QuerySnapshot value,
                                         @Nullable FirebaseFirestoreException e) {
                         if (e != null) {
-                           // Log.w(TAG, "Listen failed.", e);
                             return;
                         }
 
                         ArrayList<Order> orders = new ArrayList<>();
                         for (QueryDocumentSnapshot doc : value) {
-                          //  if (doc.get("name") != null) {
                                 orders.add(doc.toObject(Order.class));
-                               // orders.add(doc.getString("name"));
-                          //  }
                         }
+
                         arrayList.clear();
                         for (Order order : orders) {
                             arrayList.add(order.summary());
                         }
+
                         listView.setAdapter(adapter);
-                        //Log.d(TAG, "Current cites in CA: " + cities);
-
-
                     }
                 });
 
     }
 
 
+    public void customerProfile(View v) {
+        Intent profileActivity = new Intent(v.getContext(), CustomerProfileActivity.class);
+        profileActivity.putExtra("Customer", customer);
+        startActivity(profileActivity);
+        finish();
+    }
 }

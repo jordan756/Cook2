@@ -4,23 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.ToggleButton;
 
 import com.example.cook2.objects.Cook;
-import com.example.cook2.objects.Customer;
 import com.example.cook2.objects.Food;
 import com.example.cook2.objects.Order;
 import com.example.cook2.objects.Util;
 //import com.example.cook2.ui.login.LoginActivity;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.annotations.Nullable;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -29,9 +23,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class MainActivity extends AppCompatActivity {
+// cook main activity
+public class CookMainActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Cook cook;
     Order order;
@@ -40,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_cook_main);
         Button changeStatus = findViewById((R.id.toggleButton));
         Button start_button = findViewById(R.id.start_button);
         Button end_button = findViewById(R.id.end_button);
@@ -289,5 +283,11 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, CookUpdateMenu.class);
         i.putExtra("Cook",cook);
         startActivity(i);
+    }
+
+    public void cookProfileEvent(View v) {
+//        Intent i = new Intent(this, CookProfile.class);
+//        i.putExtra("Cook",cook);
+//        startActivity(i);
     }
 }
