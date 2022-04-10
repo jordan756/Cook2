@@ -119,7 +119,7 @@ public class registerActivity extends AppCompatActivity {
             db.collection("Person").document(key).set(myDoc);
             Driver driver = new Driver(myDoc);
             Util.setDriver(driver, db);
-            Intent driverActivity = new Intent(v.getContext(), driverMainActivity2.class);
+            Intent driverActivity = new Intent(v.getContext(), DriverMainActivity.class);
             driverActivity.putExtra("Driver",driver);
             startActivity(driverActivity);
             finish();

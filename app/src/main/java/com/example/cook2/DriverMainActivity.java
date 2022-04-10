@@ -12,16 +12,14 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.cook2.objects.Cook;
 import com.example.cook2.objects.Driver;
-import com.example.cook2.objects.Food;
 import com.example.cook2.objects.Order;
 import com.example.cook2.objects.Util;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
-public class driverMainActivity2 extends AppCompatActivity {
+public class DriverMainActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Button button1, button2, button3, button4;
     TextView addressText;
@@ -37,7 +35,7 @@ public class driverMainActivity2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_driver_2);
+        setContentView(R.layout.activity_driver_main);
 
         button1 = findViewById(R.id.addToOrder);
         button2 = findViewById(R.id.startOrder);
@@ -182,7 +180,7 @@ public class driverMainActivity2 extends AppCompatActivity {
     }
 
     public void profileButtonEvent(View view) {
-        Intent profileActivity = new Intent(getApplicationContext(), driverMainActivity.class);
+        Intent profileActivity = new Intent(getApplicationContext(), DriverProfileActivity.class);
         startActivity(profileActivity);
     }
 

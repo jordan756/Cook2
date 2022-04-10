@@ -82,7 +82,7 @@ public class loginActivity extends AppCompatActivity {
 
                                     } else if (userType.equals("Driver")) {
                                         Driver testDriver = Util.getDriver(user.getEmail() + user.getPassword(), db);
-                                        Intent driverActivity = new Intent(loginActivity.this, driverMainActivity2.class);
+                                        Intent driverActivity = new Intent(loginActivity.this, DriverMainActivity.class);
                                         driverActivity.putExtra("Driver", testDriver);
                                         startActivity(driverActivity);
                                         finish();

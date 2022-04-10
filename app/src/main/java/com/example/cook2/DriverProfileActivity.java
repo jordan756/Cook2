@@ -5,16 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.TextView;
 
-import java.security.Key;
-
-public class driverMainActivity extends AppCompatActivity {
+public class DriverProfileActivity extends AppCompatActivity {
 
     EditText  firstName, lastName, phoneNumber, email, password, vMake, vColor, vPlate;
     Button cdeliveryButton;
@@ -27,7 +23,7 @@ public class driverMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_driver_1);
+        setContentView(R.layout.activity_driver_profile);
 
         //initialize (xml)
 //        firstName = findViewById(R.id.firstName);
