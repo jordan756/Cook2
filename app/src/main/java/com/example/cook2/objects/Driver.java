@@ -82,6 +82,7 @@ public class Driver extends Person implements Parcelable {
         numberOfRatings = in.readInt();
         phoneNumber = in.readString();
         address = in.readString();
+
         orderIds = in.readArrayList(String.class.getClassLoader());
         vehicleMake = in.readString();
         vehicleColor = in.readString();
