@@ -122,6 +122,10 @@ public class CookMainActivity extends AppCompatActivity {
 //        Intent i = new Intent(this, CookProfile.class);
 //        i.putExtra("Cook",cook);
 //        startActivity(i);
+        // temp log out
+        Intent loginActivity = new Intent(v.getContext(), loginActivity.class);
+        startActivity(loginActivity);
+        finishAffinity();
     }
 
 
