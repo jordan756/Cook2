@@ -28,6 +28,7 @@ public class Order implements Parcelable {
     private static final DecimalFormat df = new DecimalFormat("0.00");
     public String cookKey;
     public String customerKey;
+    public String driverKey;
     public String orderKey;
     public ArrayList<Food> foods;
     public Date estimated_total_time;
@@ -42,6 +43,7 @@ public class Order implements Parcelable {
         customerKey = customer.getKey();
         this.foods = new ArrayList<>();
         status = "unaccepted_cook";
+        driverKey = "NA";
     }
 
 
@@ -81,12 +83,12 @@ public class Order implements Parcelable {
 
     public String getAddresses() {
         String address;
-        address = getCookAddresses() + " " + getCustomerAddresses();
+        address = getCookAddress() + " " + getCustomerAddress();
         return address;
     }
 
 
-    public String getCookAddresses() {
+    public String getCookAddress() {
         String address;
         Task<DocumentSnapshot> temp = null;
         while(temp == null) {
@@ -106,11 +108,34 @@ public class Order implements Parcelable {
     }
 
 
-    public String getCustomerAddresses() {
+    public String getCustomerAddress() {
         String address;
         Task<DocumentSnapshot> temp = null;
         while(temp == null) {
             temp = db.collection("Customer").document(customerKey).get();
+        }
+
+        while(!temp.isComplete()) {}
+
+        DocumentSnapshot temp2 = temp.getResult();
+        if (!temp2.exists()) {
+            return null;
+        }
+
+        Object temp3 = temp2.get("address");
+        address = String.valueOf(temp3);
+        return address;
+    }
+
+    public String getDriverAddress() {
+        if (driverKey.isEmpty()) {
+            return null;
+        }
+
+        String address;
+        Task<DocumentSnapshot> temp = null;
+        while(temp == null) {
+            temp = db.collection("Driver").document(driverKey).get();
         }
 
         while(!temp.isComplete()) {}
@@ -162,7 +187,12 @@ public class Order implements Parcelable {
     public void setStatus(String status) {
         this.status = status;
     }
-
+    public String getDriverKey() {
+        return driverKey;
+    }
+    public void setDriverKey(String driverKey) {
+        this.driverKey = driverKey;
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     protected Order(Parcel in) {
@@ -172,6 +202,7 @@ public class Order implements Parcelable {
         orderKey = in.readString();
         cookKey = in.readString();
         customerKey = in.readString();
+        driverKey = in.readString();
     }
 
 
@@ -204,6 +235,7 @@ public class Order implements Parcelable {
         parcel.writeString(orderKey);
         parcel.writeString(cookKey);
         parcel.writeString(customerKey);
+        parcel.writeString(driverKey);
     }
 
 

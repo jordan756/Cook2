@@ -81,17 +81,17 @@ public class CustomerViewMenu extends AppCompatActivity {
             return;
         }
 
-        cook = Util.getCook(cook.getKey(),db);
+        cook = Util.getCook(cook.getKey(), db);
         order.status = "unaccepted_cook";
         order.orderKey = cook.getKey() + cook.amount_sold;
         cook.amount_sold = cook.amount_sold + 1;
         cook.getOrders().add(order.orderKey);
         customer.getOrders().add(order.orderKey);
-        Util.setOrder(order,db);
-        Util.setCook(cook,db);
-        Util.setCustomer(customer,db);
+        Util.setOrder(order, db);
+        Util.setCook(cook, db);
+        Util.setCustomer(customer, db);
         Intent i = new Intent(CustomerViewMenu.this, CustomerMain.class);
-        i.putExtra("Customer",customer);
+        i.putExtra("Customer", customer);
         startActivity(i);
         finishAffinity();
     }

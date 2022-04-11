@@ -85,6 +85,7 @@ public class DriverMainActivity extends AppCompatActivity {
         });
     }
 
+
     public void startOrder(View view) {
         for (int i = 0; i < driverOrdersList.getCount(); i++) {
             if (driverOrdersList.isItemChecked(i)) {
@@ -92,6 +93,7 @@ public class DriverMainActivity extends AppCompatActivity {
                 String[] orderValues = temp.split("  -  ");
                 String orderKey = orderValues[2];
                 Order order = Util.getOrder(orderKey, db);
+                order.setDriverKey(driver.getKey());
                 order.updateStatus();
                 Util.setOrder(order, db);
                 driver.getOrderIds().add(order.orderKey);
@@ -118,6 +120,7 @@ public class DriverMainActivity extends AppCompatActivity {
         driverOrdersAcceptedList.setAdapter(adapter2);
     }
 
+
     public void endOrder(View view) {
         for (int i = 0; i < driverOrdersAcceptedList.getCount(); i++) {
             if (driverOrdersAcceptedList.isItemChecked(i)) {
@@ -125,11 +128,11 @@ public class DriverMainActivity extends AppCompatActivity {
                 String[] orderValues = temp.split("  -  ");
                 String orderKey = orderValues[2];
                 Order order = Util.getOrder(orderKey, db);
-                Util.removeOrder(order,driver,db);
+                Util.removeOrder(order, driver, db);
             }
         }
 
-        orders2 = Util.getAllOrders(driver.getOrderIds(),db);
+        orders2 = Util.getAllOrders(driver.getOrderIds(), db);
         arrayList2.clear();
         for (Order x : orders2) {
             if (x == null) {
@@ -140,12 +143,14 @@ public class DriverMainActivity extends AppCompatActivity {
         driverOrdersAcceptedList.setAdapter(adapter2);
     }
 
+
     public void profileButtonEvent(View view) {
         Intent profileActivity = new Intent(getApplicationContext(), DriverProfileActivity.class);
         profileActivity.putExtra("Driver", driver);
         startActivity(profileActivity);
         // finishAffinity();
     }
+
 
     public void getAddresses(View view) {
         for (int i = 0; i < driverOrdersList.getCount(); i++) {
@@ -168,6 +173,4 @@ public class DriverMainActivity extends AppCompatActivity {
             }
         }
     }
-
 }
-
