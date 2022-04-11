@@ -58,6 +58,17 @@
         android:paddingBottom="20dp">
 
         <Button
+            android:id="@+id/button11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:backgroundTint="#2f5a65"
+            android:text="Order Details"
+            android:onClick="customerOrderDetails"
+            android:textAllCaps="false" />
+
+        <Button
             android:id="@+id/button2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

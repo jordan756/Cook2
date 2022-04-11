@@ -206,7 +206,7 @@ public class CookMainActivity extends AppCompatActivity {
                             + e.estimatedCookTime.getMinutes() + "Min");
                 }
 
-                Intent x = new Intent(v.getContext(), OrderDetailsActivity.class);
+                Intent x = new Intent(v.getContext(), CookOrderDetailsActivity.class);
                 x.putExtra("DetailsList", ordersList);
                 startActivity(x);
                 break;

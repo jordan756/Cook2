@@ -73,7 +73,6 @@ public class CustomerMain extends AppCompatActivity {
                         listView.setAdapter(adapter);
                     }
                 });
-
     }
 
 
@@ -89,5 +88,11 @@ public class CustomerMain extends AppCompatActivity {
         i.putExtra("Customer", customer);
         startActivity(i);
         // finishAffinity();
+    }
+
+    public void customerOrderDetails(View v) {
+        Intent i = new Intent(CustomerMain.this, CustomerOrderDetailsActivity.class);
+        i.putExtra("Customer", customer);
+        startActivity(i);
     }
 }
