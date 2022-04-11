@@ -110,6 +110,7 @@ public class CookMainActivity extends AppCompatActivity {
         });
     }
 
+
     public void editMenu(View v) {
         Intent i = new Intent(this, CookUpdateMenu.class);
         i.putExtra("Cook",cook);
@@ -189,6 +190,7 @@ public class CookMainActivity extends AppCompatActivity {
             changeStatus.setText(temp);
         }
     }
+
 
     public void cookOrderDetails(View v) {
         for (int i = 0; i < listView.getCount(); i++) {

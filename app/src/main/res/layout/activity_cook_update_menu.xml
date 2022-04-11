@@ -109,6 +109,15 @@
             android:textAllCaps="false"
             android:onClick="deleteMenuItem"
             android:text="Delete Menu Item" />
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#2f5a65"
+            android:textAllCaps="false"
+            android:onClick="cookMenuToMain"
+            android:text="Back" />
     </LinearLayout>
 </LinearLayout>
 
