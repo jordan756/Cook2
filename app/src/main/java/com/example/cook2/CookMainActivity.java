@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,13 +25,17 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 // cook main activity
 public class CookMainActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Cook cook;
     Order order;
-    ArrayList<Order> orders;
+    ArrayList<Order> orders; //THREADING
+    ArrayList<String> arrayList;// = new ArrayList<>(); //NOW A VECTOR TO BE THREAD SAFE
+    ListView listView;
+    ArrayAdapter<String> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -39,14 +45,19 @@ public class CookMainActivity extends AppCompatActivity {
         Button start_button = findViewById(R.id.start_button);
         Button end_button = findViewById(R.id.end_button);
         Button orderDetailsBtn = findViewById(R.id.orderDetailsButton);
-
+        listView = (ListView) findViewById(R.id.listOrders);
+        listView.setItemsCanFocus(false);
         //String key = getIntent().getExtras().getString("key");
         cook = getIntent().getExtras().getParcelable("Cook");
         //HAVE TO DO THIS TO GET UPDATED COOK FROM EDIT MENU
         String key = cook.getKey();
         final DocumentReference docRef = db.collection("Cook").document(key);
        // cook = Util.getCook(key,db);
-        orders = Util.getAllOrders(cook.getOrders(),db);
+
+
+
+
+
         String temp;
         if (cook.open) {
             temp = "Availibility: Open";
@@ -57,15 +68,15 @@ public class CookMainActivity extends AppCompatActivity {
         }
 
 
+         //updateOrders();   //THREADDDD
 
-        System.out.println(cook.getFirstName() + cook.getEmail() + "AGAGAGA");
-        ArrayList<String> arrayList;
-        ArrayAdapter<String> adapter;
+        //ArrayList<String> arrayList;
 
-        ListView listView = (ListView) findViewById(R.id.listOrders);
+
+
 
         //listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        listView.setItemsCanFocus(false);
+
 
         String[] items = {"Example Order 1 (When we get database, we can remove these)", "Example Order 2", "Example Order 3"};
        // arrayList = new ArrayList<>(Arrays.asList(items));
@@ -77,14 +88,22 @@ public class CookMainActivity extends AppCompatActivity {
         cook.print();
 
         arrayList = new ArrayList<>();
+        /*
+        ///orders = Util.getAllOrders(cook.getOrders(),db);
         for(Order x : orders) {
             if (x.status.equals("unaccepted_cook") || x.status.equals("accepted_cook")) {
                 arrayList.add(x.summary());
             }
         }
 
+         */
+
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
         listView.setAdapter(adapter);
+        //System.out.println(listView);
+        //System.out.println(adapter);
+        //updateOrders(); // MULTITHREADED
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -260,7 +279,9 @@ public class CookMainActivity extends AppCompatActivity {
                     cook = snapshot.toObject(Cook.class);
 
                     System.out.println(cook.getFirstName());
-
+                    updateOrders();
+                    // WILL REPLACE WILL THREADED VERSION
+                    /*
                     orders = Util.getAllOrders(cook.getOrders(),db);
                     arrayList.clear();
                     for(Order x : orders) {
@@ -268,6 +289,8 @@ public class CookMainActivity extends AppCompatActivity {
                             arrayList.add(x.summary());
                         }
                     }
+                    */
+
                     listView.setAdapter(adapter);
                     //  Log.d(TAG, source + " data: " + snapshot.getData());
                 } else {
@@ -276,6 +299,55 @@ public class CookMainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+    //private void
+
+    private synchronized void updateOrders()  { ////THREADING
+        new Thread() {
+            public void run() {
+                try {
+                    Handler mainHandler = new Handler(Looper.getMainLooper());
+                    System.out.println(mainHandler);
+
+
+                    for (int i = 5; i < 8; i++) {
+                        Thread.sleep(1000);
+                        System.out.println(i);
+                    }
+                    orders = Util.getAllOrders(cook.getOrders(),db);
+                    //arrayList = new ArrayList<>();
+                    arrayList.clear();
+
+                    System.out.println(listView);
+                    System.out.println(adapter);
+
+                    for(Order x : orders) {
+                        System.out.println("loop" + x.summary());
+                        if (x.status.equals("unaccepted_cook") || x.status.equals("accepted_cook")) {
+                            arrayList.add(x.summary());
+                        }
+
+                    }
+
+                    mainHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            listView.setAdapter(adapter);
+                        }
+                    });
+                    for (int i = 0; i < 3; i++) {
+                        Thread.sleep(1000);
+                        System.out.println(i);
+                    }
+                    System.out.println("blah");
+
+
+
+                } catch (Exception e) {
+                    System.out.println("Update ORDERS FAILED" + e);
+                }
+            }
+        }.start();
     }
 
     public void editMenu(View v) {
