@@ -64,21 +64,25 @@ public class CookMainActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listOrders);
         listView.setItemsCanFocus(false);
 
+        arrayList = new ArrayList<>();
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
+        listView.setAdapter(adapter);
+
         if (cook.getOrders() == null) {
             System.out.println("NULL ORDERS");
             return;
         }
 
         cook.print();
-        arrayList = new ArrayList<>();
+        /*
+
         for(Order x : orders) {
             if (x.status.equals("unaccepted_cook") || x.status.equals("accepted_cook")) {
                 arrayList.add(x.summary());
             }
         }
+        */
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
-        listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -217,32 +221,38 @@ public class CookMainActivity extends AppCompatActivity {
     private synchronized void updateOrders()  {
         new Thread() {
             public void run() {
+
+
                 try {
                     Handler mainHandler = new Handler(Looper.getMainLooper());
-
+                    /*
                     for (int i = 5; i < 8; i++) {
                         Thread.sleep(1000);
-                    }
+                    }*/
 
                     orders = Util.getAllOrders(cook.getOrders(),db);
-                    arrayList.clear();
+                    //arrayList.clear();
 
+                    //need to test if new incoming orders effect what the user has selected
                     for(Order x : orders) {
                         if (x.status.equals("unaccepted_cook") || x.status.equals("accepted_cook")) {
-                            arrayList.add(x.summary());
+                            if (!arrayList.contains(x.summary())) {
+                                arrayList.add(x.summary());
+                            }
                         }
                     }
 
                     mainHandler.post(new Runnable() {
                         @Override
                         public void run() {
-                            listView.setAdapter(adapter);
+                            //listView.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
                         }
                     });
-
+                    /*
                     for (int i = 0; i < 3; i++) {
                         Thread.sleep(1000);
-                    }
+                    }*/
 
                 } catch (Exception e) {
                     System.out.println("Update ORDERS FAILED" + e);
