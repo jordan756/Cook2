@@ -51,7 +51,7 @@ public class CookMainActivity extends AppCompatActivity {
         cook = getIntent().getExtras().getParcelable("Cook");
         key = cook.getKey();
         final DocumentReference docRef = db.collection("Cook").document(key);
-        orders = Util.getAllOrders(cook.getOrders(),db);
+       //orders = Util.getAllOrders(cook.getOrders(),db);
 
         if (cook.open) {
             temp = "Availability: Open";
@@ -128,56 +128,62 @@ public class CookMainActivity extends AppCompatActivity {
 
 
     public void startOrderEvent(View v) {
-        for (int i = 0; i < listView.getCount(); i++) {
-            if (listView.isItemChecked(i)) {
-                temp = listView.getItemAtPosition(i).toString();
-                orderValues = temp.split("  -  ");
-                id = (orderValues[2]);
-                for (Order order: orders) {
-                    if (order.orderKey.equals(id)) {
-                        if (order.status.equals("unaccepted_cook")) {
-                            order.updateStatus();
-                            Util.setOrder(order,db);
+        synchronized (this) {
+           // sleeper();
+            for (int i = 0; i < listView.getCount(); i++) {
+                if (listView.isItemChecked(i)) {
+                    temp = listView.getItemAtPosition(i).toString();
+                    orderValues = temp.split("  -  ");
+                    id = (orderValues[2]);
+                    for (Order order : orders) {
+                        if (order.orderKey.equals(id)) {
+                            if (order.status.equals("unaccepted_cook")) {
+                                order.updateStatus();
+                                Util.setOrder(order, db);
+                            }
                         }
                     }
                 }
             }
-        }
 
-        arrayList.clear();
-        for(Order x : orders) {
-            if (x.status.equals("unaccepted_cook") || x.status.equals("accepted_cook")) {
-                arrayList.add(x.summary());
+            arrayList.clear();
+            for (Order x : orders) {
+                if (x.status.equals("unaccepted_cook") || x.status.equals("accepted_cook")) {
+                    arrayList.add(x.summary());
+                }
             }
+            listView.setAdapter(adapter);
         }
-        listView.setAdapter(adapter);
     }
 
 
     public void endOrderEvent(View v) {
-        for (int i = 0; i < listView.getCount(); i++) {
-            if (listView.isItemChecked(i)) {
-                temp = listView.getItemAtPosition(i).toString();
-                orderValues = temp.split("  -  ");
-                id = (orderValues[2]);
-                for (Order order: orders) {
-                    if (order.orderKey.equals(id)) {
-                        if (order.status.equals("accepted_cook")) {
-                            order.updateStatus();
-                            Util.setOrder(order, db);
+        synchronized (this) {
+            //sleeper();
+            for (int i = 0; i < listView.getCount(); i++) {
+                if (listView.isItemChecked(i)) {
+                    temp = listView.getItemAtPosition(i).toString();
+                    orderValues = temp.split("  -  ");
+                    id = (orderValues[2]);
+                    for (Order order : orders) {
+                        if (order.orderKey.equals(id)) {
+                            if (order.status.equals("accepted_cook")) {
+                                order.updateStatus();
+                                Util.setOrder(order, db);
+                            }
                         }
                     }
                 }
             }
-        }
 
-        arrayList.clear();
-        for(Order x : orders) {
-            if (x.status.equals("unaccepted_cook") || x.status.equals("accepted_cook")) {
-                arrayList.add(x.summary());
+            arrayList.clear();
+            for (Order x : orders) {
+                if (x.status.equals("unaccepted_cook") || x.status.equals("accepted_cook")) {
+                    arrayList.add(x.summary());
+                }
             }
+            listView.setAdapter(adapter);
         }
-        listView.setAdapter(adapter);
     }
 
 
@@ -218,46 +224,50 @@ public class CookMainActivity extends AppCompatActivity {
 
 
     // THREADING METHOD
-    private synchronized void updateOrders()  {
+    private void updateOrders()  {
         new Thread() {
             public void run() {
 
-
-                try {
-                    Handler mainHandler = new Handler(Looper.getMainLooper());
+                synchronized (this) {
+                    System.out.println("in sync");
+                    try {
+                        Handler mainHandler = new Handler(Looper.getMainLooper());
                     /*
                     for (int i = 5; i < 8; i++) {
                         Thread.sleep(1000);
                     }*/
 
-                    orders = Util.getAllOrders(cook.getOrders(),db);
-                    //arrayList.clear();
+                        orders = Util.getAllOrders(cook.getOrders(), db);
+                        //arrayList.clear();
 
-                    //need to test if new incoming orders effect what the user has selected
-                    for(Order x : orders) {
-                        if (x.status.equals("unaccepted_cook") || x.status.equals("accepted_cook")) {
-                            if (!arrayList.contains(x.summary())) {
-                                arrayList.add(x.summary());
+                        //need to test if new incoming orders effect what the user has selected
+                        for (Order x : orders) {
+                            if (x.status.equals("unaccepted_cook") || x.status.equals("accepted_cook")) {
+                                if (!arrayList.contains(x.summary())) {
+                                    arrayList.add(x.summary());
+                                }
                             }
                         }
-                    }
 
-                    mainHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            //listView.setAdapter(adapter);
-                            adapter.notifyDataSetChanged();
-                        }
-                    });
+                        mainHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                //listView.setAdapter(adapter);
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
                     /*
                     for (int i = 0; i < 3; i++) {
                         Thread.sleep(1000);
                     }*/
 
-                } catch (Exception e) {
-                    System.out.println("Update ORDERS FAILED" + e);
+                    } catch (Exception e) {
+                        System.out.println("Update ORDERS FAILED" + e);
+                    }
                 }
+                System.out.println("out sync");
             }
         }.start();
     }
+
 }
