@@ -2,21 +2,16 @@ package com.example.cook2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.cook2.objects.Cook;
-import com.example.cook2.objects.Food;
-import com.example.cook2.objects.Util;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
-public class OrderDetailsActivity extends AppCompatActivity {
+public class CookOrderDetailsActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Cook cook;
 
@@ -24,7 +19,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order_details);
+        setContentView(R.layout.activity_cook_order_details);
         ArrayList<String> orderDetails = (ArrayList<String>) getIntent().getSerializableExtra("DetailsList");
         ListView listDetails = (ListView) findViewById(R.id.listDetails);
        // ListView listView = (ListView) findViewById(R.id.listOrders);

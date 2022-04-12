@@ -21,6 +21,11 @@ public class CustomerViewCooksActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private Customer customer;
     ArrayList<Cook> allCooks;
+    ListView cooks;
+    Button viewMenu;
+    ArrayList<String> cookSummaries;
+    ArrayAdapter<String> adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,10 +33,9 @@ public class CustomerViewCooksActivity extends AppCompatActivity {
         customer = getIntent().getParcelableExtra("Customer");
         customer = Util.getCustomer(customer.getKey(),db);
         allCooks = Util.getAllCooks(db);
-        ListView cooks = findViewById(R.id.listCooks);
-        Button viewMenu = findViewById(R.id.viewMenu);
-        ArrayList<String>  cookSummaries = new ArrayList<>();
-        ArrayAdapter<String> adapter;
+        cooks = findViewById(R.id.listCooks);
+        viewMenu = findViewById(R.id.viewMenu);
+        cookSummaries = new ArrayList<>();
 
         for (Cook cook : allCooks) {
             cookSummaries.add(cook.summary());
@@ -45,34 +49,21 @@ public class CustomerViewCooksActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 view.setSelected(true);
                 view.setBackgroundResource(R.drawable.select);
-               // int position = adapterView.getSelectedItemPosition();
-
             }
         });
+    }
 
-        viewMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = cooks.getCheckedItemPosition();
-                //System.out.println(position);
-                if (position == -1) {
-                    return;
-                }
+    public void viewMenu(View view) {
+        int position = cooks.getCheckedItemPosition();
+        if (position == -1) {
+            return;
+        }
 
-
-
-                Cook cook = allCooks.get(position);
-
-                Intent i = new Intent(CustomerViewCooksActivity.this, CustmerViewMenu.class);
-
-                i.putExtra("Customer", customer);
-                i.putExtra("Cook",cook);
-                startActivity(i);
-
-
-            }
-        });
-
-
+        Cook cook = allCooks.get(position);
+        Intent i = new Intent(CustomerViewCooksActivity.this, CustomerViewMenu.class);
+        i.putExtra("Customer", customer);
+        i.putExtra("Cook", cook);
+        startActivity(i);
+        // finishAffinity();
     }
 }

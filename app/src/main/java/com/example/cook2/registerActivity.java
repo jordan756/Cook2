@@ -90,7 +90,7 @@ public class registerActivity extends AppCompatActivity {
             Intent cookActivity = new Intent(v.getContext(), CookMainActivity.class);
             cookActivity.putExtra("Cook", cook);
             startActivity(cookActivity);
-            finish();
+            finishAffinity();
         }
     }
 
@@ -106,7 +106,7 @@ public class registerActivity extends AppCompatActivity {
             Intent customerActivity = new Intent(v.getContext(), CustomerMain.class);
             customerActivity.putExtra("Customer",customer);
             startActivity(customerActivity);
-            finish();
+            finishAffinity();
         }
     }
 
@@ -122,7 +122,7 @@ public class registerActivity extends AppCompatActivity {
             Intent driverActivity = new Intent(v.getContext(), DriverMainActivity.class);
             driverActivity.putExtra("Driver",driver);
             startActivity(driverActivity);
-            finish();
+            finishAffinity();
         }
     }
 }

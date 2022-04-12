@@ -49,21 +49,21 @@ public class Util {
     }
 
 
-    public static void removeOrder(Order order,Driver driver, FirebaseFirestore db) {
-        System.out.println("removing order");
+    public static void removeOrder(Order order, Driver driver, FirebaseFirestore db) {
+        db.collection("CompletedOrder").document(order.orderKey).set(order);
+
         db.collection("Order").document(order.orderKey)
                 .delete()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        //Log.d(TAG, "DocumentSnapshot successfully deleted!");
                         System.out.println("Order removed");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        //og.w(TAG, "Error deleting document", e);
+                        System.out.println("Order remove failed");
                     }
                 });
 
@@ -93,14 +93,6 @@ public class Util {
                         System.out.println("Driver remove order");
                     }
                 });
-
-        //try {
-        //    Thread.sleep(2000);
-        //} catch (Exception e) {
-
-        //}
-
-        System.out.println("do success listeners force sync = NO");
     }
 
 
@@ -219,8 +211,7 @@ public class Util {
         for (DocumentSnapshot doc : temp) {
             allCooks.add(doc.toObject(Cook.class));
         }
-        //System.out.println(allCooks.get(0).firstName + allCooks.get(1).firstName);
-
+        // System.out.println(allCooks.get(0).firstName + allCooks.get(1).firstName);
 
         return allCooks;
     }
@@ -264,6 +255,7 @@ public class Util {
 
     public static void editProfile(String key, String userType, HashMap<String, Object> map, FirebaseFirestore db) {
         // update Person
+        // adds more data to Person if user is Driver but it won't affect anything
         db.collection("Person").document(key)
                 .update(map)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {

@@ -5,60 +5,120 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.cook2.objects.Customer;
+import com.example.cook2.objects.Driver;
+import com.example.cook2.objects.Util;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+
 public class DriverProfileActivity extends AppCompatActivity {
-
-    EditText  firstName, lastName, phoneNumber, email, password, vMake, vColor, vPlate;
-    Button cdeliveryButton;
-    //Switch status3, status;
-    TextView driverProfile, infoText;
-
-    //shared preferences
-    SharedPreferences sharedPreferences;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    Driver driver;
+    EditText fnInput, lnInput, phoneInput, addressInput, lpInput, vMakeInput, vModelInput, vColorInput;
+    String key, userType, firstName, lastName, phone, address, licensePlate, vMake, vModel, vColor;
+    HashMap<String, Object> map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_profile);
-
-        //initialize (xml)
-//        firstName = findViewById(R.id.firstName);
-//        lastName = findViewById(R.id.lastName);
-//        phoneNumber = findViewById(R.id.phoneNumber);
-        email = findViewById(R.id.email);
-        password = findViewById(R.id.password);
-
-//        vMake = findViewById(R.id.vMake);
-//        vColor = findViewById(R.id.vColor);
-//        vPlate = findViewById(R.id.vPlate);
-//        cdeliveryButton = findViewById(R.id.cdeliveryButton);
-
-
-//        status3 = findViewById(R.id.status3);
-//        status = findViewById(R.id.status);
-
-        driverProfile = findViewById(R.id.driverProfile);
-        //infoText = findViewById(R.id.infoText);
-        //carInformation = findViewById(R.id.carInformation);
-
-        sharedPreferences = getSharedPreferences("SP_NAME", MODE_PRIVATE);
-
-
-
-
+        driver = getIntent().getParcelableExtra("Driver");
+        key = driver.getKey();
+        Log.d("drivKeyProf", key);
+        userType = "Driver";
+        fnInput = findViewById(R.id.driverFN);
+        lnInput = findViewById(R.id.driverLN);
+        phoneInput = findViewById(R.id.driverPhone);
+        addressInput = findViewById(R.id.driverAddress);
+        lpInput = findViewById(R.id.driverLicenseID);
+        vMakeInput = findViewById(R.id.driverVehicleMake);
+        vModelInput = findViewById(R.id.driverVehicleModel);
+        vColorInput = findViewById(R.id.driverVehicleColor);
+        map = new HashMap<>();
     }
 
-    public void currentDeliveries(View view) {
-        Intent currentDeliveries = new Intent(getApplicationContext(), driverMainActivity3.class);
-        startActivity(currentDeliveries);
+    public void driverUpdate(View view) {
+        firstName = fnInput.getText().toString();
+        lastName = lnInput.getText().toString();
+        phone = phoneInput.getText().toString();
+        address = addressInput.getText().toString();
+        licensePlate = lpInput.getText().toString();
+        vMake = vMakeInput.getText().toString();
+        vModel = vModelInput.getText().toString();
+        vColor = vColorInput.getText().toString();
+
+        if (firstName.isEmpty() &&
+                lastName.isEmpty() &&
+                phone.isEmpty() &&
+                address.isEmpty() &&
+                licensePlate.isEmpty() &&
+                vMake.isEmpty() &&
+                vModel.isEmpty() &&
+                vColor.isEmpty()) {
+            return;
+        }
+
+        if (!firstName.isEmpty()) {
+            map.put("firstName", firstName);
+            driver.setFirstName(firstName);
+        }
+
+        if (!lastName.isEmpty()) {
+            map.put("lastName", lastName);
+            driver.setLastName(lastName);
+        }
+
+        if (!phone.isEmpty()) {
+            map.put("phoneNumber", phone);
+            driver.setPhoneNumber(phone);
+        }
+
+        if (!address.isEmpty()) {
+            map.put("address", address);
+            driver.setAddress(address);
+        }
+
+        if (!licensePlate.isEmpty()) {
+            map.put("vehiclePlate", licensePlate);
+            driver.setFirstName(licensePlate);
+        }
+
+        if (!vMake.isEmpty()) {
+            map.put("vehicleMake", vMake);
+            driver.setLastName(vMake);
+        }
+
+        if (!vModel.isEmpty()) {
+            map.put("vehicleModel", vModel);
+            driver.setPhoneNumber(vModel);
+        }
+
+        if (!vColor.isEmpty()) {
+            map.put("vehicleColor", vColor);
+            driver.setAddress(vColor);
+        }
+
+        // use back button after this
+        Util.editProfile(key, userType, map, db);
     }
 
-    public void switchUser(View view) {
-        Intent switchUser = new Intent(getApplicationContext(), loginActivity.class);
-        startActivity(switchUser);
+    public void driverSignOut(View view) {
+        Intent loginActivity = new Intent(view.getContext(), loginActivity.class);
+        startActivity(loginActivity);
+        finishAffinity();
+    }
+
+    public void driverProfileToMain(View view) {
+        Intent driverActivity = new Intent(view.getContext(), DriverMainActivity.class);
+        driverActivity.putExtra("Driver", driver);
+        startActivity(driverActivity);
+        finishAffinity();
     }
 }
