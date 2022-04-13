@@ -229,13 +229,10 @@ public class CookMainActivity extends AppCompatActivity {
             public void run() {
 
                 synchronized (this) {
-                    System.out.println("in sync");
+                    //System.out.println("in sync");
                     try {
                         Handler mainHandler = new Handler(Looper.getMainLooper());
-                    /*
-                    for (int i = 5; i < 8; i++) {
-                        Thread.sleep(1000);
-                    }*/
+
 
                         orders = Util.getAllOrders(cook.getOrders(), db);
                         //arrayList.clear();
@@ -256,16 +253,13 @@ public class CookMainActivity extends AppCompatActivity {
                                 adapter.notifyDataSetChanged();
                             }
                         });
-                    /*
-                    for (int i = 0; i < 3; i++) {
-                        Thread.sleep(1000);
-                    }*/
+
 
                     } catch (Exception e) {
                         System.out.println("Update ORDERS FAILED" + e);
                     }
                 }
-                System.out.println("out sync");
+              //  System.out.println("out sync");
             }
         }.start();
     }

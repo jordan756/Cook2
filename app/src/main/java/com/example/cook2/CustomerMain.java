@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -23,11 +25,15 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class CustomerMain extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private Customer customer;
-
+    ArrayAdapter<String> adapter;
+    ArrayList<String> arrayList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -37,16 +43,18 @@ public class CustomerMain extends AppCompatActivity {
 
         customer = getIntent().getParcelableExtra("Customer");
         customer = Util.getCustomer(customer.getKey(),db);
+
         Log.d("cust", "Name: " + customer.getFirstName());
-
-        ArrayList<Order> orders = Util.getAllOrders(customer.getOrders(), db);
-        ArrayList<String> arrayList = new ArrayList<>();
-        ArrayAdapter<String> adapter;
-
+        ExecutorService updateList = Executors.newFixedThreadPool(2);
+       // orderAsync.submit();
+      //  ArrayList<Order> orders = Util.getAllOrders(customer.getOrders(), db);
+        arrayList = new ArrayList<>();
+        //ArrayAdapter<String> adapter;
+/*
         for (Order order : orders) {
             arrayList.add(order.summary());
         }
-
+*/
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
         listView.setAdapter(adapter);
 
@@ -59,7 +67,10 @@ public class CustomerMain extends AppCompatActivity {
                         if (e != null) {
                             return;
                         }
-
+                        synchronized (this) {
+                            updateList.submit(new orderAsync(value));
+                        }
+                        /*
                         ArrayList<Order> orders = new ArrayList<>();
                         for (QueryDocumentSnapshot doc : value) {
                                 orders.add(doc.toObject(Order.class));
@@ -71,8 +82,37 @@ public class CustomerMain extends AppCompatActivity {
                         }
 
                         listView.setAdapter(adapter);
+                        */
+
                     }
                 });
+    }
+    private class orderAsync implements Callable {
+        private QuerySnapshot value;
+        orderAsync(QuerySnapshot value) {
+            this.value = value;
+        }
+        @Override
+        public Object call() throws Exception {
+            Handler mainHandler = new Handler(Looper.getMainLooper());
+            ArrayList<Order> orders = new ArrayList<>();
+            for (QueryDocumentSnapshot doc : value) {
+                orders.add(doc.toObject(Order.class));
+            }
+            arrayList.clear();
+            for (Order order : orders) {
+                arrayList.add(order.summary());
+            }
+            mainHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    //listView.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+                }
+            });
+            //adapter.notifyDataSetChanged();
+            return null;
+        }
     }
 
 
@@ -91,8 +131,13 @@ public class CustomerMain extends AppCompatActivity {
     }
 
     public void customerOrderDetails(View v) {
+        synchronized (this) {
+            //PUT WHERE U SELECT THE ORDER FROM THE LIST HERE
+        }
         Intent i = new Intent(CustomerMain.this, CustomerOrderDetailsActivity.class);
         i.putExtra("Customer", customer);
         startActivity(i);
     }
+
+
 }
