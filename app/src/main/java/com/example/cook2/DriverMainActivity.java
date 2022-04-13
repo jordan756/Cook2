@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,9 +17,18 @@ import android.widget.TextView;
 import com.example.cook2.objects.Driver;
 import com.example.cook2.objects.Order;
 import com.example.cook2.objects.Util;
+import com.google.firebase.database.annotations.Nullable;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class DriverMainActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -31,6 +42,7 @@ public class DriverMainActivity extends AppCompatActivity {
     ArrayList<String> arrayList;
     ArrayList<String> arrayList2;
     Driver driver;
+    ExecutorService updateLists;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,31 +54,36 @@ public class DriverMainActivity extends AppCompatActivity {
         button4 = findViewById(R.id.profileButton);
         addressText = findViewById(R.id.address);
         driver = getIntent().getExtras().getParcelable("Driver");
-        orders = Util.getAllOrdersOpen(db);
-        orders2 = Util.getAllOrders(driver.getOrderIds(),db);
+        //orders = Util.getAllOrdersOpen(db);
+        //orders2 = Util.getAllOrders(driver.getOrderIds(),db);
         driverOrdersList = findViewById(R.id.listMenu);
         driverOrdersAcceptedList = findViewById(R.id.listOrderItems);
         arrayList = new ArrayList<>();
         arrayList2 = new ArrayList<>();
 
+        updateLists = Executors.newSingleThreadExecutor();
+        /*
         for (Order x : orders) {
             if (x == null) {
                 continue;
             }
             arrayList.add(x.summary2());
         }
-
+        */
+        /*
         for (Order x : orders2) {
             if (x == null) {
                 continue;
             }
             arrayList2.add(x.summary2());
-        }
+        }*/
 
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
         adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList2);
         driverOrdersList.setAdapter(adapter);
         driverOrdersAcceptedList.setAdapter(adapter2);
+
+        updateLists.submit(new updateRight());
 
         driverOrdersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -83,7 +100,94 @@ public class DriverMainActivity extends AppCompatActivity {
                 view.setBackgroundResource(R.drawable.select);
             }
         });
+
+        db.collection("Order")
+                .whereEqualTo("status", "finished_cook")
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value,
+                                        @Nullable FirebaseFirestoreException e) {
+                        if (e != null) {
+                            return;
+                        }
+                        synchronized (this) {
+                            updateLists.submit(new deliverAsync(value));
+                        }
+                        /*
+                        ArrayList<Order> orders = new ArrayList<>();
+                        for (QueryDocumentSnapshot doc : value) {
+                                orders.add(doc.toObject(Order.class));
+                        }
+
+                        arrayList.clear();
+                        for (Order order : orders) {
+                            arrayList.add(order.summary());
+                        }
+
+                        listView.setAdapter(adapter);
+                        */
+
+                    }
+                });
     }
+
+    //TASK THAT UPDATES LEFT SIDE LIST DEPENDING ON SNAPSHOT//
+    //WILL BE CALLED ON ANY CHANGE TO LIST ON LEFT
+    private class deliverAsync implements Callable {
+
+        private QuerySnapshot value;
+        deliverAsync(QuerySnapshot value) {
+            this.value = value;
+        }
+        @Override
+        public Object call() throws Exception {
+            Handler mainHandler = new Handler(Looper.getMainLooper());
+            ArrayList<Order> orders = new ArrayList<>();
+            for (QueryDocumentSnapshot doc : value) {
+                orders.add(doc.toObject(Order.class));
+            }
+
+            arrayList.clear();
+            for (Order order : orders) {
+                arrayList.add(order.summary());
+            }
+            mainHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    //listView.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+                }
+            });
+
+            return null;
+        }
+    }
+    private class updateRight implements Callable {
+
+        @Override
+        public Object call() throws Exception {
+            Handler mainHandler = new Handler(Looper.getMainLooper());
+            orders2 = Util.getAllOrders(driver.getOrderIds(),db);
+            arrayList2.clear();
+            for (Order x : orders2) {
+                if (x == null) {
+                    continue;
+                }
+                arrayList2.add(x.summary2());
+            }
+            mainHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    //listView.setAdapter(adapter);
+                    adapter2.notifyDataSetChanged();
+                }
+            });
+
+            return null;
+        }
+    }
+
+
 
 
     public void startOrder(View view) {
@@ -101,6 +205,8 @@ public class DriverMainActivity extends AppCompatActivity {
         }
 
         Util.setDriver(driver, db);
+        updateLists.submit(new updateRight());
+       /*
         orders = Util.getAllOrdersOpen(db);
         arrayList.clear();
         for (Order x : orders) {
@@ -115,9 +221,9 @@ public class DriverMainActivity extends AppCompatActivity {
             }
             arrayList2.add(x.summary2());
         }
-
-        driverOrdersList.setAdapter(adapter);
-        driverOrdersAcceptedList.setAdapter(adapter2);
+        */
+       // driverOrdersList.setAdapter(adapter);
+        //driverOrdersAcceptedList.setAdapter(adapter2);
     }
 
 
@@ -131,7 +237,8 @@ public class DriverMainActivity extends AppCompatActivity {
                 Util.removeOrder(order, driver, db);
             }
         }
-
+        updateLists.submit(new updateRight());
+        /*
         orders2 = Util.getAllOrders(driver.getOrderIds(), db);
         arrayList2.clear();
         for (Order x : orders2) {
@@ -141,6 +248,8 @@ public class DriverMainActivity extends AppCompatActivity {
             arrayList2.add(x.summary2());
         }
         driverOrdersAcceptedList.setAdapter(adapter2);
+
+         */
     }
 
 
