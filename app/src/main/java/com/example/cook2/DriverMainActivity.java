@@ -262,7 +262,7 @@ public class DriverMainActivity extends AppCompatActivity {
 
 
     public void getAddresses(View view) {
-        for (int i = 0; i < driverOrdersList.getCount(); i++) {
+       /* for (int i = 0; i < driverOrdersList.getCount(); i++) {
             if (driverOrdersList.isItemChecked(i)) {
                 String temp = driverOrdersList.getItemAtPosition(i).toString();
                 String[] orderValues = temp.split("  -  ");
@@ -270,16 +270,65 @@ public class DriverMainActivity extends AppCompatActivity {
                 addressText.setText(addresses);
                 return;
             }
-        }
+        }*/
 
         for (int i = 0; i < driverOrdersAcceptedList.getCount(); i++) {
             if (driverOrdersAcceptedList.isItemChecked(i)) {
                 String temp = driverOrdersAcceptedList.getItemAtPosition(i).toString();
                 String[] orderValues = temp.split("  -  ");
                 String addresses = (orderValues[3]);
-                addressText.setText(addresses);
+                //System.out.println("orderVal3: " + orderValues[3]);
+                String[] addressesSplit = addresses.split("-");
+                //System.out.println("Addresses Split: " + addressesSplit[1]);
+               // int ind1 = orderValues[3].indexOf("-");
+
+                String dash = "-";
+                int ind2 = orderValues[3].indexOf(dash);
+                String customerAddress = orderValues[3].substring(ind2+dash.length());
+                System.out.println("cust add: " + customerAddress);
+                String space = " ";
+                int index = orderValues[3].indexOf(space);
+                String address = orderValues[3].substring(index+space.length());
+                //System.out.println("orderValues is: " + orderValues[3].substring(index+space.length()));
+                addressText.setText(" " + addressesSplit[0] + '\n' + addressesSplit[1]);
+              /*  Intent mapsActivity = new Intent(getApplicationContext(), DriverMapsActivity.class);
+                mapsActivity.putExtra("Address", address);
+                startActivity(mapsActivity);*/
                 return;
             }
         }
     }
+
+    private void navigation(int ind) {
+        for (int i = 0; i < driverOrdersAcceptedList.getCount(); i++) {
+            if (driverOrdersAcceptedList.isItemChecked(i)) {
+                String temp = driverOrdersAcceptedList.getItemAtPosition(i).toString();
+                String[] orderValues = temp.split("  -  ");
+                String addresses = (orderValues[3]);
+                //System.out.println("orderVal3: " + orderValues[3]);
+                String[] addressesSplit = addresses.split("-");
+                //System.out.println("Addresses Split: " + addressesSplit[1]);
+                // int ind1 = orderValues[3].indexOf("-");
+
+                String colon = ":";
+                int index = addressesSplit[ind].indexOf(colon);
+                String individualAddress = addressesSplit[ind].substring(index+1 + colon.length());
+               // System.out.println("cook add: " + cookAddress);
+                System.out.println("ind Add:" + individualAddress);
+                Intent mapsActivity = new Intent(getApplicationContext(), DriverMapsActivity.class);
+                mapsActivity.putExtra("Address", individualAddress);
+                startActivity(mapsActivity);
+                return;
+            }
+        }
+    }
+    public void navigateCook(View view) {
+        navigation(0);
+    }
+
+    public void navigateCustomer(View view) {
+        navigation(1);
+    }
+
+
 }

@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DriverMainActivity"
+    android:background="#2f5a65"
     android:orientation="vertical"
     android:padding="20dp"
-    android:background="#2f5a65">
+    tools:context=".DriverMainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,13 +18,13 @@
             android:layout_width="match_parent"
             android:layout_height="400dp"
             android:background="@drawable/edges"
-            android:backgroundTint="@color/white"/>
+            android:backgroundTint="@color/white" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_width="370dp"
+        android:layout_height="277dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/edges"
         android:backgroundTint="@color/white">
@@ -33,14 +33,14 @@
 
             android:id="@+id/address"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="68dp"
             android:gravity="left"
             android:paddingStart="10dp"
             android:paddingTop="30dp"
             android:paddingBottom="0dp"
+            android:text="Addresses:"
             android:textColor="@color/black"
-            android:textSize="20dp"
-            android:text="Addresses:" />
+            android:textSize="20dp" />
 
 
     </LinearLayout>
@@ -49,16 +49,16 @@
         android:id="@+id/editTextTime2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="time"
-        android:text="Driver Orders"
-        android:backgroundTint="@color/white"
-        android:gravity="center_horizontal"
-        android:textColor="@color/black"
         android:background="@drawable/edges"
+        android:backgroundTint="@color/white"
+        android:ems="10"
         android:fontFamily="sans-serif"
-        android:textSize="20dp"
-        android:paddingTop="20dp"/>
+        android:gravity="center_horizontal"
+        android:inputType="time"
+        android:paddingTop="20dp"
+        android:text="Driver Orders"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -71,14 +71,14 @@
             android:layout_height="match_parent"
             android:choiceMode="multipleChoice"
             android:paddingLeft="5dp"
-            android:paddingTop="100dp"/>
+            android:paddingTop="100dp" />
 
         <ListView
             android:id="@+id/listOrderItems"
             android:layout_width="match_parent"
             android:layout_height="370dp"
-            android:paddingTop="100dp"
-            android:choiceMode="multipleChoice" />
+            android:choiceMode="multipleChoice"
+            android:paddingTop="100dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -95,26 +95,26 @@
 
 
             <Button
-                android:id="@+id/addToOrder"
+                android:id="@+id/startOrder"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="10dp"
                 android:backgroundTint="#2f5a65"
-                android:insetLeft="0dp"
-                android:onClick="getAddresses"
-                android:text="Address"
+                android:onClick="startOrder"
+                android:text="Start Order"
                 android:textAllCaps="false" />
 
             <Button
-                android:id="@+id/startOrder"
+                android:id="@+id/endOrder"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="15dp"
                 android:layout_weight="1"
                 android:backgroundTint="#2f5a65"
-                android:onClick="startOrder"
-                android:text="Start Order"
+                android:insetLeft="0dp"
+                android:onClick="endOrder"
+                android:text="End Order"
                 android:textAllCaps="false" />
 
         </LinearLayout>
@@ -125,15 +125,15 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/endOrder"
+                android:id="@+id/addToOrder"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="10dp"
                 android:backgroundTint="#2f5a65"
                 android:insetLeft="0dp"
-                android:onClick="endOrder"
-                android:text="End Order"
+                android:onClick="getAddresses"
+                android:text="Address"
                 android:textAllCaps="false" />
 
             <Button
@@ -148,6 +148,43 @@
                 android:textAllCaps="false" />
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/NavigateCook"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_weight="1"
+                android:backgroundTint="#2f5a65"
+                android:onClick="navigateCook"
+                android:text="Navigate to Cook"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/navigateCustomer"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_weight="1"
+                android:backgroundTint="#2f5a65"
+                android:onClick="navigateCustomer"
+                android:text="Navigate to Customer"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </RelativeLayout>

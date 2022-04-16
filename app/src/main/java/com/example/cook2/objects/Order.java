@@ -71,8 +71,11 @@ public class Order implements Parcelable {
 
 
     public String summary2() {
-        String address = addresses();
-        return "# items: " + foods.size() + "  -  " + status + "  -  " + orderKey + "  -  " + address;
+      /*  String address = addresses();
+        return "# items: " + foods.size() + "  -  " + status + "  -  " + orderKey + "  -  " + address;*/
+        String cookAddress = getCookAddress();
+        String customerAddress = getCustomerAddress();
+        return "# items: " + foods.size() + "  -  " + status + "  -  " + orderKey + "  -  " + "Cook Address: " + cookAddress + " - " + "Customer Address: " + customerAddress;
     }
 
 
