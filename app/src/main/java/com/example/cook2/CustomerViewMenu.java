@@ -143,4 +143,8 @@ public class CustomerViewMenu extends AppCompatActivity {
         String temp = "Total Cost: $" + order.totalCost();
         cost.setText(temp);
     }
+
+    public void CVMtoMain(View view) {
+        finish();
+    }
 }

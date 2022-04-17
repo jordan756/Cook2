@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#902422"
+    android:background="#b93b1e"
     android:padding="25dp">
 
     <LinearLayout
@@ -17,7 +17,49 @@
             android:layout_width="match_parent"
             android:layout_height="400dp"
             android:background="@drawable/edges"
-            android:backgroundTint="@color/white"/>
+            android:backgroundTint="@color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edges"
+                    android:backgroundTint="@color/white"
+                    android:ems="10"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_horizontal"
+                    android:inputType="time"
+                    android:minHeight="48dp"
+                    android:paddingTop="10dp"
+                    android:text="Create Order"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ListView
+                        android:id="@+id/listMenu"
+                        android:layout_width="180dp"
+                        android:layout_height="match_parent"
+                        android:choiceMode="multipleChoice" />
+
+                    <ListView
+                        android:id="@+id/listOrderItems"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:choiceMode="multipleChoice" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
 
     </LinearLayout>
 
@@ -26,75 +68,33 @@
         android:layout_height="200dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/edges"
-        android:backgroundTint="@color/white">
+        android:backgroundTint="@color/white"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/cost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:paddingTop="30dp"
+            android:paddingTop="10dp"
             android:paddingBottom="0dp"
             android:text="Total Cost: $0.00"
             android:textColor="@color/black"
             android:textSize="20dp" />
 
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/editTextTime2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="time"
-        android:text="Create Order"
-        android:backgroundTint="@color/white"
-        android:gravity="center_horizontal"
-        android:background="@drawable/edges"
-        android:fontFamily="sans-serif"
-        android:textSize="20dp"
-        android:paddingTop="20dp"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="370dp"
-        android:orientation="horizontal">
-
-        <ListView
-            android:id="@+id/listMenu"
-            android:layout_width="180dp"
-            android:layout_height="match_parent"
-            android:choiceMode="multipleChoice"
-            android:paddingLeft="5dp"
-            android:paddingTop="100dp"/>
-
-        <ListView
-            android:id="@+id/listOrderItems"
-            android:layout_width="match_parent"
-            android:layout_height="370dp"
-            android:paddingTop="100dp"
-            android:choiceMode="multipleChoice" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom"
-        android:orientation="vertical"
-        android:paddingBottom="20dp">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/addToOrder"
+                android:id="@+id/driverOrderDetailsButton"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:layout_marginEnd="10dp"
-                android:backgroundTint="#1c4f28"
+                android:layout_marginEnd="5dp"
+                android:backgroundTint="#9e321a"
                 android:insetLeft="0dp"
                 android:onClick="addToOrder"
                 android:text="Add"
@@ -104,44 +104,38 @@
                 android:id="@+id/removeFromOrder"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:layout_marginEnd="15dp"
                 android:layout_weight="1"
-                android:backgroundTint="#ab1412"
+                android:backgroundTint="#9e321a"
                 android:onClick="removeFromOrder"
                 android:text="Remove"
                 android:textAllCaps="false" />
 
         </LinearLayout>
 
-        <LinearLayout
+        <Button
+            android:id="@+id/button4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:backgroundTint="#9e321a"
+            android:onClick="createOrder"
+            android:text="Create Order"
+            android:textAllCaps="false" />
 
-            <Button
-                android:id="@+id/createOrder"
-                android:layout_width="325dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="10dp"
-                android:backgroundTint="#902422"
-                android:insetLeft="0dp"
-                android:onClick="createOrder"
-                android:text="Create Order"
-                android:textAllCaps="false" />
+        <Button
+            android:id="@+id/button9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:backgroundTint="#9e321a"
+            android:textAllCaps="false"
+            android:onClick="CVMtoMain"
+            android:text="Back" />
 
-            <!--            <Button-->
-            <!--                android:id="@+id/profileButton"-->
-            <!--                android:layout_width="180dp"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginEnd="15dp"-->
-            <!--                android:layout_weight="1"-->
-            <!--                android:backgroundTint="#9e321a"-->
-            <!--                android:text="Profile"-->
-            <!--                android:onClick="profileButton"-->
-            <!--                android:textAllCaps="false" />-->
-
-        </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>

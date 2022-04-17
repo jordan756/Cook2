@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,7 +13,10 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.cook2.objects.Cook;
+import com.example.cook2.objects.Customer;
 import com.example.cook2.objects.Driver;
+import com.example.cook2.objects.Food;
 import com.example.cook2.objects.Order;
 import com.example.cook2.objects.Util;
 import com.google.firebase.database.annotations.Nullable;
@@ -28,7 +30,6 @@ import java.util.ArrayList;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 public class DriverMainActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -48,40 +49,37 @@ public class DriverMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_main);
-        button1 = findViewById(R.id.addToOrder);
+        button1 = findViewById(R.id.driverOrderDetailsButton);
         button2 = findViewById(R.id.startOrder);
         button3 = findViewById(R.id.endOrder);
         button4 = findViewById(R.id.profileButton);
-        addressText = findViewById(R.id.address);
         driver = getIntent().getExtras().getParcelable("Driver");
-        //orders = Util.getAllOrdersOpen(db);
-        //orders2 = Util.getAllOrders(driver.getOrderIds(),db);
         driverOrdersList = findViewById(R.id.listMenu);
         driverOrdersAcceptedList = findViewById(R.id.listOrderItems);
         arrayList = new ArrayList<>();
         arrayList2 = new ArrayList<>();
 
         updateLists = Executors.newSingleThreadExecutor();
-        /*
-        for (Order x : orders) {
-            if (x == null) {
-                continue;
-            }
-            arrayList.add(x.summary2());
-        }
-        */
-        /*
-        for (Order x : orders2) {
-            if (x == null) {
-                continue;
-            }
-            arrayList2.add(x.summary2());
-        }*/
-
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
         adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList2);
         driverOrdersList.setAdapter(adapter);
         driverOrdersAcceptedList.setAdapter(adapter2);
+
+        driverOrdersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                view.setSelected(true);
+                view.setBackgroundResource(R.drawable.select);
+            }
+        });
+
+        driverOrdersAcceptedList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                view.setSelected(true);
+                view.setBackgroundResource(R.drawable.select);
+            }
+        });
 
         updateLists.submit(new updateRight());
 
@@ -113,20 +111,6 @@ public class DriverMainActivity extends AppCompatActivity {
                         synchronized (this) {
                             updateLists.submit(new deliverAsync(value));
                         }
-                        /*
-                        ArrayList<Order> orders = new ArrayList<>();
-                        for (QueryDocumentSnapshot doc : value) {
-                                orders.add(doc.toObject(Order.class));
-                        }
-
-                        arrayList.clear();
-                        for (Order order : orders) {
-                            arrayList.add(order.summary());
-                        }
-
-                        listView.setAdapter(adapter);
-                        */
-
                     }
                 });
     }
@@ -206,24 +190,6 @@ public class DriverMainActivity extends AppCompatActivity {
 
         Util.setDriver(driver, db);
         updateLists.submit(new updateRight());
-       /*
-        orders = Util.getAllOrdersOpen(db);
-        arrayList.clear();
-        for (Order x : orders) {
-            arrayList.add(x.summary2());
-        }
-
-        orders2 = Util.getAllOrders(driver.getOrderIds(),db);
-        arrayList2.clear();
-        for (Order x : orders2) {
-            if (x == null) {
-                continue;
-            }
-            arrayList2.add(x.summary2());
-        }
-        */
-       // driverOrdersList.setAdapter(adapter);
-        //driverOrdersAcceptedList.setAdapter(adapter2);
     }
 
 
@@ -261,43 +227,81 @@ public class DriverMainActivity extends AppCompatActivity {
     }
 
 
-    public void getAddresses(View view) {
-       /* for (int i = 0; i < driverOrdersList.getCount(); i++) {
-            if (driverOrdersList.isItemChecked(i)) {
-                String temp = driverOrdersList.getItemAtPosition(i).toString();
-                String[] orderValues = temp.split("  -  ");
-                String addresses = (orderValues[3]);
-                addressText.setText(addresses);
-                return;
-            }
-        }*/
+    public void driverOrderDetails (View v) {
+        synchronized (this) {
 
-        for (int i = 0; i < driverOrdersAcceptedList.getCount(); i++) {
-            if (driverOrdersAcceptedList.isItemChecked(i)) {
-                String temp = driverOrdersAcceptedList.getItemAtPosition(i).toString();
-                String[] orderValues = temp.split("  -  ");
-                String addresses = (orderValues[3]);
-                //System.out.println("orderVal3: " + orderValues[3]);
-                String[] addressesSplit = addresses.split("-");
-                //System.out.println("Addresses Split: " + addressesSplit[1]);
-               // int ind1 = orderValues[3].indexOf("-");
+            if (driverOrdersList.getCount() > 0) {
+                for (int i = 0; i < driverOrdersList.getCount(); i++) {
+                    ArrayList<String> orderDetails = new ArrayList<String>();
+                    if (driverOrdersList.isItemChecked(i)) {
+                        String temp = driverOrdersList.getItemAtPosition(i).toString();
+                        String[] orderValues = temp.split("  -  ");
+                        String orderKey = (orderValues[2]);
+                        Order order = Util.getOrder(orderKey, db);
+                        Customer customer = Util.getCustomer(order.getCustomerKey(), db);
+                        Cook cook = Util.getCook(order.getCookKey(), db);
 
-                String dash = "-";
-                int ind2 = orderValues[3].indexOf(dash);
-                String customerAddress = orderValues[3].substring(ind2+dash.length());
-                System.out.println("cust add: " + customerAddress);
-                String space = " ";
-                int index = orderValues[3].indexOf(space);
-                String address = orderValues[3].substring(index+space.length());
-                //System.out.println("orderValues is: " + orderValues[3].substring(index+space.length()));
-                addressText.setText(" " + addressesSplit[0] + '\n' + addressesSplit[1]);
-              /*  Intent mapsActivity = new Intent(getApplicationContext(), DriverMapsActivity.class);
-                mapsActivity.putExtra("Address", address);
-                startActivity(mapsActivity);*/
-                return;
+                        orderDetails.add("Order Status: " + order.getStatus());
+                        orderDetails.add("Total Cost: $" + order.totalCost());
+                        orderDetails.add("Driver Name: " + driver.getFirstName() + " " + driver.getLastName());
+                        orderDetails.add("Customer Name: " + customer.getFirstName() + " " + customer.getLastName());
+                        orderDetails.add("Customer Address: " + customer.getAddress());
+                        orderDetails.add("Cook Name: " + cook.getFirstName() + " " + cook.getLastName());
+                        orderDetails.add("Cook Address: " + cook.getAddress());
+
+                        for (Food food : order.foods) {
+                            orderDetails.add("Dish: " + food.name + "\n" +
+                                    "Cost: $" + food.cost + "\n" +
+                                    "Time: " + food.estimatedCookTime.getHours() + "Hr "
+                                    + food.estimatedCookTime.getMinutes() + "Min");
+                        }
+
+                        Intent x = new Intent(v.getContext(), DriverOrderDetailsActivity.class);
+                        x.putExtra("DetailsList", orderDetails);
+                        startActivity(x);
+                        break;
+                    }
+                }
             }
+
+
+            if (driverOrdersAcceptedList.getCount() > 0) {
+                for (int i = 0; i < driverOrdersAcceptedList.getCount(); i++) {
+                    ArrayList<String> orderDetails = new ArrayList<String>();
+                    if (driverOrdersAcceptedList.isItemChecked(i)) {
+                        String temp = driverOrdersAcceptedList.getItemAtPosition(i).toString();
+                        String[] orderValues = temp.split("  -  ");
+                        String orderKey = (orderValues[2]);
+                        Order order = Util.getOrder(orderKey, db);
+                        Customer customer = Util.getCustomer(order.getCustomerKey(), db);
+                        Cook cook = Util.getCook(order.getCookKey(), db);
+
+                        orderDetails.add("Order Status: " + order.getStatus());
+                        orderDetails.add("Total Cost: $" + order.totalCost());
+                        orderDetails.add("Driver Name: " + driver.getFirstName() + " " + driver.getLastName());
+                        orderDetails.add("Customer Name: " + customer.getFirstName() + " " + customer.getLastName());
+                        orderDetails.add("Customer Address: " + customer.getAddress());
+                        orderDetails.add("Cook Name: " + cook.getFirstName() + " " + cook.getLastName());
+                        orderDetails.add("Cook Address: " + cook.getAddress());
+
+                        for (Food food : order.foods) {
+                            orderDetails.add("Dish: " + food.name + "\n" +
+                                    "Cost: $" + food.cost + "\n" +
+                                    "Time: " + food.estimatedCookTime.getHours() + "Hr "
+                                    + food.estimatedCookTime.getMinutes() + "Min");
+                        }
+
+                        Intent x = new Intent(v.getContext(), DriverOrderDetailsActivity.class);
+                        x.putExtra("DetailsList", orderDetails);
+                        startActivity(x);
+                        break;
+                    }
+                }
+            }
+
         }
     }
+
 
     private void navigation(int ind) {
         for (int i = 0; i < driverOrdersAcceptedList.getCount(); i++) {
@@ -329,6 +333,4 @@ public class DriverMainActivity extends AppCompatActivity {
     public void navigateCustomer(View view) {
         navigation(1);
     }
-
-
 }

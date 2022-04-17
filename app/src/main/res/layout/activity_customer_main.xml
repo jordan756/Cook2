@@ -4,96 +4,90 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#2f5a65"
     android:orientation="vertical"
-    android:padding="30dp"
-    android:background="#2f5a65">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="700dp"
-            android:background="@drawable/edges"
-            android:backgroundTint="@color/white">
-
-        </RelativeLayout>
-
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/editTextTime2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="time"
-        android:text="Current Orders"
-        android:backgroundTint="@color/white"
-        android:gravity="center_horizontal"
-        android:textColor="#2f5a65"
-        android:background="@drawable/edges"
-        android:fontFamily="sans-serif-black"
-        android:textSize="20dp"
-        android:paddingTop="15dp"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="525dp"
-        android:orientation="vertical">
-        <ListView
-            android:id="@+id/listOrders"
-            android:layout_width="match_parent"
-            android:layout_height="368dp"
-            android:choiceMode="multipleChoice"
-            android:paddingTop="50dp"/>
-    </LinearLayout>
+    android:padding="30dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/edges"
+        android:backgroundTint="@color/white"
         android:gravity="bottom"
-        android:orientation="vertical"
-        android:paddingBottom="20dp">
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/button11"
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:backgroundTint="#2f5a65"
-            android:text="Order Details"
-            android:onClick="customerOrderDetails"
-            android:textAllCaps="false" />
+            android:layout_gravity="center"
+            android:background="@drawable/edges"
+            android:backgroundTint="@color/white"
+            android:ems="10"
+            android:fontFamily="sans-serif-black"
+            android:gravity="center"
+            android:inputType="time"
+            android:minHeight="48dp"
+            android:text="Current Orders"
+            android:textColor="#2f5a65"
+            android:textSize="20dp" />
 
-        <Button
-            android:id="@+id/button2"
+        <ListView
+            android:id="@+id/listOrders"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:backgroundTint="#2f5a65"
-            android:text="Profile"
-            android:onClick="customerProfile"
-            android:textAllCaps="false" />
+            android:layout_height="400dp"
+            android:choiceMode="multipleChoice"
+            android:paddingTop="5dp" />
 
-        <Button
-            android:id="@+id/viewCooks"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:backgroundTint="#2f5a65"
-            android:onClick="viewNearbyCooks"
-            android:text="View Nearby Cooks"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            android:textAllCaps="false" />
+            <Button
+                android:id="@+id/viewCooks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:backgroundTint="#2f5a65"
+                android:onClick="viewNearbyCooks"
+                android:text="View Nearby Cooks"
+                android:textAllCaps="false" />
 
+            <Button
+                android:id="@+id/button11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:backgroundTint="#2f5a65"
+                android:onClick="customerOrderDetails"
+                android:text="Order Details"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/button15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:backgroundTint="#2f5a65"
+                android:onClick="customerCompletedOrders"
+                android:text="View Previous Orders"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:backgroundTint="#2f5a65"
+                android:onClick="customerProfile"
+                android:text="Profile"
+                android:textAllCaps="false" />
+        </LinearLayout>
 
     </LinearLayout>
-
-
 </RelativeLayout>
-

@@ -30,9 +30,9 @@ public class CustomerProfileActivity extends AppCompatActivity {
         key = customer.getKey();
         userType = "Customer";
         fnInput = findViewById(R.id.customerFirstName);
-        lnInput = findViewById(R.id.customerLastName);
-        phoneInput = findViewById(R.id.customerPhone);
-        addressInput = findViewById(R.id.customerAddress);
+        lnInput = findViewById(R.id.cookProfLastName);
+        phoneInput = findViewById(R.id.cookProfPhone);
+        addressInput = findViewById(R.id.cookProfAddress);
         map = new HashMap<>();
     }
 
@@ -76,9 +76,10 @@ public class CustomerProfileActivity extends AppCompatActivity {
     }
 
     public void customerProfileToMain(View view) {
-        Intent customerActivity = new Intent(view.getContext(), CustomerMain.class);
-        customerActivity.putExtra("Customer", customer);
-        startActivity(customerActivity);
-        finishAffinity();
+//        Intent customerActivity = new Intent(view.getContext(), CustomerMain.class);
+//        customerActivity.putExtra("Customer", customer);
+//        startActivity(customerActivity);
+//        finishAffinity();
+        finish();
     }
 }

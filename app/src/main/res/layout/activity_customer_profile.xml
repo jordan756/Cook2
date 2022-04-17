@@ -4,31 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#2f5a65"
     android:orientation="vertical"
-    android:padding="20dp"
-    android:background="#a92a28">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"/>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edges"
-        android:backgroundTint="@color/white" />
+    android:padding="20dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/edges"
+        android:backgroundTint="@color/white"
         android:orientation="vertical">
 
         <RelativeLayout
 
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:background="#a92a28"
+            android:background="#2f5a65"
             android:padding="20dp">
 
             <ImageView
@@ -45,7 +36,7 @@
                 android:layout_centerHorizontal="true"
                 android:fontFamily="sans-serif-black"
                 android:text="Customer Profile"
-                android:textColor="#EAE7E7"
+                android:textColor="@color/white"
                 android:textSize="27sp" />
 
         </RelativeLayout>
@@ -53,23 +44,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="5dp">
-
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#d24341"
+            android:layout_height="match_parent"
+            android:background="@drawable/edges"
             android:orientation="vertical"
             android:padding="20dp">
 
@@ -85,7 +61,7 @@
                 android:textSize="25sp" />
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/customerLastName"
+                android:id="@+id/cookProfLastName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -95,7 +71,7 @@
                 android:textSize="25sp" />
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/customerPhone"
+                android:id="@+id/cookProfPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -105,7 +81,7 @@
                 android:textSize="25sp" />
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/customerAddress"
+                android:id="@+id/cookProfAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -137,153 +113,33 @@
 
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/cookProfUpdate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:backgroundTint="#902422"
+                android:backgroundTint="#2f5a65"
                 android:onClick="customerUpdate"
                 android:text="Update" />
 
             <Button
-                android:id="@+id/button8"
+                android:id="@+id/cookSignOut"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:backgroundTint="#902422"
+                android:backgroundTint="#2f5a65"
                 android:onClick="customerSignOut"
                 android:text="Sign Out" />
 
             <Button
-                android:id="@+id/button9"
+                android:id="@+id/cookProfBack"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:backgroundTint="#902422"
+                android:backgroundTint="#2f5a65"
                 android:onClick="customerProfileToMain"
                 android:text="Back" />
-
-            <!--            <Button-->
-            <!--                android:id="@+id/button"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_gravity="center"-->
-            <!--                android:backgroundTint="#C64B2D"-->
-            <!--                android:onClick="launchCooksMenus"-->
-            <!--                android:text="cooks and menus" />-->
-
 
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
 
-
-
-
-
-
-
-
-<!--
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-
-    <TextView
-        android:id="@+id/customerProfile"
-        android:layout_width="match_parent"
-        android:layout_height="162dp"
-        android:fontFamily="sans-serif-black"
-        android:text="Customer Profile"
-        android:textAlignment="center"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/firstName2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="First name"
-        android:inputType="none|textPersonName" />
-
-    <EditText
-        android:id="@+id/lastName2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Last name"
-        android:inputType="none|textPersonName" />
-
-    <EditText
-        android:id="@+id/address2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Address"
-        android:inputType="none|textPostalAddress" />
-
-    <EditText
-        android:id="@+id/phoneNumber2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Cell number"
-        android:inputType="none|phone" />
-
-    <EditText
-        android:id="@+id/emailAddress2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email"
-        android:inputType="none|textPostalAddress" />
-
-    <EditText
-        android:id="@+id/customerPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        android:inputType="none|textPostalAddress" />
-
-
-    <EditText
-        android:id="@+id/currentRating2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Rating"
-        android:inputType="none|number" />
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="change user" />
-
-&lt;!&ndash;    <Button
-        android:id="@+id/button9"
-        android:layout_width="287dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="change password" />&ndash;&gt;
-
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="launchOrderDetails"
-        android:text="order details"
-        android:layout_gravity="center"/>
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:onClick="launchCooksMenus"
-        android:text="cooks and menus" />
-
-
-</LinearLayout>-->

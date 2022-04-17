@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp"
+    android:padding="25dp"
     android:background="#2f5a65"
     tools:context=".DriverProfileActivity">
 
@@ -14,153 +14,146 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <RelativeLayout
-
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="#2f5a65"
-            android:padding="20dp">
-
-            <ImageView
-                android:id="@+id/userIcon"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_centerInParent="true"
-                android:paddingTop="25dp"
-                app:srcCompat="@drawable/usericon" />
+            android:layout_height="140dp"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/driverProfile"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
                 android:fontFamily="sans-serif-black"
+                android:gravity="center"
                 android:text="Driver Profile"
                 android:textColor="#EAE7E7"
                 android:textSize="25sp" />
 
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
+            <ImageView
+                android:id="@+id/userIcon"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                app:srcCompat="@drawable/usericon" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:background="#468596"
             android:orientation="vertical"
-            android:padding="20dp"
-            android:background="#468596">
+            android:padding="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/driverFN"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="First Name"
                 android:background="@drawable/edges"
-                android:textSize="20sp"
-                android:paddingStart="10dp"/>
+                android:hint="First Name"
+                android:paddingStart="10dp"
+                android:textSize="20sp" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/driverLN"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="Last Name "
                 android:background="@drawable/edges"
-                android:textSize="20sp"
-                android:paddingStart="10dp"/>
+                android:hint="Last Name "
+                android:paddingStart="10dp"
+                android:textSize="20sp" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/driverPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="Phone "
                 android:background="@drawable/edges"
-                android:textSize="20sp"
-                android:paddingStart="10dp"/>
+                android:hint="Phone "
+                android:paddingStart="10dp"
+                android:textSize="20sp" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/driverAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="Address"
                 android:background="@drawable/edges"
-                android:textSize="20sp"
-                android:paddingStart="10dp"/>
+                android:hint="Address"
+                android:paddingStart="10dp"
+                android:textSize="20sp" />
 
-<!--            <com.google.android.material.textfield.TextInputEditText-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginBottom="10dp"-->
-<!--                android:hint="Password "-->
-<!--                android:background="@drawable/edges"-->
-<!--                android:textSize="25sp"-->
-<!--                android:paddingStart="10dp"/>-->
+            <!--            <com.google.android.material.textfield.TextInputEditText-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginBottom="10dp"-->
+            <!--                android:hint="Password "-->
+            <!--                android:background="@drawable/edges"-->
+            <!--                android:textSize="25sp"-->
+            <!--                android:paddingStart="10dp"/>-->
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/driverLicenseID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="License Plate"
                 android:background="@drawable/edges"
-                android:textSize="20sp"
-                android:paddingStart="10dp"/>
+                android:hint="License Plate"
+                android:paddingStart="10dp"
+                android:textSize="20sp" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/driverVehicleMake"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="Vehicle Make "
                 android:background="@drawable/edges"
-                android:textSize="20sp"
-                android:paddingStart="10dp"/>
+                android:hint="Vehicle Make "
+                android:paddingStart="10dp"
+                android:textSize="20sp" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/driverVehicleModel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="Vehicle Model"
                 android:background="@drawable/edges"
-                android:textSize="20sp"
-                android:paddingStart="10dp"/>
+                android:hint="Vehicle Model"
+                android:paddingStart="10dp"
+                android:textSize="20sp" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/driverVehicleColor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="Vehicle Color "
                 android:background="@drawable/edges"
-                android:textSize="20sp"
-                android:paddingStart="10dp" />
+                android:hint="Vehicle Color "
+                android:paddingStart="10dp"
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/driverUpdateButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#2f5a65"
+                android:onClick="driverUpdate"
                 android:text="Update"
-                android:paddingStart="10dp"
-                android:onClick="driverUpdate"/>
+                android:textAllCaps="false"
+                android:textSize="14sp" />
 
             <Button
-                android:id="@+id/driverBackButton"
+                android:id="@+id/button19"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:backgroundTint="#2f5a65"
-                android:paddingStart="10dp"
-                android:text="Back"
-                android:onClick="driverProfileToMain" />
+                android:onClick="driverCompletedOrders"
+                android:text="Completed Orders"
+                android:textAllCaps="false"
+                android:textSize="14sp" />
 
             <Button
                 android:id="@+id/driverSignOutButton"
@@ -168,9 +161,21 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:backgroundTint="#2f5a65"
+                android:onClick="driverSignOut"
                 android:text="Sign out"
-                android:paddingStart="10dp"
-                android:onClick="driverSignOut"/>
+                android:textAllCaps="false"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/driverBackButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="#2f5a65"
+                android:onClick="driverProfileToMain"
+                android:text="Back"
+                android:textAllCaps="false"
+                android:textSize="14sp" />
 
 
         </LinearLayout>

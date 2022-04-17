@@ -11,23 +11,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"/>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="700dp"
-        android:backgroundTint="@color/white" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <RelativeLayout
 
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="250dp"
             android:background="#a13a21"
             android:padding="20dp">
 
@@ -53,28 +43,13 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="5dp">
-
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#C64B2D"
             android:orientation="vertical"
             android:padding="20dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/customerFirstName"
+                android:id="@+id/cookProfFirstName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -85,7 +60,7 @@
                 android:textSize="25sp" />
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/customerLastName"
+                android:id="@+id/cookProfLastName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -95,7 +70,7 @@
                 android:textSize="25sp" />
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/customerPhone"
+                android:id="@+id/cookProfPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -105,7 +80,7 @@
                 android:textSize="25sp" />
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/customerAddress"
+                android:id="@+id/cookProfAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -115,28 +90,44 @@
                 android:textSize="25sp" />
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/cookProfUpdate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_weight="0"
                 android:backgroundTint="#8d3620"
-                android:text="Update" />
+                android:text="Update"
+                android:textAllCaps="false"
+                android:onClick="cookUpdate"
+                android:textSize="14sp" />
 
             <Button
-                android:id="@+id/button8"
+                android:id="@+id/cookProfCompleteOrders"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textAllCaps="false"
+                android:backgroundTint="#8d3620"
+                android:onClick="cookCompletedOrders"
+                android:text="Previous Orders" />
+
+            <Button
+                android:id="@+id/cookSignOut"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAllCaps="false"
                 android:backgroundTint="#8d3620"
                 android:onClick="cookSignOut"
                 android:text="Sign Out" />
 
             <Button
-                android:id="@+id/button9"
+                android:id="@+id/cookProfBack"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:backgroundTint="#8d3620"
+                android:textAllCaps="false"
                 android:onClick="cookProfileToMain"
                 android:text="Back" />
 

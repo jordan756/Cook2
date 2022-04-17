@@ -3,48 +3,47 @@ package com.example.cook2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import com.example.cook2.objects.Cook;
-import com.google.firebase.firestore.FirebaseFirestore;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class CookOrderDetailsActivity extends AppCompatActivity {
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-    Cook cook;
-
+    String customerName, cookName, totalCost;
+    TextView customerNameTextView, cookNameTextView, totalCostTextView;
+    ListView listDetails;
+    ArrayList<String> orderDetails;
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cook_order_details);
-        ArrayList<String> orderDetails = (ArrayList<String>) getIntent().getSerializableExtra("DetailsList");
-        ListView listDetails = (ListView) findViewById(R.id.listDetails);
-       // ListView listView = (ListView) findViewById(R.id.listOrders);
-        //ArrayList<String> orderDetails = new ArrayList<>();
-        ArrayAdapter<String> adapter;
-        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, orderDetails);
+        orderDetails = (ArrayList<String>) getIntent().getSerializableExtra("DetailsList");
+        listDetails = findViewById(R.id.listDetails);
+        cookNameTextView = findViewById(R.id.CODACookName);
+        customerNameTextView = findViewById(R.id.CODACustomerName);
+        totalCostTextView = findViewById(R.id.CODATotalCost);
 
-     //   cook = getIntent().getExtras().getParcelable("Cook");
+        customerName = orderDetails.get(0);
+        orderDetails.remove(0);
+        cookName = orderDetails.get(0);
+        orderDetails.remove(0);
+        totalCost = orderDetails.get(0);
+        orderDetails.remove(0);
 
 
-        //HAVE TO DO THIS TO GET UPDATED COOK FROM EDIT MENU
-     //   cook = Util.getCook(cook.getKey(),db);
-        //System.out.println(cook.);
-       // Food newFood = new Food("turkey", 9.00, new Date(0, 0, 0, 0, 35, 0), null);
-       // cook.getOrders().get(0).foods.add(newFood);
+        cookNameTextView.setText(cookName);
+        customerNameTextView.setText(customerName);
+        totalCostTextView.setText(totalCost);
 
-       /* for (int i = 0; i < listView.getCount(); i++) {
-
-            if (listView.isItemChecked(i)) {
-                for (Food e : cook.getOrders().get(i).foods) {
-                    orderDetails.add(e.name);
-                }
-            }
-        }*/
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, orderDetails);
         listDetails.setAdapter(adapter);
+    }
+
+    public void CODAtoMain(View v) {
+        finish();
     }
 }

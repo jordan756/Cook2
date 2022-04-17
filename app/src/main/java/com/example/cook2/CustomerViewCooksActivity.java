@@ -64,6 +64,9 @@ public class CustomerViewCooksActivity extends AppCompatActivity {
         i.putExtra("Customer", customer);
         i.putExtra("Cook", cook);
         startActivity(i);
-        // finishAffinity();
+    }
+
+    public void CWCToMain(View view) {
+        finish();
     }
 }

@@ -43,6 +43,7 @@ public class Cook extends Person implements Parcelable {
         // ArrayList<String> tags = new ArrayList();
         menu = new ArrayList<>();
         orderIds = new ArrayList<>();
+        super.ratingsList = new ArrayList<>();
     }
 
 
@@ -55,6 +56,7 @@ public class Cook extends Person implements Parcelable {
         super.phoneNumber = phone;
         super.address = address;
         super.key = email.concat(password);
+        super.ratingsList = new ArrayList<>();
         amount_sold = 0;
         menu = new ArrayList<>();
         orderIds = new ArrayList<>();
@@ -74,6 +76,7 @@ public class Cook extends Person implements Parcelable {
         super.userTypeKey = myMap.get("userTypeKey");
         super.currentRating = 0;
         super.numberOfRatings = 0;
+        super.ratingsList = new ArrayList<>();
         amount_sold = 0;
         menu = new ArrayList<>();
         orderIds = new ArrayList<>();
@@ -91,6 +94,7 @@ public class Cook extends Person implements Parcelable {
         super.email = "test";
         super.password = "test";
         super.key = email + password;
+        super.ratingsList = new ArrayList<>();
         menu = new ArrayList<>();
         open = false;
         orderIds = new ArrayList<>();
@@ -112,6 +116,7 @@ public class Cook extends Person implements Parcelable {
         // menu parcelable correct?
         menu = in.readArrayList(Cook.class.getClassLoader());
         orderIds = in.readArrayList(String.class.getClassLoader());
+        ratingsList = in.readArrayList(Integer.class.getClassLoader());
         amount_sold = in.readInt();
         open = in.readBoolean();
     }
@@ -151,6 +156,7 @@ public class Cook extends Person implements Parcelable {
         parcel.writeString(address);
 
         parcel.writeList(menu);
+        parcel.writeList(ratingsList);
         parcel.writeList(orderIds);
         parcel.writeBoolean(open);
         parcel.writeInt(amount_sold);

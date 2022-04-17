@@ -55,7 +55,10 @@ public class loginActivity extends AppCompatActivity {
         } else if (TextUtils.isEmpty(password)) {
             passwordInput.setError("Cannot be empty.");
         } else {
-            db.collection("Person").whereEqualTo("email", email).whereEqualTo("password", password).get()
+            db.collection("Person")
+                    .whereEqualTo("email", email)
+                    .whereEqualTo("password", password)
+                    .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -71,21 +74,21 @@ public class loginActivity extends AppCompatActivity {
                                         Intent cookActivity = new Intent(loginActivity.this, CookMainActivity.class);
                                         cookActivity.putExtra("Cook", testCook);
                                         startActivity(cookActivity);
-                                        finishAffinity();
+                                        finish();
 
                                     } else if (userType.equals("Customer")) {
                                         Customer testCustomer = Util.getCustomer(user.getEmail() + user.getPassword(), db);
                                         Intent customerActivity = new Intent(loginActivity.this, CustomerMain.class);
                                         customerActivity.putExtra("Customer", testCustomer);
                                         startActivity(customerActivity);
-                                        finishAffinity();
+                                        finish();
 
                                     } else if (userType.equals("Driver")) {
                                         Driver testDriver = Util.getDriver(user.getEmail() + user.getPassword(), db);
                                         Intent driverActivity = new Intent(loginActivity.this, DriverMainActivity.class);
                                         driverActivity.putExtra("Driver", testDriver);
                                         startActivity(driverActivity);
-                                        finishAffinity();
+                                        finish();
                                     }
 
                                     return;

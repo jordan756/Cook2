@@ -21,6 +21,7 @@ import java.text.DecimalFormat;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class Order implements Parcelable {
 
@@ -130,6 +131,7 @@ public class Order implements Parcelable {
         return address;
     }
 
+
     public String getDriverAddress() {
         if (driverKey.isEmpty()) {
             return null;
@@ -153,6 +155,35 @@ public class Order implements Parcelable {
         return address;
     }
 
+
+    public String totalCost() {
+        double sum = 0;
+        for (Food food: foods) {
+            sum += food.cost;
+        }
+
+        df.setRoundingMode(RoundingMode.UP);
+        return df.format(sum);
+    }
+
+//    public String totalTime() {
+////        HashMap<Integer, Date> dateMap = new HashMap<>();
+////        HashMap<Integer, Date> dateHrsMap = new HashMap<>();
+////        HashMap<Integer, Date> dateMinMap = new HashMap<>();
+//        HashMap<Integer, Long> timeMap = new HashMap<>();
+//        int i = 0;
+//        long total = 0;
+//        for (Food food: foods) {
+////            dateMap.put(i, food.estimatedCookTime);
+//            timeMap.put(i, food.estimatedCookTime.getTime());
+//            total += timeMap.get(i);
+//            i++;
+//        }
+//
+//        df.setRoundingMode(RoundingMode.UP);
+////        return df.format(sum);
+//        return df.format(total);
+//    }
 
     public String getCookKey() {
         return cookKey;
@@ -239,16 +270,5 @@ public class Order implements Parcelable {
         parcel.writeString(cookKey);
         parcel.writeString(customerKey);
         parcel.writeString(driverKey);
-    }
-
-
-    public String totalCost() {
-        double sum = 0;
-        for (Food food: foods) {
-            sum += food.cost;
-        }
-
-        df.setRoundingMode(RoundingMode.UP);
-        return df.format(sum);
     }
 }

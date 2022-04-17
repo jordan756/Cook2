@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="35dp"
-    android:background="#2f5a65" >
-<!--    android:onClick="launchGps">-->
+    android:background="#81311d" >
+    <!--    android:onClick="launchGps">-->
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -25,88 +25,100 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="sans-serif-black"
-                android:paddingTop="15dp"
+                android:paddingTop="5dp"
                 android:paddingBottom="0dp"
                 android:text="Order Details"
-                android:textSize="25sp" />
+                android:textSize="25dp" />
 
             <TextView
-                android:id="@+id/COD_OrderStatus"
+                android:id="@+id/DOD_OrderStatus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
-                android:paddingTop="5dp"
                 android:text="Order Status:"
-                android:textSize="15sp" />
+                android:textSize="14dp" />
 
             <TextView
-                android:id="@+id/COD_TotalCost"
+                android:id="@+id/DOD_TotalCost"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
-                android:paddingTop="5dp"
                 android:text="Total Cost:"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/COD_CookName"
+                android:id="@+id/DOD_DriverName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
-                android:paddingTop="5dp"
-                android:text="Cook Name:"
-                android:textSize="15sp" />
+                android:text="Driver Name:"
+                android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/COD_CookAddress"
+                android:id="@+id/DOD_CustomerName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="Customer Name:"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/DOD_CustomerAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:paddingTop="5dp"
+                android:fontFamily="sans-serif-black"
+                android:text="Customer Address:"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/DOD_CookName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="sans-serif-black"
+                android:text="Cook Name:"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/DOD_CookAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:fontFamily="sans-serif-black"
                 android:text="Cook Address:"
-                android:textSize="15sp" />
-
-
-            <TextView
-                android:id="@+id/COD_DriverName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:fontFamily="sans-serif-black"
-                android:paddingTop="5dp"
-                android:text="Driver Name:"
-                android:textSize="15sp" />
+                android:textSize="14dp" />
 
             <TextView
-                android:id="@+id/textView16"
-                android:layout_width="match_parent"
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
                 android:fontFamily="sans-serif-black"
-                android:gravity="center"
-                android:paddingTop="10dp"
                 android:text="Food Details"
-                android:textSize="20sp" />
+                android:textSize="18dp" />
 
             <ListView
-                android:id="@+id/listCustomerOrderDetails"
+                android:id="@+id/listDriverOrderDetails"
                 android:layout_width="match_parent"
-                android:layout_height="375dp"
+                android:layout_height="390dp"
                 android:foregroundGravity="bottom">
 
             </ListView>
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/DODBack"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="#205E8D"
-                android:onClick="CODtoCM"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:backgroundTint="#8d3620"
+                android:onClick="DODtoMain"
                 android:text="Back" />
+
 
         </LinearLayout>
     </RelativeLayout>
-</RelativeLayout>
 
+</RelativeLayout>

@@ -4,11 +4,89 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#81311d"
+    android:onClick="CODAtoMain"
     android:orientation="vertical"
+    android:padding="35dp"
     tools:context=".CookOrderDetailsActivity">
 
-    <ListView
-        android:id="@+id/listDetails"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@drawable/edges"
+        android:backgroundTint="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="sans-serif-black"
+                android:paddingTop="15dp"
+                android:paddingBottom="0dp"
+                android:text="Order Details"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/CODACookName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="Cook Name:"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/CODACustomerName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="Customer Name:"
+                android:textSize="16sp" />
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/CODACookTime"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:fontFamily="sans-serif-black"-->
+            <!--                android:text="Total Cook Time:"-->
+            <!--                android:textSize="16sp" />-->
+
+            <TextView
+                android:id="@+id/CODATotalCost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="Total Cost:"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="Food Details"
+                android:textSize="20sp" />
+
+            <ListView
+                android:id="@+id/listDetails"
+                android:layout_width="match_parent"
+                android:layout_height="445dp" />
+
+            <Button
+                android:id="@+id/CODA_Back"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#8d3620"
+                android:onClick="CODAtoMain"
+                android:text="Back" />
+
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

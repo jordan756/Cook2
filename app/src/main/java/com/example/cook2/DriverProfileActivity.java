@@ -116,9 +116,17 @@ public class DriverProfileActivity extends AppCompatActivity {
     }
 
     public void driverProfileToMain(View view) {
-        Intent driverActivity = new Intent(view.getContext(), DriverMainActivity.class);
-        driverActivity.putExtra("Driver", driver);
-        startActivity(driverActivity);
-        finishAffinity();
+//        Intent driverActivity = new Intent(view.getContext(), DriverMainActivity.class);
+//        driverActivity.putExtra("Driver", driver);
+//        startActivity(driverActivity);
+//        finishAffinity();
+        finish();
     }
+
+    public void driverCompletedOrders(View view) {
+        Intent completeDriverOrdersActivity = new Intent(view.getContext(), CompletedOrdersActivity.class);
+        completeDriverOrdersActivity.putExtra("Driver", driver);
+        startActivity(completeDriverOrdersActivity);
+    }
+
 }

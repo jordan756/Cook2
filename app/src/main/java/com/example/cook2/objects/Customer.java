@@ -9,7 +9,6 @@ import java.util.HashMap;
 public class Customer extends Person implements Parcelable {
 
     private ArrayList<String> Orders;
-
     public ArrayList<String> getOrders() {
         return Orders;
     }
@@ -30,6 +29,7 @@ public class Customer extends Person implements Parcelable {
         super.phoneNumber = phone;
         super.address = address;
         super.key = email.concat(password);
+        super.ratingsList = new ArrayList<>();
         Orders = new ArrayList<>();
     }
 
@@ -45,6 +45,7 @@ public class Customer extends Person implements Parcelable {
         super.key = myMap.get("key");
         super.currentRating = 0;
         super.numberOfRatings = 0;
+        super.ratingsList = new ArrayList<>();
         Orders = new ArrayList<>();
     }
 
@@ -57,6 +58,7 @@ public class Customer extends Person implements Parcelable {
         super.phoneNumber = "1-696-6969";
         super.address = "outside";
         super.key = email.concat(password);
+        super.ratingsList = new ArrayList<>();
         Orders = new ArrayList<>();
     }
 
@@ -73,6 +75,7 @@ public class Customer extends Person implements Parcelable {
         address = in.readString();
 
         Orders = in.readArrayList(String.class.getClassLoader());
+        ratingsList = in.readArrayList(Integer.class.getClassLoader());
     }
 
     public static final Creator<Customer> CREATOR = new Creator<Customer>() {
@@ -105,5 +108,6 @@ public class Customer extends Person implements Parcelable {
         parcel.writeString(address);
 
         parcel.writeList(Orders);
+        parcel.writeList(ratingsList);
     }
 }

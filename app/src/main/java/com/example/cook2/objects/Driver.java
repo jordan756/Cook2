@@ -30,6 +30,7 @@ public class Driver extends Person implements Parcelable {
         super.phoneNumber = phone;
         super.address = address;
         super.key = email.concat(password);
+        super.ratingsList = new ArrayList<>();
         vehicleMake = "test";
         vehicleColor = "test";
         vehiclePlate = "test";
@@ -49,6 +50,7 @@ public class Driver extends Person implements Parcelable {
         super.userTypeKey = myMap.get("userTypeKey");
         super.currentRating = 0;
         super.numberOfRatings = 0;
+        super.ratingsList = new ArrayList<>();
         orderIds = new ArrayList<>();
         vehicleMake = "test";
         vehicleColor = "test";
@@ -84,6 +86,7 @@ public class Driver extends Person implements Parcelable {
         address = in.readString();
 
         orderIds = in.readArrayList(String.class.getClassLoader());
+        ratingsList = in.readArrayList(Integer.class.getClassLoader());
         vehicleMake = in.readString();
         vehicleColor = in.readString();
         vehiclePlate = in.readString();
@@ -120,6 +123,7 @@ public class Driver extends Person implements Parcelable {
         parcel.writeString(address);
 
         parcel.writeList(orderIds);
+        parcel.writeList(ratingsList);
         parcel.writeString(vehicleMake);
         parcel.writeString(vehicleColor);
         parcel.writeString(vehiclePlate);

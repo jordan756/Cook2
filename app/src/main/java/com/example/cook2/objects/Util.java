@@ -169,6 +169,25 @@ public class Util {
     }
 
 
+    public static Order getCompletedOrder(String key, FirebaseFirestore db) {
+        Task<DocumentSnapshot> temp = null;
+        while(temp == null) {
+            temp = db.collection("CompletedOrder").document(key).get();
+        }
+        while(!temp.isComplete()) {
+            //sleep(1000);
+        }
+        DocumentSnapshot temp2 = temp.getResult();
+        if (!temp2.exists()) {
+            return null;
+        }
+        // Cook cook = temp2.data();
+        Order order = temp2.toObject(Order.class);
+        //System.out.print(order.orderKey);
+        return order;
+    }
+
+
     public static ArrayList<Order> getAllOrders(ArrayList<String> orderKeys,FirebaseFirestore db) {
         ArrayList<Order> allOrders = new ArrayList<>();
         for (String temp: orderKeys) {

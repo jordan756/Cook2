@@ -16,6 +16,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cook2">
         <activity
+            android:name=".DriverOrderDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CompletedOrdersActivity"
+            android:exported="false" />
+        <activity
             android:name=".CookProfileActivity"
             android:exported="false" />
 
@@ -24,7 +30,7 @@
             android:value="${MAPS_API_KEY}" />
 
         <activity
-            android:name=".RateActivity"
+            android:name=".RateOrderActivity"
             android:exported="false" />
         <activity
             android:name=".CustomerViewMenu"
@@ -37,9 +43,6 @@
             android:exported="false" />
         <activity
             android:name=".CookUpdateMenu"
-            android:exported="false" />
-        <activity
-            android:name=".driverMainActivity3"
             android:exported="false" />
         <activity
             android:name=".DriverMainActivity"

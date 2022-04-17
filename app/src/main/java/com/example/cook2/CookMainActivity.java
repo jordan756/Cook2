@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.cook2.objects.Cook;
+import com.example.cook2.objects.Customer;
 import com.example.cook2.objects.Food;
 import com.example.cook2.objects.Order;
 import com.example.cook2.objects.Util;
@@ -51,7 +52,6 @@ public class CookMainActivity extends AppCompatActivity {
         cook = getIntent().getExtras().getParcelable("Cook");
         key = cook.getKey();
         final DocumentReference docRef = db.collection("Cook").document(key);
-       //orders = Util.getAllOrders(cook.getOrders(),db);
 
         if (cook.open) {
             temp = "Availability: Open";
@@ -74,15 +74,6 @@ public class CookMainActivity extends AppCompatActivity {
         }
 
         cook.print();
-        /*
-
-        for(Order x : orders) {
-            if (x.status.equals("unaccepted_cook") || x.status.equals("accepted_cook")) {
-                arrayList.add(x.summary());
-            }
-        }
-        */
-
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -121,9 +112,9 @@ public class CookMainActivity extends AppCompatActivity {
 
 
     public void cookProfileEvent(View v) {
-        Intent loginActivity = new Intent(v.getContext(), CookProfileActivity.class);
-        startActivity(loginActivity);
-        // finishAffinity();
+        Intent profileActivity = new Intent(v.getContext(), CookProfileActivity.class);
+        profileActivity.putExtra("Cook", cook);
+        startActivity(profileActivity);
     }
 
 
@@ -201,21 +192,26 @@ public class CookMainActivity extends AppCompatActivity {
 
     public void cookOrderDetails(View v) {
         for (int i = 0; i < listView.getCount(); i++) {
-            ArrayList<String> ordersList = new ArrayList<String>();
+            ArrayList<String> orderDetails = new ArrayList<String>();
             if (listView.isItemChecked(i)) {
                 temp = listView.getItemAtPosition(i).toString();
                 orderValues = temp.split("  -  ");
                 orderKey = (orderValues[2]);
                 order = Util.getOrder(orderKey, db);
+                Customer customer = Util.getCustomer(order.getCustomerKey(), db);
+                orderDetails.add("Customer Name: " + customer.getFirstName() + " " + customer.getLastName());
+                orderDetails.add("Cook Name: " + cook.getFirstName() + " " + cook.getLastName());
+                orderDetails.add("Total Cost: $" + order.totalCost());
 
-                for (Food e : order.foods) {
-                    ordersList.add("Dish: " + e.name + "\n" + "Cost: $" + e.cost + "\n"
-                            + "Time: " + e.estimatedCookTime.getHours() + "Hr "
-                            + e.estimatedCookTime.getMinutes() + "Min");
+                for (Food food : order.foods) {
+                    orderDetails.add("Dish: " + food.name + "\n" +
+                            "Cost: $" + food.cost + "\n" +
+                            "Time: " + food.estimatedCookTime.getHours() + "Hr "
+                            + food.estimatedCookTime.getMinutes() + "Min");
                 }
 
                 Intent x = new Intent(v.getContext(), CookOrderDetailsActivity.class);
-                x.putExtra("DetailsList", ordersList);
+                x.putExtra("DetailsList", orderDetails);
                 startActivity(x);
                 break;
             }
