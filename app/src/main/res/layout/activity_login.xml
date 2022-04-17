@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="10dp"
     android:background="@color/white"
     tools:context=".loginActivity">
 
@@ -18,7 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="360dp"
             android:background="@drawable/homeimg"
-
             android:padding="50dp">
 
             <ImageView
@@ -43,6 +43,7 @@
             android:layout_gravity="center_horizontal"
             android:paddingTop="30dp"
             android:text="Already have an account?"
+            android:textColor="#902422"
             android:textSize="16dp" />
 
         <RelativeLayout
@@ -99,6 +100,7 @@
             android:enabled="true"
             android:onClick="signIn"
             android:text="Sign in"
+            android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <TextView
@@ -107,6 +109,7 @@
             android:layout_gravity="center_horizontal"
             android:paddingTop="30dp"
             android:text="New User? Register Now"
+            android:textColor="#2f5a65"
             android:textSize="16dp" />
 
 
@@ -116,9 +119,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:backgroundTint="#C64B2D"
+            android:backgroundTint="#2f5a65"
             android:onClick="createAccount"
             android:text="Create Account"
+            android:textAllCaps="false"
             android:textSize="13dp" />
 
 

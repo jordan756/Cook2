@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#b93b1e"
+    android:background="#902422"
     android:padding="25dp">
 
     <LinearLayout
@@ -50,7 +50,6 @@
         android:text="Create Order"
         android:backgroundTint="@color/white"
         android:gravity="center_horizontal"
-        android:textColor="@color/black"
         android:background="@drawable/edges"
         android:fontFamily="sans-serif"
         android:textSize="20dp"
@@ -95,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="10dp"
-                android:backgroundTint="#9e321a"
+                android:backgroundTint="#1c4f28"
                 android:insetLeft="0dp"
                 android:onClick="addToOrder"
                 android:text="Add"
@@ -107,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="15dp"
                 android:layout_weight="1"
-                android:backgroundTint="#9e321a"
+                android:backgroundTint="#ab1412"
                 android:onClick="removeFromOrder"
                 android:text="Remove"
                 android:textAllCaps="false" />
@@ -125,22 +124,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="10dp"
-                android:backgroundTint="#9e321a"
+                android:backgroundTint="#902422"
                 android:insetLeft="0dp"
                 android:onClick="createOrder"
                 android:text="Create Order"
                 android:textAllCaps="false" />
 
-<!--            <Button-->
-<!--                android:id="@+id/profileButton"-->
-<!--                android:layout_width="180dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginEnd="15dp"-->
-<!--                android:layout_weight="1"-->
-<!--                android:backgroundTint="#9e321a"-->
-<!--                android:text="Profile"-->
-<!--                android:onClick="profileButton"-->
-<!--                android:textAllCaps="false" />-->
+            <!--            <Button-->
+            <!--                android:id="@+id/profileButton"-->
+            <!--                android:layout_width="180dp"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginEnd="15dp"-->
+            <!--                android:layout_weight="1"-->
+            <!--                android:backgroundTint="#9e321a"-->
+            <!--                android:text="Profile"-->
+            <!--                android:onClick="profileButton"-->
+            <!--                android:textAllCaps="false" />-->
 
         </LinearLayout>
     </LinearLayout>

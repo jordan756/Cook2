@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp"
-    android:background="#a13a21">
+    android:background="#a92a28">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
 
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:background="#a13a21"
+            android:background="#a92a28"
             android:padding="20dp">
 
             <ImageView
@@ -69,7 +69,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#C64B2D"
+            android:background="#d24341"
             android:orientation="vertical"
             android:padding="20dp">
 
@@ -141,7 +141,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:backgroundTint="#8d3620"
+                android:backgroundTint="#902422"
                 android:onClick="customerUpdate"
                 android:text="Update" />
 
@@ -150,7 +150,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:backgroundTint="#8d3620"
+                android:backgroundTint="#902422"
                 android:onClick="customerSignOut"
                 android:text="Sign Out" />
 
@@ -159,7 +159,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:backgroundTint="#8d3620"
+                android:backgroundTint="#902422"
                 android:onClick="customerProfileToMain"
                 android:text="Back" />
 
