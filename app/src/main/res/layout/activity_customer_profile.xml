@@ -16,9 +16,8 @@
         android:orientation="vertical">
 
         <RelativeLayout
-
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="260dp"
             android:background="#2f5a65"
             android:padding="20dp">
 
@@ -38,9 +37,7 @@
                 android:text="Customer Profile"
                 android:textColor="@color/white"
                 android:textSize="27sp" />
-
         </RelativeLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -90,28 +87,6 @@
                 android:paddingStart="10dp"
                 android:textSize="25sp" />
 
-            <!--            <com.google.android.material.textfield.TextInputEditText-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginBottom="10dp"-->
-            <!--                android:background="@drawable/edges"-->
-            <!--                android:hint="Password "-->
-
-            <!--                android:paddingStart="10dp"-->
-
-            <!--                android:textSize="25sp" />-->
-
-
-            <!--            <com.google.android.material.textfield.TextInputEditText-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginBottom="10dp"-->
-            <!--                android:background="@drawable/edges"-->
-            <!--                android:hint="Rating "-->
-            <!--                android:paddingStart="10dp"-->
-            <!--                android:textSize="25sp" />-->
-
-
             <Button
                 android:id="@+id/cookProfUpdate"
                 android:layout_width="match_parent"
@@ -122,13 +97,13 @@
                 android:text="Update" />
 
             <Button
-                android:id="@+id/cookSignOut"
+                android:id="@+id/button8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:backgroundTint="#2f5a65"
-                android:onClick="customerSignOut"
-                android:text="Sign Out" />
+                android:onClick="customerProfileCompletedOrders"
+                android:text="Previous Orders" />
 
             <Button
                 android:id="@+id/cookProfBack"
@@ -139,6 +114,14 @@
                 android:onClick="customerProfileToMain"
                 android:text="Back" />
 
+            <Button
+                android:id="@+id/cookSignOut"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="#2f5a65"
+                android:onClick="customerSignOut"
+                android:text="Sign Out" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

@@ -163,9 +163,9 @@ public class CustomerMain extends AppCompatActivity {
     }
 
 
-    public void customerCompletedOrders(View v) {
-        Intent i = new Intent(CustomerMain.this, CompletedOrdersActivity.class);
-        i.putExtra("Customer", customer);
-        startActivity(i);
-    }
+//    public void customerCompletedOrders(View v) {
+//        Intent i = new Intent(CustomerMain.this, CompletedOrdersActivity.class);
+//        i.putExtra("Customer", customer);
+//        startActivity(i);
+//    }
 }

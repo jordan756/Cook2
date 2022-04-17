@@ -35,7 +35,7 @@
         <ListView
             android:id="@+id/listOrders"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="470dp"
             android:choiceMode="multipleChoice"
             android:paddingTop="5dp" />
 
@@ -64,17 +64,6 @@
                 android:backgroundTint="#2f5a65"
                 android:onClick="customerOrderDetails"
                 android:text="Order Details"
-                android:textAllCaps="false" />
-
-            <Button
-                android:id="@+id/button15"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:backgroundTint="#2f5a65"
-                android:onClick="customerCompletedOrders"
-                android:text="View Previous Orders"
                 android:textAllCaps="false" />
 
             <Button

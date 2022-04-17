@@ -82,4 +82,10 @@ public class CustomerProfileActivity extends AppCompatActivity {
 //        finishAffinity();
         finish();
     }
+
+    public void customerProfileCompletedOrders(View view) {
+        Intent i = new Intent(CustomerProfileActivity.this, CompletedOrdersActivity.class);
+        i.putExtra("Customer", customer);
+        startActivity(i);
+    }
 }
