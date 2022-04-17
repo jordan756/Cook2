@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/edges"
         android:backgroundTint="@color/white"
-        android:gravity="bottom"
+        android:gravity="top"
         android:orientation="vertical">
 
         <TextView
@@ -21,16 +21,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:background="@drawable/edges"
             android:backgroundTint="@color/white"
             android:ems="10"
             android:fontFamily="sans-serif-black"
             android:gravity="center"
             android:inputType="time"
-            android:minHeight="48dp"
             android:text="Current Orders"
             android:textColor="#2f5a65"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <ListView
             android:id="@+id/listOrders"
