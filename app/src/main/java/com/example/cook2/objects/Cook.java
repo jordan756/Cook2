@@ -175,8 +175,9 @@ public class Cook extends Person implements Parcelable {
         open = !open;
     }
 
-
     public String summary() {
-        return firstName + " " + address + " rating: " + currentRating + "/5";
+        String ratingString = String.valueOf(currentRating);
+        String ratingSubString = ratingString.substring(0,3);
+        return firstName + " " + address + " rating: " + ratingSubString + "/5";
     }
 }
