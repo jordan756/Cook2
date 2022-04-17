@@ -11,9 +11,9 @@
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
-        android:layout_height="44dp"
+        android:layout_height="40dp"
         android:layout_gravity="center|center_horizontal"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="5dp"
         android:fontFamily="sans-serif-black"
         android:gravity="center"
         android:text="Select Cook"
@@ -27,7 +27,7 @@
     <ListView
         android:id="@+id/listCooks"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="490dp"
 
         android:choiceMode="singleChoice" />
 
