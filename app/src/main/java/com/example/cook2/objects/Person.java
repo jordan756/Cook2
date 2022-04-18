@@ -98,7 +98,7 @@ public class Person  {
             ratingsList.add(rating);
 
         } else {
-            double total = rating;
+            double total = 0;
             ratingsList.add(rating);
             numberOfRatings = ratingsList.size();
             for (int i = 0; i < ratingsList.size(); i++) {
