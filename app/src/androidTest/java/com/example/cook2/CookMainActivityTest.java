@@ -119,6 +119,9 @@ public class CookMainActivityTest extends TestCase {
         // String temp = onData(anything()).inAdapterView(withId(R.id.listOrders)).atPosition(0).;
         String id = "gfore19@gmail.comgfore7";
         onView(withId(R.id.start_button)).perform(click());
+
+        SystemClock.sleep(1000);
+        onData(anything()).inAdapterView(withId(R.id.listOrders)).atPosition(0).perform(click());
         onView(withId(R.id.end_button)).perform(click());
         Order order = Util.getOrder(id,db);
         String result = order.status;
