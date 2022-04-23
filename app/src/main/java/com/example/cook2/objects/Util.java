@@ -308,4 +308,53 @@ public class Util {
                     }
                 });
     }
+    public static void removeCook(Cook cook, FirebaseFirestore db) {
+        db.collection("Cook").document(cook.getKey())
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        System.out.println("Cook removed");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        System.out.println("Cook remove failed");
+                    }
+                });
+    }
+    public static void removeCustomer(Customer cust, FirebaseFirestore db) {
+        db.collection("Customer").document(cust.getKey())
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        System.out.println("Customer removed");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        System.out.println("Customer remove failed");
+                    }
+                });
+    }
+    public static void removeDriver(Driver driv, FirebaseFirestore db) {
+        db.collection("Driver").document(driv.getKey())
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        System.out.println("Driver removed");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        System.out.println("Driver remove failed");
+                    }
+                });
+    }
+
 }

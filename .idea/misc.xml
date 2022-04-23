@@ -15,6 +15,7 @@
         <entry key="..\:/Users/Jordan Nguyen/AndroidStudioProjects/Cook2/app/src/main/res/layout/fragment_second.xml" value="0.1" />
         <entry key="..\:/Users/Jordan Nguyen/StudioProjects/Cook2/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/Users/Jordan Nguyen/StudioProjects/Cook2/app/src/main/res/drawable/select.xml" value="0.1" />
+        <entry key="..\:/Users/Jordan Nguyen/StudioProjects/Cook2/app/src/main/res/layout/activity_cook_main.xml" value="0.1" />
         <entry key="..\:/Users/Jordan Nguyen/StudioProjects/Cook2/app/src/main/res/layout/activity_cook_update_menu.xml" value="0.11956521739130435" />
         <entry key="..\:/Users/Jordan Nguyen/StudioProjects/Cook2/app/src/main/res/layout/activity_custmer_view_menu.xml" value="0.1" />
         <entry key="..\:/Users/Jordan Nguyen/StudioProjects/Cook2/app/src/main/res/layout/activity_customer_main.xml" value="0.1" />
@@ -33,14 +34,12 @@
         <entry key="..\:/Users/chris/Desktop/CS440 Project/app/src/main/res/layout/activity_register.xml" value="0.2875905797101449" />
         <entry key="..\:/Users/vk/AndroidStudioProjects/Cook2/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.23560910307898258" />
         <entry key="..\:/Users/vk/AndroidStudioProjects/Cook2/app/src/main/res/layout-w936dp/activity_login.xml" value="0.33" />
-        <entry key="..\:/Users/vk/AndroidStudioProjects/Cook2/app/src/main/res/layout/activity_cook_update_menu.xml" value="0.25" />
         <entry key="..\:/Users/vk/AndroidStudioProjects/Cook2/app/src/main/res/layout/activity_cook_main.xml" value="0.33" />
         <entry key="..\:/Users/vk/AndroidStudioProjects/Cook2/app/src/main/res/layout/activity_cook_order_details.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/vk/AndroidStudioProjects/Cook2/app/src/main/res/layout/activity_cook_profile.xml" value="0.33" />
         <entry key="..\:/Users/vk/AndroidStudioProjects/Cook2/app/src/main/res/layout/activity_cook_update_menu.xml" value="0.33" />
         <entry key="..\:/Users/vk/AndroidStudioProjects/Cook2/app/src/main/res/layout/activity_custmer_view_menu.xml" value="0.25" />
         <entry key="..\:/Users/vk/AndroidStudioProjects/Cook2/app/src/main/res/layout/activity_customer_main.xml" value="0.33" />
-        <entry key="..\:/Users/vk/AndroidStudioProjects/Cook2/app/src/main/res/layout/activity_customer_profile.xml" value="0.25" />
         <entry key="..\:/Users/vk/AndroidStudioProjects/Cook2/app/src/main/res/layout/activity_customer_order_details.xml" value="0.33" />
         <entry key="..\:/Users/vk/AndroidStudioProjects/Cook2/app/src/main/res/layout/activity_customer_profile.xml" value="0.25" />
         <entry key="..\:/Users/vk/AndroidStudioProjects/Cook2/app/src/main/res/layout/activity_customer_progress.xml" value="0.22" />
@@ -49,8 +48,6 @@
         <entry key="..\:/Users/vk/AndroidStudioProjects/Cook2/app/src/main/res/layout/activity_driver_1.xml" value="0.25" />
         <entry key="..\:/Users/vk/AndroidStudioProjects/Cook2/app/src/main/res/layout/activity_driver_2.xml" value="0.25" />
         <entry key="..\:/Users/vk/AndroidStudioProjects/Cook2/app/src/main/res/layout/activity_driver_3.xml" value="0.33" />
-        <entry key="..\:/Users/vk/AndroidStudioProjects/Cook2/app/src/main/res/layout/activity_driver_main.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/vk/AndroidStudioProjects/Cook2/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/vk/AndroidStudioProjects/Cook2/app/src/main/res/layout/activity_driver_main.xml" value="0.33" />
         <entry key="..\:/Users/vk/AndroidStudioProjects/Cook2/app/src/main/res/layout/activity_driver_maps.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/vk/AndroidStudioProjects/Cook2/app/src/main/res/layout/activity_driver_profile.xml" value="0.33" />
