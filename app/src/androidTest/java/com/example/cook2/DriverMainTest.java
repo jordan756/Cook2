@@ -71,14 +71,14 @@ public class DriverMainTest extends TestCase {
 
 
     @Test
-    public void testCookOrderDetails1() {
+    public void testDriverOrderDetails1() {
         onView(withId(R.id.driverOrderDetailsButton)).perform(click());
         assertTrue(getIntents().isEmpty());
     }
 
 
     @Test
-    public void testCookOrderDetails2() {
+    public void testDriverOrderDetails2() {
         SystemClock.sleep(1000);
         onData(anything()).inAdapterView(withId(R.id.listMenu)).atPosition(0).perform(click());
         onView(withId(R.id.driverOrderDetailsButton)).perform(click());
