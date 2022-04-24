@@ -219,11 +219,10 @@ public class DriverMainActivity extends AppCompatActivity {
     }
 
 
-    public void profileButtonEvent(View view) {
-        Intent profileActivity = new Intent(getApplicationContext(), DriverProfileActivity.class);
+    public void profileButtonEvent(View v) {
+        Intent profileActivity = new Intent(v.getContext(), DriverProfileActivity.class);
         profileActivity.putExtra("Driver", driver);
         startActivity(profileActivity);
-        // finishAffinity();
     }
 
 

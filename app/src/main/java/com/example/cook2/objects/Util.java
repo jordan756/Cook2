@@ -50,6 +50,7 @@ public class Util {
 
 
     public static void removeOrder(Order order, Driver driver, FirebaseFirestore db) {
+        order.updateStatus();
         db.collection("CompletedOrder").document(order.orderKey).set(order);
 
         db.collection("Order").document(order.orderKey)
